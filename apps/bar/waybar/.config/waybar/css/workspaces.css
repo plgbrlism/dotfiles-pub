@@ -1,0 +1,9 @@
+#workspaces button {
+    padding:          0 8px;
+    color:            @muted;
+    background-color: transparent;
+}
+
+#workspaces button.focused {
+    color: @primary;
+}

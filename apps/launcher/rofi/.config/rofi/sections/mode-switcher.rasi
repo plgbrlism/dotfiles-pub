@@ -1,0 +1,12 @@
+mode-switcher {
+    background-color:   transparent;
+}
+
+button {
+    padding:            8px;
+}
+
+button selected {
+    background-color:   @secondary;
+    text-color:         @selection;
+}

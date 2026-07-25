@@ -1,0 +1,7 @@
+#waybar > box {
+    margin:              0 400 0 400px;
+    background-color:    @background;
+    border-radius:       0 0 12 12px;
+    padding-left: 12px;     
+    padding-right: 12px;
+}

@@ -1,0 +1,12 @@
+// ───────────────────────────────
+// Autostart
+// ───────────────────────────────
+
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+spawn-at-startup "dunst"
+spawn-at-startup "/usr/libexec/xdg-desktop-portal-gtk"
+spawn-at-startup "/usr/libexec/xdg-desktop-portal"
+spawn-at-startup "sudo /usr/sbin/powertop --auto-tune"
+spawn-at-startup "~/.config/niri/helper/waybar/on-launch.sh"
+
+spawn-sh-at-startup "~/.config/rofi/scripts/wallpaper/cache-wallpaper.sh --restore"

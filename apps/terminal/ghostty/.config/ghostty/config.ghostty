@@ -1,0 +1,20 @@
+
+#               ░██                                 ░██       ░██               
+#               ░██                                 ░██       ░██               
+#     ░████████ ░████████   ░███████   ░███████  ░████████ ░████████ ░██    ░██ 
+#    ░██    ░██ ░██    ░██ ░██    ░██ ░██           ░██       ░██    ░██    ░██ 
+#    ░██    ░██ ░██    ░██ ░██    ░██  ░███████     ░██       ░██    ░██    ░██ 
+#    ░██   ░███ ░██    ░██ ░██    ░██        ░██    ░██       ░██    ░██   ░███ 
+#     ░█████░██ ░██    ░██  ░███████   ░███████      ░████     ░████  ░█████░██ 
+#           ░██                                                             ░██ 
+#     ░███████                                                        ░███████  
+#                                                                               
+#	 github: @plgbrlism                                              
+#	 tiktok: @sivops.tech
+
+config-file = ~/.config/ghostty/colors/colors.ghostty
+config-file = ~/.config/ghostty/fonts/fonts.ghostty
+config-file = ~/.config/ghostty/transparency.ghostty
+config-file = ~/.config/ghostty/cursor.ghostty
+config-file = ~/.config/ghostty/window.ghostty
+config-file = ~/.config/ghostty/preference.ghostty

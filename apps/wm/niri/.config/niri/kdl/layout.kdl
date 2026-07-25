@@ -1,0 +1,15 @@
+// ───────────────────────────────
+// Layout
+// ───────────────────────────────
+
+layout {
+    gaps 12
+    background-color "transparent"
+
+    border {
+        off
+    }
+    focus-ring {
+        off
+    }
+}

@@ -1,0 +1,21 @@
+mainbox {
+    children:           [ inputbar, message, listview ];
+}
+
+inputbar {
+    children:           [ prompt, entry, case-indicator ];
+}
+
+message {
+	background-color:   @surface;
+	border-radius:      25 5 25 5;
+}
+
+textbox {
+    background-color:   @surface;
+}
+
+prompt, num-rows, num-filtered-rows, textbox-current-entry, icon-current-entry, case-indicator, textbox-prompt-colon {
+    background-color:   inherit;
+    text-color:         inherit;
+}

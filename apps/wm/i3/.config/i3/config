@@ -1,0 +1,21 @@
+
+#    ░██ ░██████  
+#       ░██   ░██ 
+#    ░██      ░██ 
+#    ░██  ░█████  
+#    ░██      ░██ 
+#    ░██░██   ░██ 
+#    ░██ ░██████                  
+#                 
+#	 github: @plgbrlism 
+#	 tiktok: @sivops.tech
+
+include ~/.config/i3/colors/colors.conf
+include ~/.config/i3/conf/startup.conf
+include ~/.config/i3/conf/resolution.conf
+include ~/.config/i3/conf/font.conf
+include ~/.config/i3/conf/apps.conf
+include ~/.config/i3/conf/autotiling.conf
+include ~/.config/i3/conf/autostart.conf
+include ~/.config/i3/conf/keybindings.conf
+include ~/.config/i3/conf/appearance.conf

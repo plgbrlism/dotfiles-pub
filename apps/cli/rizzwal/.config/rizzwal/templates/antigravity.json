@@ -1,0 +1,87 @@
+{
+  // DISABLES THE THEME'S OVERRIDE ENGINE
+  "editor.semanticHighlighting.enabled": false,
+  "editor.bracketPairColorization.enabled": false,
+
+  "workbench.colorCustomizations": {
+    // 1. MAIN BACKGROUNDS
+    "editor.background": "{{ background.hex }}",
+    "sideBar.background": "{{ background.hex }}",
+    "sideBarSectionHeader.background": "{{ surface.hex }}",
+    "activityBar.background": "{{ surface.hex }}",
+    "editorGroupHeader.tabsBackground": "{{ surface.hex }}",
+    "tab.inactiveBackground": "{{ surface.hex }}",
+    "tab.activeBackground": "{{ background.hex }}",
+    "terminal.background": "{{ background.hex }}",
+    "breadcrumb.background": "{{ background.hex }}",
+    "panel.background": "{{ background.hex }}",
+    "menu.background": "{{ surface.hex }}",
+
+    // 2. FOREGROUNDS & TEXT
+    "editor.foreground": "{{ foreground.hex }}",
+    "sideBar.foreground": "{{ muted.hex }}",
+    "tab.activeForeground": "{{ foreground.hex }}",
+    "tab.inactiveForeground": "{{ muted.hex }}",
+    "notifications.foreground": "{{ foreground.hex }}",
+
+    // 3. BORDERS & DIVIDERS
+    "editorGroup.border": "{{ surface.hex }}",
+    "sideBar.border": "{{ surface.hex }}",
+    "tab.border": "{{ surface.hex }}",
+    "editorWidget.border": "{{ primary.hex }}",
+    "activityBar.border": "{{ surface.hex }}",
+
+    // 4. SELECTIONS & HIGHLIGHTS
+    "editor.lineHighlightBackground": "{{ surface.hex }}",
+    "editor.selectionBackground": "{{ selection.hex }}44",
+    "list.activeSelectionBackground": "{{ surface.hex }}",
+    "list.hoverBackground": "{{ surface.hex }}88",
+    "editorCursor.foreground": "{{ cursor.hex }}",
+
+    // 5. THE "POP" (Accents)
+    "statusBar.background": "{{ primary.hex }}",
+    "statusBar.foreground": "{{ background.hex }}",
+    "activityBar.foreground": "{{ primary.hex }}",
+    "activityBarBadge.background": "{{ primary.hex }}",
+    "activityBarBadge.foreground": "{{ background.hex }}",
+    "button.background": "{{ primary.hex }}",
+    "button.foreground": "{{ background.hex }}",
+    
+    // 6. TERMINAL COLORS
+    "terminal.ansiBlack": "{{ surface.hex }}",
+    "terminal.ansiRed": "{{ error.hex }}",
+    "terminal.ansiGreen": "{{ success.hex }}",
+    "terminal.ansiYellow": "{{ warning.hex }}",
+    "terminal.ansiBlue": "{{ primary.hex }}",
+    "terminal.ansiMagenta": "{{ secondary.hex }}",
+    "terminal.ansiCyan": "{{ info.hex }}",
+    "terminal.ansiWhite": "{{ foreground.hex }}"
+  },
+
+  // 7. AGGRESSIVE TEXT/SYNTAX COLORS
+  "editor.tokenColorCustomizations": {
+    "comments": "{{ muted.hex }}",
+    "functions": "{{ primary.hex }}",
+    "keywords": "{{ secondary.hex }}",
+    "numbers": "{{ info.hex }}",
+    "strings": "{{ success.hex }}",
+    "types": "{{ primary.hex }}",
+    "variables": "{{ foreground.hex }}",
+    "textMateRules": [
+      {
+        "scope": [
+          "source",
+          "variable",
+          "constant",
+          "keyword",
+          "storage",
+          "entity",
+          "markup"
+        ],
+        "settings": {
+          "foreground": "{{ foreground.hex }}"
+        }
+      }
+    ]
+  }
+}

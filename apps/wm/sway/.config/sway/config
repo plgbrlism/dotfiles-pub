@@ -1,0 +1,16 @@
+
+# ───────────────────────────────
+# Sway Modular Config...
+# ───────────────────────────────
+
+include ~/.config/sway/colors/colors.conf
+include ~/.config/sway/conf/startup.conf
+include ~/.config/sway/conf/resolution.conf
+include ~/.config/sway/conf/font.conf
+include ~/.config/sway/conf/apps.conf
+include ~/.config/sway/conf/autostart.conf
+include ~/.config/sway/conf/autotiling.conf
+include ~/.config/sway/conf/keybindings.conf
+include ~/.config/sway/conf/touchpad.conf
+include ~/.config/sway/conf/appearance.conf
+include ~/.config/sway/conf/swayfx.conf
