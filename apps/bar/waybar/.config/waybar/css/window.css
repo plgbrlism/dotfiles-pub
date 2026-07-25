@@ -1,0 +1,9 @@
+#window {
+    background-color: @overlay;
+    color:            @foreground;
+    padding:          0 12px;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+}

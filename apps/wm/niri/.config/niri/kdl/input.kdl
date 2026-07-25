@@ -1,0 +1,13 @@
+// ───────────────────────────────
+// Input (Touchpad)
+// ───────────────────────────────
+
+input {
+    focus-follows-mouse
+
+    touchpad {
+        tap
+        tap-button-map "left-middle-right"
+        dwt
+    }
+}

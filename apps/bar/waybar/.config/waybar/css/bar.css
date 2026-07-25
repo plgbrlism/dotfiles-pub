@@ -1,0 +1,8 @@
+.module {
+    color:               @foreground;
+    padding:             0 6px;
+}
+
+#waybar {
+    background-color:    transparent;
+}

@@ -1,0 +1,148 @@
+
+// ╭─────────────────────────────────────────────────────────────╮
+// │ github: @plgbrlism                                          │
+// │ tiktok: @sivops.tech                                        │
+// ╰─────────────────────────────────────────────────────────────╯
+
+
+// ╭──────────────────────────────╮
+// │        Configuration         │
+// ╰──────────────────────────────╯
+
+{
+	"reload-style-on-change": true,
+    "layer":                  "top",
+    "position":               "top",
+    "height":                 22,
+    "spacing":                4,
+    "margin-top":             0,
+    "margin-bottom":          0,
+
+    "modules-left":           ["custom/powermenu", "sway/workspaces", "sway/window"],
+    "modules-center":         [],
+    "modules-right": [
+        "tray",
+        "custom/sep",
+        "pulseaudio",
+        "backlight",
+        "custom/sep",
+        "network",
+        "custom/sep",
+        "battery"
+    ],
+
+// ╭──────────────────────────────╮
+// │            Left              │
+// ╰──────────────────────────────╯
+
+    "sway/workspaces": {
+        "format":              "{name} {icon}",
+        "format-icons": {
+			"focused":         "",
+			"default":         ""
+        }
+    },
+
+    "sway/window": {
+        "max-length":          100,
+        "all-outputs":         true
+    },
+
+
+// ╭──────────────────────────────╮
+// │          Separators          │
+// ╰──────────────────────────────╯
+
+    "custom/sep": {
+        "format":              "|",
+        "tooltip":             false
+    },
+
+    // ---- System ----
+
+    "memory": {
+        "interval":            5,
+        "format":              " {percentage}%"
+    },
+
+    "cpu": {
+        "interval":            5,
+        "format":              " {usage}%"
+    },
+
+// ╭──────────────────────────────╮
+// │            Audio             │
+// ╰──────────────────────────────╯
+
+    "pulseaudio": {
+        "format":              " {volume}%",
+        "format-muted":        "󰎊 muted",
+        "on-click":            "~/.config/rofi/scripts/audio/rofi-audio.sh"
+    },
+
+// ╭──────────────────────────────╮
+// │          Brightness          │
+// ╰──────────────────────────────╯
+
+    "backlight": {
+        "format":              "󰃠 {percent}%",
+        "on-scroll-up":        "brightnessctl set +5%",
+        "on-scroll-down":      "brightnessctl set 5%-",
+        "on-click":            "~/.config/rofi/scripts/brightness/rofi-brightness.sh",
+        "tooltip":             false
+    },
+
+// ╭──────────────────────────────╮
+// │           Network            │
+// ╰──────────────────────────────╯
+
+    "network": {
+        "format-wifi":         "{icon} {essid}",
+        "format-ethernet":     "  connected via Ethernet",
+        "format-disconnected": "󰤭  no Internet",
+        "format-icons":        ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+        "on-click":            "~/.config/rofi/scripts/wifi/rofi-wifi.sh",
+        "tooltip-format-wifi": "{signalStrength}% — {ipaddr}"
+    },
+
+// ╭──────────────────────────────╮
+// │           Battery            │
+// ╰──────────────────────────────╯
+
+    "battery": {
+        "bat":                 "BAT0",
+        "adapter":             "AC",
+        "interval":            5,
+        "full-at":             90,
+
+        "format":              "{icon} {capacity}%",
+        "format-charging":     "⚡{capacity}%",
+        "format-full":         "{icon} {capacity}%",
+
+        "format-icons":        ["󰁺","󰁻","󰁽","󰁿","󰂁","󰁹"],
+
+        "states": {
+            "warning":         30,
+            "critical":        15
+        }
+    },
+
+// ╭──────────────────────────────╮
+// │         System Tray          │
+// ╰──────────────────────────────╯
+
+    "tray": {
+        "spacing":             8,
+        "icon-size":           15
+    },
+
+// ╭──────────────────────────────╮
+// │          Powermenu           │
+// ╰──────────────────────────────╯
+
+    "custom/powermenu": {
+        "format":              "",
+        "on-click":            "~/.config/rofi/scripts/powermenu/powermenu.sh",
+        "tooltip":             false
+    }
+}

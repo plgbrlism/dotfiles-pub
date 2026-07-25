@@ -1,0 +1,5 @@
+# ~~peaclock
+apps/cli/peaclock/.peaclock/history
+
+# ~btop (change your theme to the generated theme yourself)
+/apps/cli/btop/.config/btop/btop.conf

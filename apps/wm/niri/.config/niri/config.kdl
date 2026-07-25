@@ -1,0 +1,19 @@
+
+//               ░██         ░██
+//                              
+//    ░████████  ░██░██░████ ░██
+//    ░██    ░██ ░██░███     ░██
+//    ░██    ░██ ░██░██      ░██
+//    ░██    ░██ ░██░██      ░██
+//    ░██    ░██ ░██░██      ░██
+//    ░██    ░██ ░██░██      ░██
+//                              
+//	  github: @plgbrlism                                             
+//	  tiktok: @sivops.tech
+
+include "kdl/outputs.kdl"
+include "kdl/autostart.kdl"
+include "kdl/keybinds.kdl"
+include "kdl/layout.kdl"
+include "kdl/input.kdl"
+include "kdl/window-rules.kdl"

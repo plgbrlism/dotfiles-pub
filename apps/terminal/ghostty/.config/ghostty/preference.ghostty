@@ -1,0 +1,3 @@
+copy-on-select = true
+mouse-hide-while-typing = true
+gtk-single-instance = true

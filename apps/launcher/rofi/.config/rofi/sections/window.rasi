@@ -1,0 +1,5 @@
+window {
+    width:              400px;
+    border-radius:      40 8 40 8;
+    border-color:       @primary;
+}

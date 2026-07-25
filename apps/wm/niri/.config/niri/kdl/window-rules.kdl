@@ -1,0 +1,14 @@
+// ───────────────────────────────
+// Window Rules
+// ───────────────────────────────
+
+prefer-no-csd
+
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
+
+layer-rule {
+    place-within-backdrop true
+}

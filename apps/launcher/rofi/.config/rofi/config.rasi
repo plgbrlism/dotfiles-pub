@@ -1,0 +1,16 @@
+/*
+ ╭─────────────────────────────────────────────────────────────╮
+ │ github: @plgbrlism                                          │
+ │ tiktok: @sivops.tech                                        │
+ ╰─────────────────────────────────────────────────────────────╯
+*/
+
+@import "~/.config/rofi/colors/colors.rasi"
+@import "~/.config/rofi/fonts/fonts.rasi"
+@import "~/.config/rofi/sections/base.rasi"
+@import "~/.config/rofi/sections/configuration.rasi"
+@import "~/.config/rofi/sections/window.rasi"
+@import "~/.config/rofi/sections/mainbox.rasi"
+@import "~/.config/rofi/sections/entry.rasi"
+@import "~/.config/rofi/sections/listview.rasi"
+@import "~/.config/rofi/sections/mode-switcher.rasi"

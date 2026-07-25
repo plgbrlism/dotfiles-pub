@@ -1,0 +1,6 @@
+entry {
+    hide-cursor-on-empty: true;
+    cursor-color:       @primary;
+    placeholder-color:  @muted;
+    text-color:         @muted;
+}

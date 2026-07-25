@@ -1,0 +1,24 @@
+
+/*
+ ╭─────────────────────────────────────────────────────────────╮
+ │ github: @plgbrlism                                          │
+ │ tiktok: @sivops.tech                                        │
+ ╰─────────────────────────────────────────────────────────────╯
+ */
+ 
+@import "colors/colors.css"; 
+@import "fonts/fonts.css";
+
+/* --- Base styles (swap: bar.css / bar-no-icons.css) --- */
+@import "css/bar.css";
+
+/* --- Module styles (comment/uncomment to swap) --- */
+@import "css/workspaces.css";
+@import "css/window.css";
+@import "css/sep.css";
+@import "css/audio.css";
+@import "css/network.css";
+@import "css/battery.css";
+
+/* --- Bar geometry (swap: geometry-floating / geometry-floating / geometry-notch / geometry-minimal) --- */
+@import "css/geometry-floating.css";

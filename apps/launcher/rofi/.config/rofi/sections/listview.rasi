@@ -1,0 +1,30 @@
+listview {
+    lines:              5;
+    columns:            1;
+    scrollbar:          false;
+}
+
+element {
+    spacing:            8;
+    padding:            8;
+    background-color:   transparent;
+}
+element.selected {
+    background-color:   @primary;
+    text-color:         @background;
+}
+
+element-text {
+    background-color:   @background;
+}
+element-text.selected {
+	background-color:   @primary;
+    text-color:     	@background;
+}
+
+element-icon {
+    size:               24;
+}
+element-icon.selected {
+    background-color:   @primary;
+}

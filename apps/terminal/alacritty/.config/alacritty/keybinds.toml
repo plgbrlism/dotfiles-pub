@@ -1,0 +1,6 @@
+[keyboard]
+bindings = [
+	{ key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+	{ key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+	{ key = "Key0", mods = "Control", action = "ResetFontSize" }
+]

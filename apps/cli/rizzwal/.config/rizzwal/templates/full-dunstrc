@@ -1,0 +1,45 @@
+[global]
+monitor = 0
+follow = mouse
+width = (0, 300)
+height = (0, 200)
+offset = (20, 80)
+origin = top-right
+font = "JetbrainsMono Nerd Font 10"
+
+format = "<b>%s</b>\n%b"
+body = "%b"
+
+frame_width = 2
+separator_height = 2
+padding = 8
+horizontal_padding = 8
+corner_radius = 12
+transparency = 0
+
+separator_color = "{{ primary.hex }}"
+
+icon_position = left
+max_icon_size = 32
+
+mouse_left_click = close_current
+mouse_middle_click = close_all
+mouse_right_click = context
+
+[urgency_low]
+background = "{{ background.hex }}"
+foreground = "{{ muted.hex }}"
+frame_color = "{{ primary.hex }}"
+timeout = 5
+
+[urgency_normal]
+background = "{{ background.hex }}"
+foreground = "{{ foreground.hex }}"
+frame_color = "{{ primary.hex }}"
+timeout = 10
+
+[urgency_critical]
+background = "{{ background.hex }}"
+foreground = "{{ foreground.hex }}"
+frame_color = "{{ warning.hex }}"
+timeout = 0
