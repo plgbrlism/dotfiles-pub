@@ -14,3 +14,4 @@ include ~/.config/sway/conf/keybindings.conf
 include ~/.config/sway/conf/touchpad.conf
 include ~/.config/sway/conf/appearance.conf
 include ~/.config/sway/conf/swayfx.conf
+include ~/.config/sway/conf/system.conf

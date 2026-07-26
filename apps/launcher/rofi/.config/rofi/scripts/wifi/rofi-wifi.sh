@@ -35,9 +35,7 @@ wifi_list=$(awk -F: '{OFS=":"; $1=""; sub(/^:/, ""); print}' "$_TMP_WLIST")
 saved_connections=$(nmcli -t -f NAME,TYPE connection show 2>/dev/null \
     | grep ":802-11-wireless" | cut -d: -f1 | sort -u)
 
-#╭─────────────────────────────────────────────────────────────╮
-#│ Write Shared State for Sub-Scripts                          │
-#╰─────────────────────────────────────────────────────────────╯
+# ~~ shared subscript states ~~
 {
     printf 'current=%q\n'        "$current"
     printf 'current_uuid=%q\n'   "$current_uuid"
@@ -52,9 +50,6 @@ saved_connections=$(nmcli -t -f NAME,TYPE connection show 2>/dev/null \
 printf '%s' "$wifi_list"         > /tmp/_rw_wifi_list
 printf '%s' "$saved_connections" > /tmp/_rw_saved
 
-#╭─────────────────────────────────────────────────────────────╮
-#│ Smart Scan                                                  │
-#╰─────────────────────────────────────────────────────────────╯
 smart_scan() {
     local force=${1:-false}
     if [[ "$force" == true ]]; then
@@ -73,9 +68,6 @@ smart_scan() {
 }
 smart_scan false
 
-#╭─────────────────────────────────────────────────────────────╮
-#│ Icons                                                       │
-#╰─────────────────────────────────────────────────────────────╯
 ICON_WIFI="󰤨 "
 ICON_WIFI_ENABLED="󱚽 "
 ICON_WIFI_DISABLED="󱛅 "
@@ -86,30 +78,15 @@ ICON_SCAN=" "
 ICON_REFRESH="󰑓 "
 ICON_SETTINGS="󰒓 "
 # ICON_SEPARATOR="────────────────────────────────"
-ICON_NAV=" "
+ICON_NAV="󰱓 "
 ICON_FORGET="󰭙 "
 
-#╭─────────────────────────────────────────────────────────────╮
-#│ Build Main Menu                                             │
-#╰─────────────────────────────────────────────────────────────╯
 options=()
 
-# if [[ "$wifi_state" == "enabled" ]]; then
-#     if [[ -n "$current" ]]; then
-#         options+=("$ICON_WIFI_ENABLED  Connected: $current [$current_signal%]")
-#     else
-#         options+=("$ICON_WIFI_ENABLED  Wifi Enabled: (No Connection)")
-#     fi
-# else
-#     options+=("$ICON_WIFI_DISABLED  Wifi Disabled")
-# fi
 
-#╭─────────────────────────────────────────────────────────────╮
-#│ Status Message Block for Rofi                               │
-#╰─────────────────────────────────────────────────────────────╯
 if [[ "$wifi_state" == "enabled" ]]; then
 	if [[ -n "$current" ]]; then
-		MESG_STATUS="$ICON_WIFI_ENABLED Connected to $current | $current_signal%"
+		MESG_STATUS="$ICON_WIFI_ENABLED | $current >> $current_signal%"
 	else
 		MESG_STATUS="$ICON_WIFI_ENABLED Wi-Fi Enabled (not connected)"
 	fi
@@ -118,31 +95,23 @@ else
 fi
 
 
-
-# options+=("$ICON_SEPARATOR")
-
 if [[ "$wifi_state" == "enabled" ]]; then
-    options+=("$ICON_WIFI_OFF  Off Wi-Fi")
+    options+=("$ICON_WIFI_OFF  Turn Off")
 else
-    options+=("$ICON_WIFI_ON  On Wi-Fi")
+    options+=("$ICON_WIFI_ON  Turn On")
 fi
 
 if [[ -n "$current" ]]; then
-    options+=("$ICON_DISCONNECT  Disconnect ($current)")
-    options+=("$ICON_FORGET  Forget Network ($current)")
+    options+=("$ICON_DISCONNECT  Disconnect")
+    options+=("$ICON_FORGET  Forget Network")
 fi
 
 options+=("$ICON_SCAN  Scan")
-# options+=("$ICON_REFRESH  Force full rescan")
-# options+=("$ICON_SETTINGS  Open Network Settings")
-# options+=("$ICON_SEPARATOR")
 options+=("$ICON_NAV  Available Connections")
 options+=("$ICON_NAV  Saved Connections")
 
 
-#╭─────────────────────────────────────────────────────────────╮
-#│ Show Rofi                                                   │
-#╰─────────────────────────────────────────────────────────────╯
+# ~~ launch rofi ~~
 prompt_text="$ICON_WIFI"
 [[ -n "$current" && "$current_signal" -gt 0 ]] && \
     prompt_text=" $prompt_text"
@@ -155,22 +124,20 @@ chosen=$(printf "%s\n" "${options[@]}" | rofi -dmenu \
     -selected-row 0 \
     -theme-str 'mainbox { children: [ message, listview ]; }' \
     -theme-str 'listview { lines: 6; }' \
-    -theme-str "window { width: 480px; }" )
+    -theme-str "window { width: 400px; }" )
 
 
 [[ -z "$chosen" ]] && exit 0
 selected="${options[$chosen]}"
 
-#╭─────────────────────────────────────────────────────────────╮
-#│ Handle Selection                                            │
-#╰─────────────────────────────────────────────────────────────╯
+# ~~ edge cases ~~
 case "$selected" in
-    *"On Wi-Fi"*)
+    *"On"*)
         nmcli radio wifi on
         notify-send "Wi-Fi: Wi-Fi enabled" -t 2000 -i network-wireless
         sleep 1; exec "$0"
         ;;
-    *"Off Wi-Fi"*)
+    *"Off"*)
         nmcli radio wifi off
         notify-send "Wi-Fi: Wi-Fi disabled" -t 2000 -i network-wireless-disabled
         sleep 1; exec "$0"

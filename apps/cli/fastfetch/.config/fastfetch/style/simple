@@ -3,7 +3,7 @@
   "logo": {
     "color": {"9": "white"},
     "type": "auto",   // use distro logo or "none" if you want it blank
-    "source": "~/.config/fastfetch/custom_logos/paul",
+    "source": "~/.config/fastfetch/custom/dawg",
     "position": "top",
     "padding": {
       "right": 1,

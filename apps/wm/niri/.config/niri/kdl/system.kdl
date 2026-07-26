@@ -1,0 +1,10 @@
+// ~~ system level configurations (do not copy unless needed)
+
+// 1. Force systemd to see that $WAYLAND_DISPLAY now exists
+spawn-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=niri"
+
+// 2. Tell systemd to fire up the GTK portal service now that the condition is met
+spawn-at-startup "systemctl --user start xdg-desktop-portal-gtk"
+
+// ~~ laptop power optimization ~~
+spawn-at-startup "sudo /usr/sbin/powertop --auto-tune"
