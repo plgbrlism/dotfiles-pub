@@ -1,0 +1,264 @@
+
+<style>
+  :root { --indent: 22px; }
+  body { font-family: var(--font-mono); font-size: 16px; line-height: 1.7; color: var(--color-text-primary); padding: 1rem 0.5rem; }
+  .tree { margin: 0; padding: 0; }
+  details { margin: 0; padding: 0; }
+  summary { list-style: none; cursor: pointer; user-select: none; }
+  summary::-webkit-details-marker { display: none; }
+  .row { display: flex; align-items: baseline; gap: 6px; padding: 1px 0; }
+  .row:hover .label { color: var(--color-text-info); }
+  .icon { font-size: 16px; width: 14px; text-align: center; }
+  .label { color: var(--color-text-primary); }
+  .label.dir { font-weight: 500; }
+  .label.file { color: var(--color-text-secondary); }
+  .label.comment { color: var(--color-text-tertiary); font-size: 11px; font-style: italic; }
+  .badge { font-size: 14px; padding: 1px 5px; border-radius: 4px; font-family: var(--font-sans); font-style: normal; font-weight: 500; }
+  .badge.x11   { background: var(--color-background-info);    color: var(--color-text-info); }
+  .badge.wl    { background: var(--color-background-success);  color: var(--color-text-success); }
+  .badge.both  { background: var(--color-background-warning);  color: var(--color-text-warning); }
+  .badge.shell { background: var(--color-background-danger);   color: var(--color-text-danger); }
+  .branch { color: var(--color-text-tertiary); }
+  ul { list-style: none; margin: 0; padding-left: var(--indent); border-left: 1px solid var(--color-border-tertiary); }
+  li { margin: 0; }
+  .section-header { font-family: var(--font-sans); font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin: 14px 0 4px; }
+  .tip { font-family: var(--font-sans); font-size: 12px; color: var(--color-text-secondary); background: var(--color-background-secondary); border-left: 3px solid var(--color-border-secondary); padding: 6px 10px; border-radius: 0 6px 6px 0; margin: 10px 0 4px; line-height: 1.5; }
+  .legend { display: flex; gap: 10px; flex-wrap: wrap; font-family: var(--font-sans); font-size: 11px; margin-bottom: 14px; }
+</style>
+
+<div class="legend">
+  <span class="badge x11">X11</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--color-text-secondary)">X11 only</span>
+  <span class="badge wl">WL</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--color-text-secondary)">Wayland only</span>
+  <span class="badge both">BOTH</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--color-text-secondary)">X11 + Wayland</span>
+  <span class="badge shell">SHELL</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--color-text-secondary)">WM-agnostic</span>
+</div>
+
+<div class="section-header">Window Managers</div>
+<ul class="tree">
+
+  <li>
+    <details open>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">i3/</span><span class="badge x11">X11</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">├</span><span class="label dir">.config/i3/</span></div></li>
+        <li><ul>
+          <li><div class="row"><span class="icon">└</span><span class="label file">config</span></div></li>
+        </ul></li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">sway/</span><span class="badge wl">WL</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">├</span><span class="label dir">.config/sway/</span></div></li>
+        <li><ul>
+          <li><div class="row"><span class="icon">└</span><span class="label file">config</span></div></li>
+        </ul></li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">dwm/</span><span class="badge x11">X11</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">src/dwm/</span><span class="label comment">— source lives here, not ~/.config</span></div></li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">dwl/</span><span class="badge wl">WL</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">src/dwl/</span></div></li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">bspwm/</span><span class="badge x11">X11</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">├</span><span class="label dir">.config/bspwm/</span></div></li>
+        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">bspwmrc</span></div></li></ul></li>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/sxhkd/</span></div></li>
+        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">sxhkdrc</span></div></li></ul></li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">xmonad/</span><span class="badge x11">X11</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/xmonad/</span></div></li>
+        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">xmonad.hs</span></div></li></ul></li>
+      </ul>
+    </details>
+  </li>
+
+</ul>
+
+<div class="section-header">Bars</div>
+<ul class="tree">
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">polybar/</span><span class="badge x11">X11</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/polybar/</span></div></li>
+        <li><ul>
+          <li><div class="row"><span class="icon">├</span><span class="label file">config.ini</span></div></li>
+          <li><div class="row"><span class="icon">└</span><span class="label file">launch.sh</span></div></li>
+        </ul></li>
+      </ul>
+    </details>
+  </li>
+
+</ul>
+
+<div class="section-header">Launcher</div>
+<ul class="tree">
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">rofi/</span><span class="badge both">BOTH</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/rofi/</span></div></li>
+        <li><ul>
+          <li><div class="row"><span class="icon">├</span><span class="label file">config.rasi</span></div></li>
+          <li><div class="row"><span class="icon">└</span><span class="label dir">themes/</span></div></li>
+        </ul></li>
+      </ul>
+    </details>
+  </li>
+</ul>
+
+<div class="section-header">Terminals</div>
+<ul class="tree">
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">alacritty/</span><span class="badge both">BOTH</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/alacritty/</span></div></li>
+        <li><ul>
+          <li><div class="row"><span class="icon">├</span><span class="label file">alacritty.toml</span></div></li>
+          <li><div class="row"><span class="icon">└</span><span class="label dir">themes/</span></div></li>
+        </ul></li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">kitty/</span><span class="badge both">BOTH</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/kitty/</span></div></li>
+        <li><ul>
+          <li><div class="row"><span class="icon">├</span><span class="label file">kitty.conf</span></div></li>
+          <li><div class="row"><span class="icon">└</span><span class="label dir">themes/</span></div></li>
+        </ul></li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">rxvt/</span><span class="badge x11">X11</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label file">.Xresources</span><span class="label comment">— sits at ~/ via stow</span></div></li>
+      </ul>
+    </details>
+  </li>
+
+</ul>
+
+<div class="section-header">Compositor & Display</div>
+<ul class="tree">
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">picom/</span><span class="badge x11">X11</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/picom/</span></div></li>
+        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">picom.conf</span></div></li></ul></li>
+      </ul>
+    </details>
+  </li>
+
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">x11/</span><span class="badge x11">X11</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">├</span><span class="label file">.xinitrc</span></div></li>
+        <li><div class="row"><span class="icon">└</span><span class="label file">.Xresources</span><span class="label comment">— base Xresources (colors, dpi)</span></div></li>
+      </ul>
+    </details>
+  </li>
+
+</ul>
+
+<div class="section-header">Notifications</div>
+<ul class="tree">
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">dunst/</span><span class="badge x11">X11</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/dunst/</span></div></li>
+        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">dunstrc</span></div></li></ul></li>
+      </ul>
+    </details>
+  </li>
+</ul>
+
+<div class="section-header">Theming</div>
+<ul class="tree">
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">gtk/</span><span class="badge both">BOTH</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">├</span><span class="label file">.config/gtk-3.0/settings.ini</span></div></li>
+        <li><div class="row"><span class="icon">└</span><span class="label file">.gtkrc-2.0</span></div></li>
+      </ul>
+    </details>
+  </li>
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">qt/</span><span class="badge both">BOTH</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label file">.config/qt5ct/qt5ct.conf</span></div></li>
+      </ul>
+    </details>
+  </li>
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">fonts/</span><span class="badge both">BOTH</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">└</span><span class="label dir">.local/share/fonts/</span></div></li>
+        <li><ul><li><div class="row"><span class="icon">└</span><span class="label comment">your font files here</span></div></li></ul></li>
+      </ul>
+    </details>
+  </li>
+</ul>
+
+<div class="section-header">Shell</div>
+<ul class="tree">
+  <li>
+    <details>
+      <summary><div class="row"><span class="icon">📂</span><span class="label dir">shell/</span><span class="badge shell">SHELL</span></div></summary>
+      <ul>
+        <li><div class="row"><span class="icon">├</span><span class="label file">.zshrc</span></div></li>
+        <li><div class="row"><span class="icon">├</span><span class="label file">.bashrc</span></div></li>
+        <li><div class="row"><span class="icon">├</span><span class="label file">.bash_profile</span></div></li>
+        <li><div class="row"><span class="icon">└</span><span class="label file">.profile</span></div></li>
+      </ul>
+    </details>
+  </li>
+</ul>
+
+<div class="tip">
+  💡 <strong>One rule to remember:</strong> each folder under <code>~/dotfiles/</code> is a <em>stow package</em>. Its internal structure mirrors your home directory exactly. <code>stow i3</code> symlinks everything inside <code>i3/</code> into <code>~/</code>.
+</div>

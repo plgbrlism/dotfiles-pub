@@ -113,7 +113,6 @@
         "bat":                 "BAT0",
         "adapter":             "AC",
         "interval":            5,
-        "full-at":             90,
 
         "format":              "{icon} {capacity}%",
         "format-charging":     "⚡{capacity}%",
