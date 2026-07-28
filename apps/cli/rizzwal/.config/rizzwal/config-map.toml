@@ -1,6 +1,5 @@
-# rizzwal config.toml
-
-# Maps rendered templates (from ~/.config/rizzwal/templates/)
+# rizzoora config.toml
+# Map templates from ~/.config/rizzoora/templates/
 
 [btop]
 template = "btop.theme"
