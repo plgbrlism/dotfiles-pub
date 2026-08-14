@@ -21,15 +21,16 @@ no="no"
 rofi_cmd() {
     rofi -dmenu \
         -theme "${theme}" \
+        -theme-str 'window { width: 250; }' \
         -theme-str 'mainbox { children: [ message, listview ]; }' \
-        -theme-str 'listview { columns: 2; lines: 3; }'
+        -theme-str 'listview { columns: 1; lines: 5; }'
 }
 
 confirm_cmd() {
     rofi -dmenu \
         -p 'Confirmation' \
         -mesg 'are you deadass sure???' \
-        -theme "${dir}/${theme}" \
+        -theme "${theme}" \
         -theme-str 'window { width: 350; }' \
         -theme-str 'mainbox { children: [ message, listview ]; }' \
         -theme-str 'listview { columns: 2; lines: 1; }' \
@@ -44,10 +45,10 @@ confirm_exit() {
 # ~~ helpers
 screensaver() {
     # interchange with whatever cli-tool screensaver (eg. cmatrix, cava, lavat)
-    local app="${1:-lavat}" 
+    local app="${1:-lavat}"
 
 	# to-do: get $TERMINAL from envs/rc instead.
-	
+
     # i prefer ghostty
     if command -v ghostty >/dev/null; then
         ghostty --fullscreen=true -e "$app"
@@ -87,7 +88,11 @@ quit_session() {
 
 lock_screen() {
     if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
-        swaylock
+    	if command -v veila >/dev/null 2>&1; then
+    		"$HOME/.config/rofi/scripts/session_manager/veila-lock-custom/veila.sh"
+    	else
+        	swaylock
+        fi
     elif [[ $XDG_SESSION_TYPE == "x11" ]]; then
     	if pgrep -x i3 >/dev/null && command -v i3lock-fancy-rapid >/dev/null 2>&1; then
     		"$HOME/.config/rofi/scripts/session_manager/i3lock-custom/i3lock.sh"

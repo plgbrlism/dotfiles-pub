@@ -1,1 +1,11 @@
-/home/paul/.cache/rizzoora/colors-peaclock.conf
+# ~/.peaclock/config
+
+set hour-24 off
+
+set seconds off
+set date on
+
+mode clock
+view digital
+
+style active-fg #92a3c8

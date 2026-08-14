@@ -1,6 +1,6 @@
 .module {
-    color:               @foreground;
-    padding:             0 6px;
+    color:               @on-surface;
+    border-radius:       6px;
 }
 
 #waybar {

@@ -1,3 +1,11 @@
+#pulseaudio {
+	padding: 0 8;
+    background-color:    @tertiary;
+    color:               @on-tertiary;
+    border-radius:       3px;
+}
+
 #pulseaudio.muted {
-    color: @error;
+    background-color:    @error;
+    color:               @on-error;
 }

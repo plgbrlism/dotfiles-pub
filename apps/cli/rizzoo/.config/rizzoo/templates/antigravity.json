@@ -1,0 +1,88 @@
+{
+  // DISABLES THE THEME'S OVERRIDE ENGINE
+  "editor.semanticHighlighting.enabled": false,
+  "editor.bracketPairColorization.enabled": false,
+
+  "workbench.colorCustomizations": {
+    // 1. MAIN BACKGROUNDS & SURFACE HIERARCHY
+    "editor.background": "{{ surface_dim }}",
+    "sideBar.background": "{{ surface }}",
+    "sideBarSectionHeader.background": "{{ surface_container }}",
+    "activityBar.background": "{{ surface }}",
+    "editorGroupHeader.tabsBackground": "{{ surface }}",
+    "tab.inactiveBackground": "{{ surface }}",
+    "tab.activeBackground": "{{ surface_dim }}",
+    "terminal.background": "{{ surface_dim }}",
+    "breadcrumb.background": "{{ surface_dim }}",
+    "panel.background": "{{ surface_dim }}",
+    "menu.background": "{{ surface_container }}",
+
+    // 2. FOREGROUNDS & TEXT ON SURFACES
+    "editor.foreground": "{{ on_surface }}",
+    "sideBar.foreground": "{{ outline }}",
+    "tab.activeForeground": "{{ on_surface }}",
+    "tab.inactiveForeground": "{{ outline }}",
+    "notifications.foreground": "{{ on_surface }}",
+
+    // 3. BORDERS & DIVIDERS
+    "editorGroup.border": "{{ surface_container }}",
+    "sideBar.border": "{{ surface_container }}",
+    "tab.border": "{{ surface_container }}",
+    "editorWidget.border": "{{ outline }}",
+    "activityBar.border": "{{ surface_container }}",
+
+    // 4. SELECTIONS & HIGHLIGHTS
+    "editor.lineHighlightBackground": "{{ surface_container }}",
+    "editor.selectionBackground": "{{ secondary_container }}66",
+    "list.activeSelectionBackground": "{{ secondary_container }}",
+    "list.activeSelectionForeground": "{{ on_secondary_container }}",
+    "list.hoverBackground": "{{ surface_bright }}44",
+    "editorCursor.foreground": "{{ primary }}",
+
+    // 5. ACCENTS, BUTTONS & STATUS BARS
+    "statusBar.background": "{{ primary }}",
+    "statusBar.foreground": "{{ on_primary }}",
+    "activityBar.foreground": "{{ primary }}",
+    "activityBarBadge.background": "{{ primary }}",
+    "activityBarBadge.foreground": "{{ on_primary }}",
+    "button.background": "{{ primary }}",
+    "button.foreground": "{{ on_primary }}",
+
+    // 6. TERMINAL ANSI COLORS (MD3 & BASE16 FALLBACKS)
+    "terminal.ansiBlack": "{{ surface_bright }}",
+    "terminal.ansiRed": "{{ error }}",
+    "terminal.ansiGreen": "{{ primary }}",
+    "terminal.ansiYellow": "{{ secondary }}",
+    "terminal.ansiBlue": "{{ tertiary }}",
+    "terminal.ansiMagenta": "{{ on_secondary_container }}",
+    "terminal.ansiCyan": "{{ on_primary_container }}",
+    "terminal.ansiWhite": "{{ on_surface }}"
+  },
+
+  // 7. SYNTAX HIGHLIGHTING (MD3 ACCENT ROLES)
+  "editor.tokenColorCustomizations": {
+    "comments": "{{ outline }}",
+    "functions": "{{ primary }}",
+    "keywords": "{{ secondary }}",
+    "numbers": "{{ tertiary }}",
+    "strings": "{{ primary }}",
+    "types": "{{ tertiary }}",
+    "variables": "{{ on_surface }}",
+    "textMateRules": [
+      {
+        "scope": [
+          "source",
+          "variable",
+          "constant",
+          "keyword",
+          "storage",
+          "entity",
+          "markup"
+        ],
+        "settings": {
+          "foreground": "{{ on_surface }}"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+# btop theme
+# Generated with rizzoo
+
+theme[main_bg]=""
+theme[main_fg]="{{ on_surface }}"
+theme[title]="{{ primary }}"
+theme[hi_fg]="{{ secondary }}"
+theme[selected_bg]="{{ primary }}"
+theme[selected_fg]="{{ on_primary }}"
+theme[inactive_fg]="{{ on_surface_variant }}"
+theme[proc_misc]="{{ tertiary }}"
+theme[cpu_box]="{{ outline }}"
+theme[mem_box]="{{ outline }}"
+theme[net_box]="{{ outline }}"
+theme[proc_box]="{{ outline }}"
+theme[div_line]="{{ outline_variant }}"
+
+theme[temp_start]="{{ secondary }}"
+theme[temp_mid]="{{ primary }}"
+theme[temp_end]="{{ error }}"
+
+theme[cpu_start]="{{ secondary }}"
+theme[cpu_mid]="{{ primary }}"
+theme[cpu_end]="{{ error }}"
+
+theme[free_start]="{{ secondary }}"
+theme[free_mid]=""
+theme[free_end]="{{ secondary_container }}"
+
+theme[cached_start]="{{ tertiary }}"
+theme[cached_mid]=""
+theme[cached_end]="{{ tertiary_container }}"
+
+theme[available_start]="{{ primary }}"
+theme[available_mid]=""
+theme[available_end]="{{ primary_container }}"
+
+theme[used_start]="{{ error }}"
+theme[used_mid]=""
+theme[used_end]="{{ error_container }}"
+
+theme[download_start]="{{ secondary }}"
+theme[download_mid]="{{ primary }}"
+theme[download_end]="{{ tertiary }}"
+
+theme[upload_start]="{{ secondary }}"
+theme[upload_mid]="{{ primary }}"
+theme[upload_end]="{{ tertiary }}"
