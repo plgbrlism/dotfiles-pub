@@ -42,7 +42,7 @@ prompt_new_dir() {
 	if [ -d "$new_dir" ]; then
 		echo "$new_dir" > "$WALLPAPER_DIR_CACHE"
 		exec "$0"
-	else 
+	else
 		rofi -e "Error: Directory does not exist: $new_dir" \
 		-theme "$THEME"
 		exit 1
@@ -53,7 +53,7 @@ prompt_new_dir() {
 # ~~ detect active directory ~~
 if [ -f "$WALLPAPER_DIR_CACHE" ]; then
 	WALLPAPER_DIRECTORY="$(cat "$WALLPAPER_DIR_CACHE")"
-else 
+else
 	WALLPAPER_DIRECTORY=""
 fi
 
@@ -73,7 +73,7 @@ if [ -n "$WALLPAPER_DIRECTORY" ] && [ -d "$WALLPAPER_DIRECTORY" ]; then
 fi
 
 # ~~launch rofi with proper display
-if [ ${#wallpapers[@]} -eq 0 ]; then 
+if [ ${#wallpapers[@]} -eq 0 ]; then
 	rofi_format=$(echo -en "${DIR_INIT}\n" | rofi -dmenu \
 		-theme "$THEME" \
 		-mesg "no wallpaper directory yet 󰯉 " \
@@ -81,7 +81,7 @@ if [ ${#wallpapers[@]} -eq 0 ]; then
 		-theme-str 'mainbox {children: [ message, listview ]; }' \
 		-theme-str 'textbox { text-color: @muted; }' \
 		-theme-str 'listview { columns: 1; lines: 1; }' \
-		-theme-str 'element { children: [ element-text ]; }'		
+		-theme-str 'element { children: [ element-text ]; }'
 		)
 
 	if [ -z "$rofi_format" ]; then
@@ -113,9 +113,9 @@ else
 		exit 0
 	fi
 
-	if [ "$rofi_format" = "$CHANGE_DIR" ]; then 
+	if [ "$rofi_format" = "$CHANGE_DIR" ]; then
         prompt_new_dir
-    else 
+    else
         selected="$rofi_format"
     fi
 fi
@@ -124,7 +124,7 @@ if [ -z "$selected" ] || [ ! -f "$selected" ]; then
 	exit 1
 fi
 
-# ~~ detect display servers 
+# ~~ detect display servers
 if [ -n "${WAYLAND_DISPLAY:-}" ]; then
     DISPLAY_SERVER="wayland"
 elif [ -n "${DISPLAY:-}" ]; then
@@ -133,7 +133,7 @@ else
     DISPLAY_SERVER="unknown"
 fi
 
-# ~~ apply wallpaper 
+# ~~ apply wallpaper
 case "$DISPLAY_SERVER" in
     "wayland")
         if command -v awww >/dev/null 2>&1; then
@@ -148,7 +148,7 @@ case "$DISPLAY_SERVER" in
     "x11")
     	if command -v hrax >/dev/null 2>&1; then
     		set_feh "$selected"
-    	elif command -v feh >dev/null 2>&1; then
+    	elif command -v feh >/dev/null 2>&1; then
         	set_feh "$selected"
         else
         	rofi -e "Error: No X11 supported wallpaper setter found" -theme "$THEME"
@@ -165,5 +165,3 @@ esac
 # ~~ save cache ~~
 echo "$selected" > "$WALLPAPER_FILE_CACHE"
 exit 0
-
-

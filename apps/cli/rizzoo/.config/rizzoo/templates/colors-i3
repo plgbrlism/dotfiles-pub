@@ -1,0 +1,12 @@
+# ~/.config/rizzoora/templates/colors-i3
+
+# Client colors
+# Format: client.<state> <border> <background> <text> <indicator> <child_border>
+
+client.focused          {{ primary }} {{ surface_container }} {{ on_surface }} {{ tertiary }} {{ primary }}
+client.focused_inactive {{ outline }} {{ surface }} {{ on_surface }} {{ outline }} {{ outline }}
+client.unfocused        {{ surface_container }} {{ surface_dim }} {{ outline }} {{ surface_container }} {{ surface_container }}
+client.urgent           {{ error }} {{ error }} {{ on_error }} {{ error }} {{ error }}
+client.placeholder      {{ surface_dim }} {{ surface_dim }} {{ outline }} {{ surface_dim }} {{ surface_dim }}
+
+client.background       {{ surface_dim }}

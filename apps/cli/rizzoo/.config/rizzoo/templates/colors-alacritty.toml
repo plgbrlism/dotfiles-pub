@@ -1,0 +1,65 @@
+[colors.primary]
+background = "{{ background }}"
+foreground = "{{ on_surface }}"
+
+[colors.cursor]
+text = "{{ on_surface }}"
+cursor = "{{ on_surface_variant }}"
+
+[colors.vi_mode_cursor]
+text = "{{ background }}"
+cursor = "{{ primary }}"
+
+[colors.search.matches]
+foreground = "{{ surface_container_highest }}"
+background = "{{ tertiary }}"
+
+[colors.search.focused_match]
+foreground = "{{ surface_container_highest }}"
+background = "{{ primary }}"
+
+[colors.footer_bar]
+foreground = "{{ surface_container_highest }}"
+background = "{{ inverse_surface }}"
+
+[colors.hints.start]
+foreground = "{{ surface_container_highest }}"
+background = "{{ secondary }}"
+
+[colors.hints.end]
+foreground = "{{ surface_container_highest }}"
+background = "{{ secondary }}"
+
+[colors.selection]
+text = "{{ background }}"
+background = "{{ primary }}"
+
+[colors.normal]
+black = "#181818"
+red = "{{ error }}"
+green = "{{ primary }}"
+yellow = "{{ inverse_primary }}"
+blue = "{{ primary }}"
+magenta = "{{ tertiary }}"
+cyan = "{{ secondary }}"
+white = "#BAC2DE"
+
+[colors.bright]
+black = "#585B70"
+red = "#F38BA8"
+green = "#A6E3A1"
+yellow = "#F9E2AF"
+blue = "#89B4FA"
+magenta = "#F5C2E7"
+cyan = "#94E2D5"
+white = "#A6ADC8"
+
+[colors.dim]
+black = "#45475A"
+red = "#F38BA8"
+green = "#A6E3A1"
+yellow = "#F9E2AF"
+blue = "#89B4FA"
+magenta = "#F5C2E7"
+cyan = "#94E2D5"
+white = "#BAC2DE"

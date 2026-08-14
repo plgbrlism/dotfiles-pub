@@ -1,0 +1,14 @@
+#tray {
+	padding: 0 8;
+    background-color:    @surface-container-low;
+    color:               @on-surface-variant;
+    border-radius:       6px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect:    dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect:    highlight;
+}

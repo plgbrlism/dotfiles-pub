@@ -1,9 +1,10 @@
 #window {
-    background-color: @overlay;
-    color:            @foreground;
-    padding:          0 12px;
+	padding: 0 8;
+    background-color:    @tertiary;
+    color:               @on-tertiary;
+    border-radius:       3px;
 }
 
 window#waybar.empty #window {
-    background-color: transparent;
+    background-color:    transparent;
 }

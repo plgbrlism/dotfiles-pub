@@ -1,0 +1,16 @@
+* {
+    background:     {{ background }};
+    surface:        {{ surface_container }};
+    overlay:        {{ surface_bright }};
+    foreground:     {{ on_surface }};
+    muted:          {{ outline }};
+    cursor:         {{ primary }};
+    primary:        {{ primary }};
+    secondary:      {{ secondary }};
+    success:        {{ primary }};
+    warning:        {{ tertiary }};
+    error:          {{ error }};
+    info:           {{ tertiary }};
+    border:         {{ surface_container }};
+    selection:      {{ secondary_container }};
+}

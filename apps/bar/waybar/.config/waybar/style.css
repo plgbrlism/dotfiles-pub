@@ -13,12 +13,17 @@
 @import "css/bar.css";
 
 /* --- Module styles (comment/uncomment to swap) --- */
+@import "css/powermenu.css";
 @import "css/workspaces.css";
 @import "css/window.css";
 @import "css/sep.css";
 @import "css/audio.css";
+@import "css/backlight.css";
 @import "css/network.css";
 @import "css/battery.css";
+@import "css/cpu.css";
+@import "css/tray.css";
 
 /* --- Bar geometry (swap: geometry-floating / geometry-floating / geometry-notch / geometry-minimal) --- */
 @import "css/geometry-floating.css";
+/*@import "css/bar.css";*/

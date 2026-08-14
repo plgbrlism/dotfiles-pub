@@ -22,13 +22,11 @@
     "modules-center":         [],
     "modules-right": [
         "tray",
-        "custom/sep",
         "pulseaudio",
         "backlight",
-        "custom/sep",
         "network",
-        "custom/sep",
-        "battery"
+        "battery",
+        "cpu"
     ],
 
 // ╭──────────────────────────────╮
@@ -36,10 +34,10 @@
 // ╰──────────────────────────────╯
 
     "sway/workspaces": {
-        "format":              "{name} {icon}",
+        "format":              "{icon} {name}",
         "format-icons": {
-			"focused":         "",
-			"default":         ""
+			"focused":         "",
+			"default":         ""
         }
     },
 
@@ -67,7 +65,7 @@
 
     "cpu": {
         "interval":            5,
-        "format":              " {usage}%"
+        "format":              " CPU >>{usage}%"
     },
 
 // ╭──────────────────────────────╮
@@ -115,7 +113,7 @@
         "interval":            5,
 
         "format":              "{icon} {capacity}%",
-        "format-charging":     "⚡{capacity}%",
+        "format-charging":     " {capacity}%",
         "format-full":         "{icon} {capacity}%",
 
         "format-icons":        ["󰁺","󰁻","󰁽","󰁿","󰂁","󰁹"],

@@ -1,0 +1,98 @@
+# ~/.config/rizzoo/config.toml
+# See `rizzoo --help` for all available flags and values.
+#
+# Uncomment and edit only what you want to override.
+
+# style = "tonal-spot"
+# light = false
+# contrast = "standard"
+# pick = 2
+# prefer = "darkness"
+
+[wallpaper]
+set = true
+command = "awww img {{ image }} --transition-type random"
+
+# [custom_colors]
+# accent    = { color = "#e06c75", blend = true }
+# highlight = { color = "#61afef" }
+
+[btop]
+template = "btop.theme"
+output   = "~/.config/btop/themes/dynamic.theme"
+
+[antigravity]
+template = "antigravity.json"
+output   = "~/.config/Antigravity/User/settings.json"
+
+[alacritty]
+template = "colors-alacritty.toml"
+output   = "~/.config/alacritty/colors/variants/dynamic.toml"
+#enabled  = false
+
+[ghostty]
+template = "colors-ghostty.conf"
+output   = "~/.config/ghostty/colors/variants/dynamic.ghostty" 
+
+[i3]
+template = "colors-i3"
+output   = "~/.config/i3/colors/variants/dynamic.conf" 
+
+[kitty]
+template = "colors-kitty.conf"
+output   = "~/.config/kitty/colors/variants/dynamic.conf" 
+
+[micro]
+template = "colors-micro.micro"
+output   = "~/.config/micro/colorschemes/dynamic.micro"
+
+[polybar]
+template = "colors-polybar.ini"
+output   = "~/.config/polybar/colors/variants/dynamic.ini"
+post_hook = "polybar-msg cmd restart" 
+
+[rofi]
+template = "colors-rofi.rasi"
+output   = "~/.config/rofi/colors/variants/dynamic.rasi"
+
+[sway]
+template = "colors-sway"
+output   = "~/.config/sway/colors/variants/dynamic.conf" 
+
+[waybar]
+template = "colors-waybar.css"
+output   = "~/.config/waybar/colors/variants/dynamic.css"
+post_hook = "killall -SIGUSR2 waybar"
+
+[Xresources]
+template = "colors.Xresources"
+output   = "~/Xresources"
+
+[dunst]
+template = "full-dunstrc"
+output   = "~/.config/dunst/dunstrc"
+
+[mac-tahoe-gtk]
+template = "mac-tahoe-gtk-colors.scss"
+output   = "~/source/MacTahoe-gtk-theme/src/sass/_colors.scss"
+
+[mac-tahoe-gtk-palette]
+template = "mac-tahoe-gtk.scss"
+output   = "~/source/MacTahoe-gtk-theme/src/sass/_colors-palette.scss"
+
+[peaclock]
+template = "colors-peaclock.conf"
+output   = "~/.peaclock/config"
+
+[foot]
+template = "colors-foot.ini"
+output   = "~/.config/foot/color-foot.ini"
+
+# Test Templates
+[material-theme]
+template = "material-theme.css"
+output = "~/projects/tmp/rizzoo-material-theme.css"
+
+[material-kotlin]
+template = "MaterialColors.kt"
+output = "~/projects/tmp/MaterialColors.kt"
