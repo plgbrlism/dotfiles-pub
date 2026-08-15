@@ -1,0 +1,6 @@
+#cpu {
+	padding: 0 8;
+    background-color:    @secondary;
+    color:               @on-secondary;
+    border-radius:       0 6 6 0px;
+}

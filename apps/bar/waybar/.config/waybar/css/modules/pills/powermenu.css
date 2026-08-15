@@ -1,0 +1,15 @@
+#custom-powermenu {
+	min-height: 0;
+	padding: 0 8;
+    background-color:    @secondary;
+    color:               @on-secondary;
+    border-radius:       6px;
+    margin-right: 12px;
+}
+
+#custom-powermenu:hover {
+    background-color:    @surface-container-low;
+    color:               @secondary;
+    border-radius: 6px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # github: @plgbrlism
-# tiktok: @sivops.tech
+# tiktok: @fuzzbuzz.tech
 
 # ~~ variables ~~
 theme="$HOME/.config/rofi/config.rasi"

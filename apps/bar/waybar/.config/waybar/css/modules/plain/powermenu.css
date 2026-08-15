@@ -1,0 +1,10 @@
+#custom-powermenu {
+	min-height: 0;
+	padding: 0 10;
+    color:               @primary;
+}
+
+#custom-powermenu:hover {
+    background-color:    @on-primary-container;
+    color:               @on-primary;
+}

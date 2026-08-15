@@ -1,14 +1,14 @@
 
-#    ░██ ░██████  
-#       ░██   ░██ 
-#    ░██      ░██ 
-#    ░██  ░█████  
-#    ░██      ░██ 
-#    ░██░██   ░██ 
-#    ░██ ░██████                  
-#                 
-#	 github: @plgbrlism 
-#	 tiktok: @sivops.tech
+#    ░██ ░██████
+#       ░██   ░██
+#    ░██      ░██
+#    ░██  ░█████
+#    ░██      ░██
+#    ░██░██   ░██
+#    ░██ ░██████
+#
+#	 github: @plgbrlism
+#	 tiktok: @fuzzbuzz.tech
 
 include ~/.config/i3/colors/colors.conf
 include ~/.config/i3/conf/startup.conf

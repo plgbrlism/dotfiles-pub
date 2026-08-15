@@ -1,0 +1,4 @@
+#custom-sep {
+	min-height: 0;
+    color:               @inverse_primary;
+}

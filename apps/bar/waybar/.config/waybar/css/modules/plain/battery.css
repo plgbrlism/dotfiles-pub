@@ -1,0 +1,14 @@
+#battery {
+	min-height: 0;
+	padding: 0 8;
+    color:               @tertiary;
+}
+
+#battery.charging {
+    color:               @tertiary;
+}
+
+#battery.warning:not(.charging),
+#battery.critical:not(.charging) {
+    color:               @error;
+}

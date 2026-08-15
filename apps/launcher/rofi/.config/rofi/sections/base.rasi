@@ -4,6 +4,6 @@
     padding:            10;
     border:             2;
     border-radius:      15 5 15 5;    
-    background-color:   @background;
-    text-color:         @foreground;
+    background-color:   @surface-dim;
+    text-color:         @on-surface;
 }

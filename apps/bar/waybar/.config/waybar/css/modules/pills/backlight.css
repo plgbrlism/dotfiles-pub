@@ -1,0 +1,13 @@
+#backlight {
+	min-height: 0;
+	padding: 0 8;
+    background-color:    @secondary;
+    color:               @on-secondary;
+    border-radius:       0px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#backlight:hover {
+    background-color:    @on-secondary;
+    color:               @secondary;	
+}

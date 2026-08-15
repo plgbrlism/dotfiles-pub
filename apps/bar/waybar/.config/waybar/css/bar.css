@@ -1,8 +1,0 @@
-.module {
-    color:               @on-surface;
-    border-radius:       6px;
-}
-
-#waybar {
-    background-color:    transparent;
-}

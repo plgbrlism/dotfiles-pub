@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # github: @plgbrlism
-# tiktok: @sivops.tech
+# tiktok: @fuzzbuzz.tech
 
 # ~~ variables ~~
 theme="$HOME/.config/rofi/config.rasi"
@@ -9,7 +9,7 @@ theme="$HOME/.config/rofi/config.rasi"
 options=(
 	"  Idle"
     "  Lock"
-    "󱙝  Logout"
+    "  Logout"
     "  Restart"
     "  Shutdown"
 )
@@ -88,7 +88,9 @@ quit_session() {
 
 lock_screen() {
     if [[ $XDG_SESSION_TYPE == "wayland" ]]; then
-    	if command -v veila >/dev/null 2>&1; then
+    	if command -v hyprlock >/dev/null 2>&1; then
+    		hyprlock
+    	elif command -v veila >/dev/null 2>&1; then
     		"$HOME/.config/rofi/scripts/session_manager/veila-lock-custom/veila.sh"
     	else
         	swaylock

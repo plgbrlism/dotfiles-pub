@@ -1,0 +1,9 @@
+#network {
+	min-height: 0;
+	padding: 0 8;
+    color:               @primary;
+}
+
+#network.disconnected {
+    color:               @error;
+}

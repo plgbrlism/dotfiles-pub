@@ -1,0 +1,16 @@
+#window {
+	min-height: 0;
+	padding: 0 8;
+    background-color:    @tertiary;
+    color:               @on-tertiary;
+}
+
+window#waybar.empty #window {
+	min-height: 0;
+    background-color:    transparent;
+}
+
+window#waybar {
+	min-height: 0;
+    min-height: 0;
+}

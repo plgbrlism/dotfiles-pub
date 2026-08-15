@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # github: @plgbrlism
-# tiktok: @sivops.tech
+# tiktok: @fuzzbuzz.tech
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 theme="$HOME/.config/rofi/config.rasi"
@@ -53,7 +53,7 @@ if [ "$IS_ON" = true ]; then
     else
         MESG_STATUS="󱛅  Bluetooth Enabled (no connections)"
     fi
-    
+
     options+=("  Scan & Connect")
     options+=("  Paired Devices")
 else
@@ -69,8 +69,8 @@ chosen_idx=$(printf "%s\n" "${options[@]}" | rofi -dmenu \
     -mesg "$MESG_STATUS" \
     -i \
     -format 'i' \
-    -selected-row 0) 
-    
+    -selected-row 0)
+
 
 [[ -z "$chosen_idx" ]] && exit 0
 selected="${options[$chosen_idx]}"

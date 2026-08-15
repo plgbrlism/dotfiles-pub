@@ -1,0 +1,6 @@
+#backlight {
+	min-height: 0;
+	padding: 0 8;
+    background-color:    @secondary;
+    color:               @on-secondary;
+}

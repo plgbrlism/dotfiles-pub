@@ -1,0 +1,16 @@
+@import "../../colors/colors.css";
+@import "../../fonts/fonts.css";
+
+/*  base  */
+@import "../../css/bars/geometry-floating-transparent.css";
+
+/*  modules  */
+@import "../../css/modules/pills/powermenu.css";
+@import "../../css/modules/pills/workspaces.css";
+@import "../../css/modules/pills/window.css";
+@import "../../css/modules/pills/audio.css";
+@import "../../css/modules/pills/backlight.css";
+@import "../../css/modules/pills/network.css";
+@import "../../css/modules/pills/battery.css";
+@import "../../css/modules/pills/cpu.css";
+@import "../../css/modules/pills/tray.css";

@@ -5,5 +5,5 @@
 //spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 //spawn-at-startup "dunst"
 //spawn-at-startup "~/.config/niri/helper/waybar/on-launch.sh"
-spawn-at-startup "~/.config/rofi/scripts/wallpaper/cache-wallpaper.sh" "--restore"
+//spawn-at-startup "~/.config/rofi/scripts/wallpaper/cache-wallpaper.sh" "--restore"
 spawn-at-startup "noctalia"

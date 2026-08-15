@@ -1,22 +1,36 @@
-// ───────────────────────────────
-// Key Bindings
-// ───────────────────────────────
+// ~~ keybinds ~~
 
 binds {
     // Launcher & Apps
-    Super+Q { spawn "kitty"; }
-    Super+E { spawn "nemo"; }
+    Super+Return { spawn "kitty"; }
+    Super+E { spawn "nautilus"; }
     Super+Y { spawn "kitty" "-e"  "yazi"; }
     Super+R { spawn "~/.config/rofi/scripts/app_launcher/app_launcher.sh"; }
     Super+Escape { spawn "~/.config/rofi/scripts/session_manager/session_manager.sh"; }
     Super+P { spawn "~/.config/rofi/scripts/powermenu/powermenu.sh"; }
 
+	// Focus
+	Super+H { focus-column-left; }
+	Super+L { focus-column-right; }
+	Super+K { focus-workspace-up; }
+	Super+J { focus-workspace-down; }
+
+	Super+TouchpadScrollDown cooldown-ms=150 { focus-workspace-down; }
+	Super+TouchpadScrollUp   cooldown-ms=150 { focus-workspace-up; }
+	Super+TouchpadScrollRight                { focus-column-right; }
+	Super+TouchpadScrollLeft                 { focus-column-left; }
+
     // Window management
     Super+C repeat=false { close-window; }
     Super+F repeat=false { fullscreen-window; }
+    Super+Shift+F repeat=false { maximize-column; }
     Super+V { toggle-window-floating; }
     Super+Shift+V { switch-focus-between-floating-and-tiling; }
     Super+M { quit; }
+
+	// window swapping
+	Mod+Shift+H { swap-window-left; }
+	Mod+Shift+L { swap-window-right; }
 
     // Overview
     Super+O { toggle-overview; }

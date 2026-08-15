@@ -7,12 +7,12 @@ inputbar {
 }
 
 message {
-	background-color:   @surface;
+	background-color:   @surface-container-low;
 	border-radius:      25 5 25 5;
 }
 
 textbox {
-    background-color:   @surface;
+    background-color:   @surface-container-low;
 }
 
 prompt, num-rows, num-filtered-rows, textbox-current-entry, icon-current-entry, case-indicator, textbox-prompt-colon {

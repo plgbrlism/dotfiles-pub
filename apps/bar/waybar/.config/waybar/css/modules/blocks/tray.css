@@ -1,0 +1,14 @@
+#tray {
+	min-height: 0;
+	padding: 0 8;
+    background-color:    @primary;
+    color:               @on-primary;
+}
+
+#tray > .passive {
+    -gtk-icon-effect:    dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect:    highlight;
+}

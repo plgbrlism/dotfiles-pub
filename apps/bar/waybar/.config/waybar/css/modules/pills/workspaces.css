@@ -1,0 +1,24 @@
+#workspaces {
+	border-radius: 6px;
+    background-color:    @surface-container-low;
+}
+
+#workspaces button {
+	min-height: 0px;
+	color:    @surface-bright;
+	border-radius: 6px; 
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#workspaces button.focused {
+    border-radius:       6px; 
+    background-color:    @primary;
+    color:               @on-primary;
+}
+
+#workspaces button:hover {
+	border-radius: 6px;
+	min-height: 0;
+    color:               @surface;
+    background-color:    @primary;
+}

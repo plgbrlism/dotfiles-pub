@@ -1,0 +1,94 @@
+{
+  "dark": {
+    "mPrimary": "{{ primary_dark }}",
+    "mOnPrimary": "{{ on_primary_dark }}",
+    "mSecondary": "{{ secondary_dark }}",
+    "mOnSecondary": "{{ on_secondary_dark }}",
+    "mTertiary": "{{ tertiary_dark }}",
+    "mOnTertiary": "{{ on_tertiary_dark }}",
+    "mError": "{{ error_dark }}",
+    "mOnError": "{{ on_error_dark }}",
+    "mSurface": "{{ surface_dark }}",
+    "mOnSurface": "{{ on_surface_dark }}",
+    "mSurfaceVariant": "{{ surface_container_dark }}",
+    "mOnSurfaceVariant": "{{ on_surface_variant_dark }}",
+    "mOutline": "{{ outline_dark }}",
+    "mShadow": "{{ shadow_dark }}",
+    "mHover": "{{ surface_container_highest_dark }}",
+    "mOnHover": "{{ on_surface_dark }}",
+    "terminal": {
+      "foreground": "{{ on_surface_dark }}",
+      "background": "{{ surface_dark }}",
+      "selectionFg": "{{ on_surface_dark }}",
+      "selectionBg": "{{ surface_container_highest_dark }}",
+      "cursorText": "{{ surface_dark }}",
+      "cursor": "{{ primary_dark }}",
+      "normal": {
+        "black": "{{ surface_container_high_dark }}",
+        "red": "{{ error_dark }}",
+        "green": "{{ primary_fixed_dim_dark }}",
+        "yellow": "{{ tertiary_dark }}",
+        "blue": "{{ secondary_dark }}",
+        "magenta": "{{ primary_dark }}",
+        "cyan": "{{ tertiary_fixed_dim_dark }}",
+        "white": "{{ on_surface_variant_dark }}"
+      },
+      "bright": {
+        "black": "{{ outline_dark }}",
+        "red": "{{ error_container_dark }}",
+        "green": "{{ primary_fixed_dark }}",
+        "yellow": "{{ tertiary_fixed_dark }}",
+        "blue": "{{ secondary_fixed_dim_dark }}",
+        "magenta": "{{ primary_container_dark }}",
+        "cyan": "{{ tertiary_container_dark }}",
+        "white": "{{ on_surface_dark }}"
+      }
+    }
+  },
+  "light": {
+    "mPrimary": "{{ primary_light }}",
+    "mOnPrimary": "{{ on_primary_light }}",
+    "mSecondary": "{{ secondary_light }}",
+    "mOnSecondary": "{{ on_secondary_light }}",
+    "mTertiary": "{{ tertiary_light }}",
+    "mOnTertiary": "{{ on_tertiary_light }}",
+    "mError": "{{ error_light }}",
+    "mOnError": "{{ on_error_light }}",
+    "mSurface": "{{ surface_light }}",
+    "mOnSurface": "{{ on_surface_light }}",
+    "mSurfaceVariant": "{{ surface_container_light }}",
+    "mOnSurfaceVariant": "{{ on_surface_variant_light }}",
+    "mOutline": "{{ outline_light }}",
+    "mShadow": "{{ shadow_light }}",
+    "mHover": "{{ surface_container_highest_light }}",
+    "mOnHover": "{{ on_surface_light }}",
+    "terminal": {
+      "foreground": "{{ on_surface_light }}",
+      "background": "{{ surface_light }}",
+      "selectionFg": "{{ on_surface_light }}",
+      "selectionBg": "{{ surface_container_highest_light }}",
+      "cursorText": "{{ surface_light }}",
+      "cursor": "{{ primary_light }}",
+      "normal": {
+        "black": "{{ surface_container_high_light }}",
+        "red": "{{ error_light }}",
+        "green": "{{ primary_fixed_dim_light }}",
+        "yellow": "{{ tertiary_light }}",
+        "blue": "{{ secondary_light }}",
+        "magenta": "{{ primary_light }}",
+        "cyan": "{{ tertiary_fixed_dim_light }}",
+        "white": "{{ on_surface_variant_light }}"
+      },
+      "bright": {
+        "black": "{{ outline_light }}",
+        "red": "{{ error_container_light }}",
+        "green": "{{ primary_fixed_light }}",
+        "yellow": "{{ tertiary_fixed_light }}",
+        "blue": "{{ secondary_fixed_dim_light }}",
+        "magenta": "{{ primary_container_light }}",
+        "cyan": "{{ tertiary_container_light }}",
+        "white": "{{ on_surface_light }}"
+      }
+    }
+  }
+}

@@ -103,7 +103,7 @@ else
 		-theme "$THEME" \
 		-show-icons \
 		-theme-str 'mainbox {children: [ listview ]; }' \
-		-theme-str 'listview { columns: 4; lines: 2; fixed-columns: true; fixed-height: true; }' \
+		-theme-str 'listview { columns: 4; lines: 1; fixed-columns: true; fixed-height: true; }' \
 		-theme-str 'window { width: 1200; }' \
 		-theme-str 'element { children: [ element-icon ]; orientation: vertical; }' \
 		-theme-str 'element-icon { size: 250; horizontal-align: 0.5; vertical-align: 0.5; }' \
@@ -138,8 +138,10 @@ case "$DISPLAY_SERVER" in
     "wayland")
         if command -v awww >/dev/null 2>&1; then
             set_awww "$selected"
+            rizzoo -i "$selected" -ro
         elif command -v swaybg >/dev/null 2>&1; then
             set_swaybg "$selected"
+            rizzoo -i "$selected" -ro
         else
             rofi -e "Error: No Wayland wallpaper setter found!" -theme "$THEME"
             exit 1
@@ -148,8 +150,10 @@ case "$DISPLAY_SERVER" in
     "x11")
     	if command -v hrax >/dev/null 2>&1; then
     		set_feh "$selected"
+    		rizzoo -i "$selected" -ro
     	elif command -v feh >/dev/null 2>&1; then
         	set_feh "$selected"
+        	rizzoo -i "$selected" -ro
         else
         	rofi -e "Error: No X11 supported wallpaper setter found" -theme "$THEME"
         	exit 1

@@ -1,0 +1,17 @@
+@import "../../colors/colors.css";
+@import "../../fonts/fonts.css";
+
+/*  base  */
+@import "../../css/bars/geometry-flat.css";
+
+/*  modules  */
+@import "../../css/modules/plain/powermenu.css";
+@import "../../css/modules/plain/workspaces.css";
+@import "../../css/modules/plain/window.css";
+@import "../../css/modules/plain/audio.css";
+@import "../../css/modules/plain/backlight.css";
+@import "../../css/modules/plain/network.css";
+@import "../../css/modules/plain/sep.css";
+@import "../../css/modules/plain/battery.css";
+@import "../../css/modules/plain/cpu.css";
+@import "../../css/modules/plain/tray.css";

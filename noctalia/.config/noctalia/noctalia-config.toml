@@ -1,0 +1,396 @@
+[bar]
+order = [ "zwam" ]
+
+    [bar.zwam]
+    capsule = true
+    capsule_padding = 12.0
+    center = [ "tray" ]
+    end = [ "volume", "brightness", "battery", "cpu" ]
+    icon_color = "primary"
+    margin_ends = 0
+    position = "left"
+    radius_bottom_left = 0
+    radius_top_left = 0
+    shadow = false
+    start = [ "control-center", "launcher", "wallpaper", "workspaces" ]
+
+[brightness]
+minimum_brightness = 0.19999999552965164
+
+[control_center]
+hidden_tabs = [ "weather", "calendar" ]
+
+    [control_center.calendar]
+    show_events_card = false
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "caffeine"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[lockscreen]
+blurred_desktop = true
+fingerprint = false
+lock_before_suspend = false
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [
+    "lockscreen-login-box@winit",
+    "lockscreen-login-box@eDP-1",
+    "lockscreen-widget-0000000000000001",
+    "lockscreen-widget-0000000000000002",
+    "lockscreen-widget-0000000000000003",
+    "lockscreen-widget-0000000000000004",
+    "lockscreen-widget-0000000000000005",
+    "lockscreen-widget-0000000000000006",
+    "lockscreen-widget-0000000000000007",
+    "lockscreen-widget-0000000000000008"
+]
+
+    [lockscreen_widgets.grid]
+    cell_size = 32
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 256.0
+    cx = 811.0
+    cy = 605.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 8.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "compact"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@winit"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 324.0
+    cy = 562.0
+    output = "winit"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@winit".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 96.0
+    box_width = 352.0
+    cx = 491.0
+    cy = 592.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background_color = "on_secondary"
+        background_radius = 0
+        center_text = true
+        clock_style = "digital"
+        color = "secondary"
+        font_family = "DepartureMono Nerd Font Mono"
+        format = "{:%I:%M %p}"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 96.0
+    box_width = 256.0
+    cx = 555.0
+    cy = 464.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "sysmon"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        background = true
+        background_color = "on_primary"
+        background_radius = 0
+        color = "primary"
+        display = "gauge"
+        font_family = "DepartureMono Nerd Font Mono"
+        gauge_layout = "horizontal"
+        highlight_color = "on_primary"
+        label_min_width = 0
+        shadow = false
+        show_label = true
+        stat = "ram_pct"
+        stat2 = "ram_pct"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
+    box_height = 96.0
+    box_width = 256.0
+    cx = 555.0
+    cy = 352.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "sysmon"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000003.settings]
+        background_color = "on_tertiary"
+        background_radius = 0
+        color = "tertiary"
+        display = "gauge"
+        font_family = "DepartureMono Nerd Font Mono"
+        highlight_color = "on_tertiary"
+        stat = "cpu_usage"
+        stat2 = "cpu_temp"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
+    box_height = 224.0
+    box_width = 256.0
+    cx = 811.0
+    cy = 384.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "sticker"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000004.settings]
+        background = false
+        image_path = "/home/paul/Pictures/icons/f2c8c3a951e382b4b4b22b56b582d054.jpg"
+        opacity = 1.0
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000005]
+    box_height = 96.0
+    box_width = 384.0
+    cx = 363.0
+    cy = 320.0
+    output = "eDP-1"
+    rotation = -1.5707963705062866
+    type = "audio_visualizer"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000005.settings]
+        bands = 32
+        show_when_idle = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000006]
+    box_height = 160.0
+    box_width = 224.0
+    cx = 555.0
+    cy = 214.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "volume"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000006.settings]
+        background = true
+        background_radius = 0
+        device = "output"
+        font_family = "DepartureMono Nerd Font Mono"
+        shadow = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000007]
+    box_height = 96.0
+    box_width = 224.0
+    cx = 816.5
+    cy = 192.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "label"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000007.settings]
+        background_radius = 0
+        color = "on_surface_variant"
+        description = "github:plgbrlism"
+        font_family = "DepartureMono Nerd Font"
+        opacity = 1.0
+        title = "@fuzzbuzz"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000008]
+    box_height = 96.0
+    box_width = 480.0
+    cx = 1003.0
+    cy = 384.0
+    output = "eDP-1"
+    rotation = 1.5707963705062866
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000008.settings]
+        background_opacity = 0.79000000000000004
+        center_text = true
+        font_family = "DepartureMono Nerd Font Mono"
+        format = "{:%A %B %d}"
+
+[nightlight]
+enabled = true
+
+[notification]
+position = "bottom_right"
+
+[osd.kinds]
+power_profile = false
+
+[plugins]
+auto_update = false
+
+[shell]
+button_borders = false
+card_borders = false
+corner_radius_scale = 0.65000000968575478
+font_family = "FiraCode Nerd Font Propo"
+input_borders = false
+lang = "en"
+password_style = "random"
+popup_borders = false
+popup_shadows = false
+
+    [shell.animation]
+    speed = 2.2000000327825546
+
+    [shell.launcher]
+    categories = false
+
+        [shell.launcher.providers.calculator]
+        prefix = ""
+
+    [shell.panel]
+    polkit_position = "auto"
+    shadow = false
+
+    [shell.screenshot]
+    directory = "/home/paul/Pictures/Screenshots"
+
+    [shell.session]
+    grid = true
+    grid_columns = 1
+
+        [[shell.session.actions]]
+        action = "lock"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "1"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "logout"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "2"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "lock_and_suspend"
+        countdown_seconds = 0.0
+        enabled = false
+        shortcut = "3"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "reboot"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "4"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "shutdown"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "5"
+        variant = "destructive"
+
+    [shell.shadow]
+    alpha = 0.0
+    direction = "center"
+
+[theme]
+builtin = "Catppuccin"
+community_palette = "Rosey AMOLED"
+source = "custom"
+wallpaper_scheme = "m3-tonal-spot"
+
+    [theme.templates]
+    community_ids = [ "pywalfox-beta4" ]
+    enable_builtin_templates = false
+
+[wallpaper]
+directory = "/home/paul/.cache/rizzoo/url-images"
+fill_mode = "span"
+
+    [wallpaper.automation]
+    recursive = false
+
+    [wallpaper.default]
+    path = "/home/paul/.cache/rizzoo/url-images/127c534825f04bf3c24e1483385cb9d10a769f7ed6a3464369dcb22474d73bed.png"
+
+    [wallpaper.last]
+    path = "/home/paul/.cache/rizzoo/url-images/127c534825f04bf3c24e1483385cb9d10a769f7ed6a3464369dcb22474d73bed.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/paul/.cache/rizzoo/url-images/127c534825f04bf3c24e1483385cb9d10a769f7ed6a3464369dcb22474d73bed.png"
+
+[weather]
+enabled = false
+
+[widget.battery]
+color = "primary"
+font_family = "FiraCode Nerd Font Mono Med"
+
+[widget.control-center]
+glyph = "spider-filled"
+
+[widget.cpu]
+glyph = "device-desktop-analytics"
+
+[widget.launcher]
+glyph = "wash-dry"
+
+[widget.volume]
+glyph = "music"
+mute_glyph = "music-off"
+
+[widget.wallpaper]
+glyph = "image"
+
+[widget.workspaces]
+style = "minimal"
