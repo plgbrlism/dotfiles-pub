@@ -8,5 +8,5 @@ button {
 
 button selected {
     background-color:   @secondary;
-    text-color:         @selection;
+    text-color:         @on-secondary;
 }

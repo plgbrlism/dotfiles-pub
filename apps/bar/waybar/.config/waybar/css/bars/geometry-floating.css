@@ -1,0 +1,15 @@
+.module {
+	min-height: 0;
+}
+
+#waybar {
+    background-color:    transparent;
+}
+
+#waybar > box {
+    margin:              5 10 0 10;
+    background-color:    @background;
+    border-radius:       8px;
+    padding-left: 0;     
+    padding-right: 0;
+}

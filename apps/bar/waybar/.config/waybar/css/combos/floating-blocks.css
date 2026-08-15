@@ -1,0 +1,16 @@
+@import "../../colors/colors.css";
+@import "../../fonts/fonts.css";
+
+/*  base  */
+@import "../../css/bars/geometry-floating.css";
+
+/*  modules  */
+@import "../../css/modules/blocks/powermenu.css";
+@import "../../css/modules/blocks/workspaces.css";
+@import "../../css/modules/blocks/window.css";
+@import "../../css/modules/blocks/audio.css";
+@import "../../css/modules/blocks/backlight.css";
+@import "../../css/modules/blocks/network.css";
+@import "../../css/modules/blocks/battery.css";
+@import "../../css/modules/blocks/cpu.css";
+@import "../../css/modules/blocks/tray.css";

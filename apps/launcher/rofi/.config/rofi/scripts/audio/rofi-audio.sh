@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # github: @plgbrlism
-# tiktok: @sivops.tech
+# tiktok: @fuzzbuzz.tech
 
 # ~~ VARIABLES  ~~
 theme="$HOME/.config/rofi/config.rasi"
@@ -77,7 +77,7 @@ fi
 if [ "$clean_input" -eq 0 ]; then
     pactl set-sink-mute @DEFAULT_SINK@ true
     NOTIFY_MSG="$ICON_MUTED Volume: Muted"
-else # unmute for valid numbers 
+else # unmute for valid numbers
     pactl set-sink-mute @DEFAULT_SINK@ false
     pactl set-sink-volume @DEFAULT_SINK@ "${clean_input}%"
     if [ "$clean_input" -le 33 ]; then

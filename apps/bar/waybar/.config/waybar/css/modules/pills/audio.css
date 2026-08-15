@@ -1,0 +1,18 @@
+#pulseaudio {
+	min-height: 0;
+	padding: 0 8;
+    background-color:    @tertiary;
+    color:               @on-tertiary;
+    border-radius:       6 0 0 6px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#pulseaudio:hover {
+    background-color:    @on-tertiary;
+    color:               @tertiary;	
+}
+
+#pulseaudio.muted {
+    background-color:    @error;
+    color:               @on-error;
+}

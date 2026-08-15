@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # github: @plgbrlism
-# tiktok: @sivops.tech
+# tiktok: @fuzzbuzz.tech
 
 theme="$HOME/.config/rofi/config.rasi"
 
@@ -12,4 +12,3 @@ rofi \
     -theme-str "inputbar { children: [ entry ]; }" \
 	-theme-str "listview { lines: 6; }" \
 	-theme-str 'entry { placeholder: "󰯉 ..."; }'
-	

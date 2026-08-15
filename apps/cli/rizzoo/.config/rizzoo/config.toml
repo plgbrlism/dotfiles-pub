@@ -3,19 +3,18 @@
 #
 # Uncomment and edit only what you want to override.
 
-# style = "tonal-spot"
-# light = false
-# contrast = "standard"
-# pick = 2
-# prefer = "darkness"
+#style = "tonal-spot"
+#mode = dark
+#contrast = "standard"
+pick = 0
+#prefer = "darkness"
+ 
+#[wallpaper]
+#set = false
+#command = "awww img {{ image }} --transition-type random"
 
-[wallpaper]
-set = true
-command = "awww img {{ image }} --transition-type random"
-
-# [custom_colors]
-# accent    = { color = "#e06c75", blend = true }
-# highlight = { color = "#61afef" }
+[custom_colors]
+success    = { color = "#386B35", blend = true }
 
 [btop]
 template = "btop.theme"
@@ -66,19 +65,12 @@ post_hook = "killall -SIGUSR2 waybar"
 
 [Xresources]
 template = "colors.Xresources"
-output   = "~/Xresources"
+output   = "~/.Xresources"
 
 [dunst]
-template = "full-dunstrc"
+template = "colors-dunstrc"
 output   = "~/.config/dunst/dunstrc"
-
-[mac-tahoe-gtk]
-template = "mac-tahoe-gtk-colors.scss"
-output   = "~/source/MacTahoe-gtk-theme/src/sass/_colors.scss"
-
-[mac-tahoe-gtk-palette]
-template = "mac-tahoe-gtk.scss"
-output   = "~/source/MacTahoe-gtk-theme/src/sass/_colors-palette.scss"
+post_hook = "dunstctl reload"
 
 [peaclock]
 template = "colors-peaclock.conf"
@@ -88,8 +80,49 @@ output   = "~/.peaclock/config"
 template = "colors-foot.ini"
 output   = "~/.config/foot/color-foot.ini"
 
+[cava]
+template = "colors-cava.ini"
+output   = "~/.config/cava/config"
+
+[hyprlock]
+template = "colors-hyprlock.conf"
+output   = "~/.config/hypr/colors/variants/dynamic.conf"
+
+[hyprlock-bg]
+template = "hyprlock-bg-wallpaper.conf"
+output   = "~/.config/hypr/wallpaper/variants/dynamic.conf"
+
+[pywalfox]
+template = "colors-firefox.json"
+output   = "~/.cache/wal/colors.json"
+post_hook = "pywalfox update"
+
+[noctalia]
+template = "colors-noctalia.json"
+output   = "~/.config/noctalia/palettes/rizzoo.json"
+
+# GTK3 / GTK4(libadwaita) Themes
+# note: only one gtk theme must have an active post_hook
+
+#[colloid]
+#template = "colloid-colors.scss"
+#output   = "~/dotfiles-pub/gtk/colloid/Colloid-gtk-theme/src/sass/_colors.scss"
+#post_hook = "~/dotfiles-pub/gtk/colloid/reload.sh"
+
+
+#[graphite]
+#template = "graphite-colors.scss"
+#output   = "~/dotfiles-pub/gtk/graphite/Graphite-gtk-theme/src/sass/_colors.scss"
+#post_hook = "~/dotfiles-pub/gtk/graphite/reload.sh"
+
+[mac-colors]
+template = "mac-colors.scss"
+output   = "~/dotfiles-pub/gtk/mac-tahoe/MacTahoe-gtk-theme/src/sass/_colors.scss"
+post_hook = "~/dotfiles-pub/gtk/mac-tahoe/reload.sh"
+
+
 # Test Templates
-[material-theme]
+[material-css]
 template = "material-theme.css"
 output = "~/projects/tmp/rizzoo-material-theme.css"
 

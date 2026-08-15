@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # github: @plgbrlism
-# tiktok: @sivops.tech
+# tiktok: @fuzzbuzz.tech
 
 # ~~ variables ~~
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -13,7 +13,7 @@ MAX_PERCENT=100
 # ~~ icons ~~
 ICON_BRIGHTNESS=" "
 ICON_BRIGHTNESS_20="󰃛 "
-ICON_BRIGHTNESS_40="󰃝 " 
+ICON_BRIGHTNESS_40="󰃝 "
 ICON_BRIGHTNESS_60="󰃞 "
 ICON_BRIGHTNESS_80="󰃟 "
 ICON_BRIGHTNESS_100="󰃠  "
@@ -101,10 +101,3 @@ elif [ "$clean_input" -le 100 ]; then
 	MESG_STATUS="$ICON_BRIGHTNESS_100 Brightness updated to: ${clean_input}"
 fi
 notify-send "$MESG_STATUS%" -t 1000 -r 9991
-
-
-
-
-
-
-

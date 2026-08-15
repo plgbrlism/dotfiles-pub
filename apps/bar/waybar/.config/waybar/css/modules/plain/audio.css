@@ -1,0 +1,9 @@
+#pulseaudio {
+	min-height: 0;
+	padding: 0 8;
+    color:               @tertiary;
+}
+
+#pulseaudio.muted {
+    color:               @error;
+}

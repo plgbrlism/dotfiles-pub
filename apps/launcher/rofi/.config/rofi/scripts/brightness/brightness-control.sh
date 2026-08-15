@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # github: @plgbrlism
-# tiktok: @sivops.tech
+# tiktok: @fuzzbuzz.tech
 
 # ~~ variables ~~
 LOCKFILE="/tmp/brightness.lock"
@@ -21,19 +21,19 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# ~~ main 
+# ~~ main
 {
     # Try to acquire lock, exit if another instance is running
     flock -n 9 || exit 0
-    
+
     # Get current brightness values
     current=$(brightnessctl g)
     max=$(brightnessctl m)
-    
+
     # Calculate bounds
     min_value=$((max * MIN_PERCENT / 100))
     step_value=$((max * STEP_PERCENT / 100))
-    
+
     # Calculate new value based on mode
     case $MODE in
         up)
@@ -51,7 +51,7 @@ done
             [ "$new_value" -gt "$max" ] && new_value="$max"
             ;;
     esac
-    
+
     brightnessctl set "$new_value"
-    
+
 } 9>"$LOCKFILE"

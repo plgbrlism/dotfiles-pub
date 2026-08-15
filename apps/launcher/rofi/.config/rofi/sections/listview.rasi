@@ -11,15 +11,15 @@ element {
 }
 element.selected {
     background-color:   @primary;
-    text-color:         @background;
+    text-color:         @on-primary;
 }
 
 element-text {
-    background-color:   @background;
+    background-color:   @surface-dim;
 }
 element-text.selected {
 	background-color:   @primary;
-    text-color:     	@background;
+    text-color:     	@on-primary;
 }
 
 element-icon {

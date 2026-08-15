@@ -1,15 +1,15 @@
 
 //               ░██         ░██
-//                              
+//
 //    ░████████  ░██░██░████ ░██
 //    ░██    ░██ ░██░███     ░██
 //    ░██    ░██ ░██░██      ░██
 //    ░██    ░██ ░██░██      ░██
 //    ░██    ░██ ░██░██      ░██
 //    ░██    ░██ ░██░██      ░██
-//                              
-//	  github: @plgbrlism                                             
-//	  tiktok: @sivops.tech
+//
+//	  github: @plgbrlism
+//	  tiktok: @fuzzbuzz.tech
 
 include "kdl/outputs.kdl"
 include "kdl/autostart.kdl"

@@ -1,0 +1,22 @@
+{
+  "wallpaper": "{{ wallpaper }}",
+  "alpha": "100",
+  "colors": {
+    "color0": "{{ surface_container_low }}",
+    "color1": "",
+    "color2": "",
+    "color3": "{{ primary }}",
+    "color4": "",
+    "color5": "{{ secondary }}",
+    "color6": "",
+    "color7": "{{ surface_container_highest }}",
+    "color8": "",
+    "color9": "",
+    "color10": "{{ tertiary_container }}",
+    "color11": "",
+    "color12": "",
+    "color13": "{{ secondary_container }}",
+    "color14": "",
+    "color15": "{{ on_surface_variant }}"
+  }
+}

@@ -1,0 +1,23 @@
+#tray {
+	min-height: 0;
+	padding: 0 10px;
+    background-color:    @secondary;
+    color:               @on-secondary;
+    border-radius:       6px;
+    margin-left: 12px;
+    margin-right: 12px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#tray:hover {
+	background-color:    @on-secondary;
+	color:               @secondary;
+}
+
+#tray > .passive {
+    -gtk-icon-effect:    dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect:    highlight;
+}
