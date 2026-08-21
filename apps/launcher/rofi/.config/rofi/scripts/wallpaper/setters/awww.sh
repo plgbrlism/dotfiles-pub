@@ -4,7 +4,7 @@
 set_awww() {
     local selected="$1"
     if ! pgrep -x "awww-daemon" > /dev/null; then
-        awww-daemon & disown
+        awww-daemon --no-cache & disown
         sleep 0.5 # Give the daemon a half-second to wake up
     fi
 
