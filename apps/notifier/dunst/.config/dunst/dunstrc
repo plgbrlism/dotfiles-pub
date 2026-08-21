@@ -32,14 +32,14 @@ mouse_right_click = context
 
 [urgency_low]
 background = "#1d2023"
-foreground = "#8e9198"
+foreground = "#8d9197"
 frame_color = "#1d2023"
 timeout = 5
 
 [urgency_normal]
 background = "#1d2023"
-foreground = "#e2e2e7"
-frame_color = "#8ca5c6"
+foreground = "#e1e2e7"
+frame_color = "#8ba5c6"
 timeout = 10
 
 [urgency_critical]
