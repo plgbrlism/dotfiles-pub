@@ -31,9 +31,4 @@
   --m3-inverse-primary: {{ inverse_primary }};
   --m3-background: {{ background }};
   --m3-on-background: {{ on_background }};
-
-  --m3-primary-rgb: {{ primary:rgb }};
-  --m3-surface-rgb: {{ surface:rgb }};
-  --m3-surface-elevated: {{ surface_container_high:lighten(0.03) }};
-  --m3-on-surface-contrast: {{ on_surface:ensure_contrast(%surface, 4.5) }};
 }

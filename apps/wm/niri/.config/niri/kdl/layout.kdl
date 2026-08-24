@@ -1,15 +1,50 @@
-// ───────────────────────────────
-// Layout
-// ───────────────────────────────
+// ~~ layout ~~
 
 layout {
     gaps 12
     background-color "transparent"
 
+    border     { off; }
+    focus-ring { off; }
+    shadow     { off; }
+
+	insert-hint {
+        color "rgba(137, 166, 197, 0.8)"
+    }
+
+    tab-indicator {
+    	active-color "hsl(211, 34%, 65%)"
+    	inactive-color "hsl(216, 7%, 28%)"
+    	urgent-color "#ff7b6e"
+    }
+}
+
+overview {
+	backdrop-color "rgba(137, 166, 197, 1.0)"
+	workspace-shadow { off; }
+}
+
+window-rule {
+    match is-floating=true
     border {
-        off
+        on
+        width 2
+        active-color "rgba(137, 166, 197, 1.0)"
+        inactive-color "rgba(67, 71, 77, 1.0)"
     }
     focus-ring {
-        off
+        on
+        width 2
+        active-color "rgba(137, 166, 197, 1.0)"
+        inactive-color "rgba(67, 71, 77, 1.0)"    	
+    }
+}
+
+recent-windows {
+    highlight {
+        active-color "hsl(212, 60%, 80%)"
+        urgent-color "hsl(5, 100%, 72%)"        
+        padding 20
+        corner-radius 8
     }
 }

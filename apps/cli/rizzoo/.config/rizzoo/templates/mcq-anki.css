@@ -1,0 +1,41 @@
+:root {
+  --m3-primary: {{ primary }};
+  --m3-on-primary: {{ on_primary }};
+  --m3-primary-container: {{ primary_container }};
+  --m3-on-primary-container: {{ on_primary_container }};
+  --m3-secondary: {{ secondary }};
+  --m3-on-secondary: {{ on_secondary }};
+  --m3-secondary-container: {{ secondary_container }};
+  --m3-on-secondary-container: {{ on_secondary_container }};
+  --m3-tertiary: {{ tertiary }};
+  --m3-on-tertiary: {{ on_tertiary }};
+  --m3-tertiary-container: {{ tertiary_container }};
+  --m3-on-tertiary-container: {{ on_tertiary_container }};
+  --m3-error: {{ error }};
+  --m3-on-error: {{ on_error }};
+  --m3-error-container: {{ error_container }};
+  --m3-on-error-container: {{ on_error_container }};
+  --m3-surface: {{ surface }};
+  --m3-on-surface: {{ on_surface }};
+  --m3-surface-container: {{ surface_container }};
+  --m3-surface-container-low: {{ surface_container_low }};
+  --m3-surface-container-high: {{ surface_container_high }};
+  --m3-surface-container-highest: {{ surface_container_highest }};
+  --m3-surface-bright: {{ surface_bright }};
+  --m3-surface-dim: {{ surface_dim }};
+  --m3-on-surface-variant: {{ on_surface_variant }};
+  --m3-outline: {{ outline }};
+  --m3-outline-variant: {{ outline_variant }};
+  --m3-inverse-surface: {{ inverse_surface }};
+  --m3-inverse-on-surface: {{ inverse_on_surface }};
+  --m3-inverse-primary: {{ inverse_primary }};
+  --m3-background: {{ background }};
+  --m3-on-background: {{ on_background }};
+
+  /* animations */
+  --m3-motion-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --m3-motion-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --m3-motion-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --m3-duration-short: 150ms;
+  --m3-duration-medium: 300ms;
+}

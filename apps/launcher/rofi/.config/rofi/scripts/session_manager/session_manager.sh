@@ -7,7 +7,7 @@
 theme="$HOME/.config/rofi/config.rasi"
 
 options=(
-	"  Idle"
+	"  Idle"
     "  Lock"
     "  Logout"
     "  Restart"
@@ -49,21 +49,21 @@ screensaver() {
 
 	# to-do: get $TERMINAL from envs/rc instead.
 
-    # i prefer ghostty
-    if command -v ghostty >/dev/null; then
-        ghostty --fullscreen=true -e "$app"
-        return
-    fi
-
-    # alacaritty
-    if command -v alacritty >/dev/null; then
-        alacritty -e "$app"
-        return
-    fi
-
     # kitty
     if command -v kitty >/dev/null; then
-        kitty -e "$app"
+        kitty --start-as fullscreen -e "$app"  
+        return
+    fi
+
+    # ghostty
+        if command -v ghostty >/dev/null; then
+            ghostty --fullscreen=true -e "$app"
+            return
+        fi
+    
+    # alacritty
+    if command -v alacritty >/dev/null; then
+        alacritty -e "$app"
         return
     fi
 
@@ -98,10 +98,8 @@ lock_screen() {
     elif [[ $XDG_SESSION_TYPE == "x11" ]]; then
     	if pgrep -x i3 >/dev/null && command -v i3lock-fancy-rapid >/dev/null 2>&1; then
     		"$HOME/.config/rofi/scripts/session_manager/i3lock-custom/i3lock.sh"
-        elif pgrep -x i3 > /dev/null; then
-            i3lock
         else
-            betterlockscreen -l
+            i3lock
         fi
     fi
 }

@@ -8,8 +8,8 @@
 }
 
 #custom-powermenu:hover {
-    background-color:    @surface-container-low;
-    color:               @secondary;
+    background-color:    @on-primary;
+    color:               @primary;
     border-radius: 6px;
     transition: background-color 0.25s ease, color 0.25s ease;
 }

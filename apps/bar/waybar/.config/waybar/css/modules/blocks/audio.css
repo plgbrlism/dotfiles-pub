@@ -3,6 +3,12 @@
 	padding: 0 8;
     background-color:    @tertiary;
     color:               @on-tertiary;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#pulseaudio:hover {
+	background-color:    @on-primary;
+    color:               @primary;
 }
 
 #pulseaudio.muted {

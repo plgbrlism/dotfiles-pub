@@ -1,0 +1,23 @@
+# wofi config - ported from rofi
+# github: @plgbrlism
+
+show=drun
+allow_images=true
+allow_markup=true
+insensitive=true
+matching=fuzzy
+location=center
+width=400
+lines=5
+columns=1
+prompt=
+hide_scroll=true
+gtk_dark=true
+normal_window=false
+filter_rate=100
+no_custom_entry=false
+exec_search=false
+hide_search=true
+use_search_box=true
+single_click=false
+layer=top

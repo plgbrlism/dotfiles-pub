@@ -3,4 +3,10 @@
 	padding: 0 8;
     background-color:    @secondary;
     color:               @on-secondary;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#backlight:hover {
+	background-color:    @on-primary;
+    color:               @primary;
 }

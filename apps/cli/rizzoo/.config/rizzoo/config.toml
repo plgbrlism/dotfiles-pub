@@ -45,6 +45,11 @@ output   = "~/.config/kitty/colors/variants/dynamic.conf"
 template = "colors-micro.micro"
 output   = "~/.config/micro/colorschemes/dynamic.micro"
 
+[nvim]
+template = "colors-nvim.lua"
+output   = "~/.config/nvim/lua/rizzoo/palette.lua"
+post_hook = "pkill -USR1 nvim || true"
+
 [polybar]
 template = "colors-polybar.ini"
 output   = "~/.config/polybar/colors/variants/dynamic.ini"
@@ -57,6 +62,10 @@ output   = "~/.config/rofi/colors/variants/dynamic.rasi"
 [sway]
 template = "colors-sway"
 output   = "~/.config/sway/colors/variants/dynamic.conf" 
+
+[niri]
+template = "colors-niri-layout.kdl"
+output   = "~/.config/niri/kdl/layout.kdl"
 
 [waybar]
 template = "colors-waybar.css"
@@ -100,6 +109,10 @@ post_hook = "pywalfox update"
 [noctalia]
 template = "colors-noctalia.json"
 output   = "~/.config/noctalia/palettes/rizzoo.json"
+
+[anki-cards]
+template = "mcq-anki.css"
+output   = "~/projects/anki-mcq-builder/static/_theme.css"
 
 # GTK3 / GTK4(libadwaita) Themes
 # note: only one gtk theme must have an active post_hook

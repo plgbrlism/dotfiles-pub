@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # github: @plgbrlism
 # tiktok: @fuzzbuzz.tech

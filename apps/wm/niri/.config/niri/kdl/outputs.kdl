@@ -1,6 +1,4 @@
-// ───────────────────────────────
-// Outputs (Screen Resolution)
-// ───────────────────────────────
+// ~~ outputs (screen resolution) ~~
 
 output "eDP-1" {
     mode "1366x768@60"
