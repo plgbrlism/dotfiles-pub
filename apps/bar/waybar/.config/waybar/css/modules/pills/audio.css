@@ -8,8 +8,8 @@
 }
 
 #pulseaudio:hover {
-    background-color:    @on-tertiary;
-    color:               @tertiary;	
+    background-color:    @on-primary;
+    color:               @primary;	
 }
 
 #pulseaudio.muted {

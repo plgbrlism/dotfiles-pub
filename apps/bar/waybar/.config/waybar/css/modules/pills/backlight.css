@@ -8,6 +8,6 @@
 }
 
 #backlight:hover {
-    background-color:    @on-secondary;
-    color:               @secondary;	
+    background-color:    @on-primary;
+    color:               @primary;	
 }

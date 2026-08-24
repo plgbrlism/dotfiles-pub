@@ -1,16 +1,22 @@
-// ───────────────────────────────
-// Window Rules
-// ───────────────────────────────
+// ~~ window rules ~~
+
+config-notification {
+    disable-failed
+}
 
 prefer-no-csd
 
 window-rule {
-    geometry-corner-radius 8
+    geometry-corner-radius 12
     clip-to-geometry true
-    //default-column-width { proportion 1.0; }
     open-maximized true
 }
-
+    
 layer-rule {
     place-within-backdrop true
+}
+
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
 }

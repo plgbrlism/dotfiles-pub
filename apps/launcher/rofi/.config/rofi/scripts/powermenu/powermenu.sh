@@ -10,7 +10,7 @@ scriptDirectory="$HOME/.config/rofi/scripts/"
 options=(
 	"  Session"
 	"  Wi-Fi"
-    "  Audio"
+    "  Audio"
     "󰃟  Brightness"
    #"󰂯  Bluetooth"
     "  Wallpaper"

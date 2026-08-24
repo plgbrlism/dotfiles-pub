@@ -1,0 +1,86 @@
+/* wofi wide variant - for wifi, bluetooth */
+
+window {
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 12pt;
+    background-color: #0e1114;
+    color: #e1e2e7;
+    border-radius: 40px 8px 40px 8px;
+    border: 2px solid #43474d;
+    padding: 10px;
+}
+
+#outer-box {
+    background-color: transparent;
+    border-radius: 15px 5px 15px 5px;
+}
+
+#input {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 15px 5px 15px 5px;
+    background-color: #191c1f;
+    color: #e1e2e7;
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 12pt;
+}
+
+#input:focus {
+    border: 2px solid #88a6c4;
+}
+
+#scroll {
+    margin: 5px 0;
+}
+
+#inner-box {
+    background-color: transparent;
+    border-radius: 15px 5px 15px 5px;
+}
+
+#entry {
+    padding: 8px 12px;
+    margin: 2px 5px;
+    border-radius: 10px 5px 10px 5px;
+    background-color: transparent;
+    color: #e1e2e7;
+}
+
+#entry:selected {
+    background-color: #88a6c4;
+    color: #00192c;
+}
+
+#text {
+    margin: 0 8px;
+    background-color: transparent;
+    color: inherit;
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 12pt;
+}
+
+#entry:selected #text {
+    color: #00192c;
+    background-color: transparent;
+}
+
+#img {
+    margin: 0 8px;
+    background-color: transparent;
+    color: #e1e2e7;
+}
+
+#entry:selected #img {
+    background-color: #88a6c4;
+    color: #00192c;
+}
+
+#unselected {
+    background-color: transparent;
+}
+
+#selected {
+    background-color: #88a6c4;
+    color: #00192c;
+}

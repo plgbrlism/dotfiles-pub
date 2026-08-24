@@ -65,7 +65,7 @@
 
     "cpu": {
         "interval":            5,
-        "format":              " CPU  {usage}%"
+        "format":              "󰫈 CPU  {usage}%"
     },
 
 // ╭──────────────────────────────╮
@@ -138,7 +138,7 @@
 // ╰──────────────────────────────╯
 
     "custom/powermenu": {
-        "format":              "  ",
+        "format":              " 󰵲 ",
         "on-click":            "~/.config/rofi/scripts/powermenu/powermenu.sh",
         "tooltip":             false
     }

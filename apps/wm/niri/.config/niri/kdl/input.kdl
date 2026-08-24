@@ -1,6 +1,4 @@
-// ───────────────────────────────
-// Input (Touchpad)
-// ───────────────────────────────
+// ~~ input (touchpad) ~~
 
 input {
     focus-follows-mouse

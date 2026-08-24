@@ -16,6 +16,7 @@ element.selected {
 
 element-text {
     background-color:   @surface-dim;
+    highlight:          none;
 }
 element-text.selected {
 	background-color:   @primary;

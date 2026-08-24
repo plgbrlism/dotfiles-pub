@@ -3,9 +3,10 @@
 	padding: 0 10;
     background-color:    @primary;
     color:               @on-primary;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 #custom-powermenu:hover {
-    background-color:    @on-primary-container;
-    color:               @primary-container;
+    background-color:    @on-primary;
+    color:               @primary;
 }

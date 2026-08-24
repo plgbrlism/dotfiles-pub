@@ -17,8 +17,8 @@ source "${SCRIPT_DIR}/setters/feh.sh"
 source "$HOME/.config/rofi/scripts/wallpaper/setters/hrax.sh"
 
 # ~~ helpers ~~
-DIR_INIT="  add wallpaper directory"
-CHANGE_DIR="  change wallpaper directory"
+DIR_INIT="󱑾  add wallpaper directory"
+CHANGE_DIR="change wallpaper directory"
 
 
 mkdir -p "$CACHE_DIR"
@@ -27,7 +27,7 @@ mkdir -p "$CACHE_DIR"
 prompt_new_dir() {
 	new_dir=$(rofi -dmenu \
 		-theme "$THEME" \
-		-p "󱑾  Path ->" \
+		-p "󱑾  Path ->>" \
 		-theme-str 'window { width: 600; }' \
 		-theme-str 'entry { placeholder: "path/to/your/wallpapers..."; }' \
 		-theme-str 'listview { enabled: false; }'
@@ -79,7 +79,7 @@ if [ ${#wallpapers[@]} -eq 0 ]; then
 		-mesg "no wallpaper directory yet 󰯉 " \
 		-theme-str 'window { width: 400; }' \
 		-theme-str 'mainbox {children: [ message, listview ]; }' \
-		-theme-str 'textbox { text-color: @muted; }' \
+		-theme-str 'textbox { text-color: @on-surface-variant; }' \
 		-theme-str 'listview { columns: 1; lines: 1; }' \
 		-theme-str 'element { children: [ element-text ]; }'
 		)
@@ -137,11 +137,11 @@ fi
 case "$DISPLAY_SERVER" in
     "wayland")
         if command -v awww >/dev/null 2>&1; then
+        	rizzoo -i "$selected" -ro &
             set_awww "$selected"
-            rizzoo -i "$selected" -ro
         elif command -v swaybg >/dev/null 2>&1; then
+        	rizzoo -i "$selected" -ro &
             set_swaybg "$selected"
-            rizzoo -i "$selected" -ro
         else
             rofi -e "Error: No Wayland wallpaper setter found!" -theme "$THEME"
             exit 1
@@ -149,11 +149,11 @@ case "$DISPLAY_SERVER" in
         ;;
     "x11")
     	if command -v hrax >/dev/null 2>&1; then
+    		rizzoo -i "$selected" -ro &
     		set_feh "$selected"
-    		rizzoo -i "$selected" -ro
     	elif command -v feh >/dev/null 2>&1; then
+    		rizzoo -i "$selected" -ro &
         	set_feh "$selected"
-        	rizzoo -i "$selected" -ro
         else
         	rofi -e "Error: No X11 supported wallpaper setter found" -theme "$THEME"
         	exit 1

@@ -3,6 +3,12 @@
 	padding: 0 8;
     background-color:    @primary;
     color:               @on-primary;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#network:hover {
+	background-color:    @on-primary;
+    color:               @primary;
 }
 
 #network.disconnected {

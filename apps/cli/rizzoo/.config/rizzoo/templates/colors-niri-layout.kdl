@@ -1,0 +1,50 @@
+// ~~ layout ~~
+
+layout {
+    gaps 12
+    background-color "transparent"
+
+    border     { off; }
+    focus-ring { off; }
+    shadow     { off; }
+
+	insert-hint {
+        color "{{ primary:rgba(0.8) }}"
+    }
+
+    tab-indicator {
+    	active-color "{{ primary:hsl }}"
+    	inactive-color "{{ outline_variant:hsl }}"
+    	urgent-color "{{ error }}"
+    }
+}
+
+overview {
+	backdrop-color "{{ primary:rgba }}"
+	workspace-shadow { off; }
+}
+
+window-rule {
+    match is-floating=true
+    border {
+        on
+        width 2
+        active-color "{{ primary:rgba }}"
+        inactive-color "{{ outline_variant:rgba }}"
+    }
+    focus-ring {
+        on
+        width 2
+        active-color "{{ primary:rgba }}"
+        inactive-color "{{ outline_variant:rgba }}"    	
+    }
+}
+
+recent-windows {
+    highlight {
+        active-color "{{ primary_fixed_dim:hsl }}"
+        urgent-color "{{ error:hsl }}"        
+        padding 20
+        corner-radius 8
+    }
+}
