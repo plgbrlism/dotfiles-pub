@@ -1,8 +1,8 @@
 { config, ... }:
 
 let
-  dotfiles = "/home/paul/dotfiles-pub";
-  dotfilesPriv = "/home/paul/dotfiles-priv";
+  dotfiles = "${config.home.homeDirectory}/dotfiles-pub";
+  dotfilesPriv = "${config.home.homeDirectory}/dotfiles-priv";
 
   link = config.lib.file.mkOutOfStoreSymlink;
 in

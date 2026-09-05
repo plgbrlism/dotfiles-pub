@@ -1,30 +1,28 @@
 { pkgs, ... }:
 
 {
-  hardware.graphics = {
-    enable = true;
-    enable32 = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      intel-vaapi-driver
-      libvdpau-va-gl
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.intel-media-driver
-    ];
-  };
+  # --- INTEL CPU MICROCODE ---
+  hardware.cpu.intel.updateMicrocode = true;
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
+  # --- FIRMWARE ---
   hardware.enableAllFirmware = true;
 
+  # --- GRAPHICS & HARDWARE ACCELERATION ---
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # iHD driver for Gen 9.5+ hardware decoding
+      libvdpau-va-gl     # VDPAU backend with VA-API
+      libva-utils        # Includes 'vainfo' for debugging
+    ];
+  };
+
+  # --- X11 VIDEO DRIVER ---
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  environment.variables = {
+  # --- HARDWARE ENVIRONMENT VARIABLES ---
+  environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
     VDPAU_DRIVER = "va_gl";
   };

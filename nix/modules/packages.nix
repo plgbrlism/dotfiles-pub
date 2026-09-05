@@ -2,42 +2,36 @@
 
 {
   environment.systemPackages = with pkgs; [
-    # ── Browsers ──
+    # ── Browsers & Communication ──
     firefox
-    google-chrome
-    brave-origin
+    brave
+    vesktop
 
-    # ── Media Players ──
+    # ── Media Players & Visualizers ──
     mpv
     vlc
+    cava
+    lavat
 
-    # ── Recording ──
-    obs-studio
+    # ── Screen Capture & Recording ──
     gpu-screen-recorder
     gpu-screen-recorder-gtk
     peek
 
-    # ── Image Viewers ──
-    imv
-    feh
-
-    # ── Creative ──
-    inkscape
-    krita
-
-    # ── Office / Productivity ──
+    # ── Office, Notes & Flashcards ──
     obsidian
     onlyoffice-bin
-    anki
+    anki-bin
+    bitwarden-desktop
 
-    # ── File Managers ──
+    # ── Vector / Design & Mobile Tools ──
+    inkscape
+    universal-android-debloater
+
+    # ── File Management & Thumbnails ──
     nautilus
     tumbler
-
-    # ── Audio Visualizer ──
-    cava
-
-    # ── Thumbnailer ──
     ffmpegthumbnailer
+    xarchiver
   ];
 }

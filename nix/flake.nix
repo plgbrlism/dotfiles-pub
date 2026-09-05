@@ -1,55 +1,36 @@
 {
-  description = "NixOS config for HPCK14 laptop";
+  description = "NixOS configuration for HP Notebook 14-ck0115tu";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... } @ inputs:
-    let
+  outputs = { self, nixpkgs, home-manager, nixos-hardware, ... } @ inputs: {
+    nixosConfigurations.hp = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [
+        # Main host configuration
+        ./hosts/hp/configuration.nix
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          (final: prev: {
-            swayfx = prev.swayfx.overrideAttrs (old: {
-              version = "0.6";
-              src = prev.fetchFromGitHub {
-                owner = "wlrfx";
-                repo = "swayfx";
-                rev = "v0.6";
-                hash = "sha256-1KzWBTmF2KwGpMz7Tt4pGq3QwK3p3q3q3q3q3q3q3q3=";
-              };
-              buildInputs = (old.buildInputs or []) ++ [ prev.scenefx ];
-            });
-          })
-        ];
-      };
-    in {
-      nixosConfigurations.hp = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/hp/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-              users.paul = import ./home/default.nix;
-            };
-          }
-        ];
-      };
+        # Home Manager integration module
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = { inherit inputs; };
+            users.paul = import ./home/default.nix;
+          };
+        }
+      ];
     };
+  };
 }

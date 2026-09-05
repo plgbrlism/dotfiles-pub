@@ -1,24 +1,27 @@
 { pkgs, ... }:
 
 {
-  services.postgresql = {
+  # --- BLUETOOTH & SYSTEM DAEMONS ---
+  hardware.bluetooth = {
     enable = true;
-    package = pkgs.postgresql_16;
+    powerOnBoot = false; # Conserve battery on boot for Celeron laptop
     settings = {
-      max_connections = 20;
-      shared_buffers = "256MB";
-      effective_cache_size = "768MB";
-      work_mem = "4MB";
-      maintenance_work_mem = "64MB";
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
     };
-    authentication = pkgs.lib.mkOverride 10 ''
-      local all all peer
-      host all all 127.0.0.1/32 md5
-      host all all ::1/128 md5
-    '';
-    initialScript = pkgs.writeText "init.sql" ''
-      CREATE USER paul WITH SUPERUSER PASSWORD 'changeme';
-      CREATE DATABASE paul OWNER paul;
-    '';
   };
+
+  services.blueman.enable = true;
+
+  # Firmware updater service
+  services.fwupd.enable = true;
+
+  # --- D-BUS & STORAGE AUTOMOUNTING ---
+  services.dbus.enable = true;
+  services.udisks2.enable = true;
+  services.gvfs.enable = true; # Required for Nautilus trash/mount integration
+
+  # User-space Polkit authentication agent
+  security.polkit.enable = true;
 }

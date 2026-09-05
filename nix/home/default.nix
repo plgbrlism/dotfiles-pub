@@ -1,5 +1,15 @@
 { config, pkgs, ... }:
 
+let
+  term-fallback = pkgs.writeShellScriptBin "launch-terminal" ''
+    if [ -n "$WAYLAND_DISPLAY" ]; then
+      exec ${pkgs.foot}/bin/foot "$@"
+    else
+      # Under X11 / i3: fallback to suckless terminal (st) or alacritty
+      exec ${pkgs.st}/bin/st "$@"
+    fi
+  '';
+in
 {
   imports = [
     ./shell.nix
@@ -10,10 +20,10 @@
   home = {
     username = "paul";
     homeDirectory = "/home/paul";
-    stateVersion = "25.05";
+    stateVersion = "26.05";
 
     sessionVariables = {
-      TERMINAL = "foot";
+      TERMINAL = "launch-terminal";
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
@@ -24,12 +34,18 @@
     ];
 
     packages = with pkgs; [
+      term-fallback
+      st
+      foot
+      alacritty
       tree-sitter-grammars.tree-sitter-markdown
       tree-sitter-grammars.tree-sitter-c
       tree-sitter-grammars.tree-sitter-lua
       tree-sitter-grammars.tree-sitter-vim
     ];
   };
+
+  programs.home-manager.enable = true;
 
   xdg.enable = true;
   xdg.userDirs = {

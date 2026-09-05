@@ -1,27 +1,23 @@
 { pkgs, ... }:
 
 {
-  networking.networkmanager.enable = true;
-  networking.wireless.iwd.enable = true;
-
-  hardware.bluetooth = {
+  # --- NETWORKING BACKEND ---
+  networking.networkmanager = {
     enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Enable = "Source,Sink,Media,Socket";
-      };
-    };
+    wifi.backend = "iwd"; # Fast, lightweight wireless backend
   };
 
-  environment.systemPackages = with pkgs; [
-    bluez
-    bluez-tools
-  ];
+  # Use the standard wireless daemon
+  networking.wireless.iwd.enable = true;
 
+  # --- FIREWALL CONFIGURATION ---
   networking.firewall = {
     enable = true;
+    # Allow KDE Connect / GSConnect local device sync
     allowedTCPPortRanges = [
+      { from = 1714; to = 1764; }
+    ];
+    allowedUDPPortRanges = [
       { from = 1714; to = 1764; }
     ];
   };

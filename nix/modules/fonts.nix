@@ -4,25 +4,33 @@
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
+      # Core & UI System Fonts
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       noto-fonts-cjk-sans
-      jetbrains-mono
-      jetbrains-mono-nerd
       dejavu_fonts
       liberation_ttf
-      carlito
-      unifont
-      departure-mono
-      siji
       freefont_ttf
+      carlito
+
+      # Monospace & Developer Icon Fonts (Nerd Fonts v3)
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
+      departure-mono
+
+      # Bitmap / Glyphs
+      unifont
+      siji
     ];
+
+    # System-wide font configuration & fallbacks
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ "JetBrains Mono Nerd Font" "DejaVu Sans Mono" ];
+        monospace = [ "JetBrainsMono Nerd Font" "DejaVu Sans Mono" ];
         sansSerif = [ "Noto Sans" "DejaVu Sans" ];
         serif = [ "Noto Serif" "DejaVu Serif" ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };
