@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # source global state variables from from generated cache
 if [ -f /tmp/_rb_shared ]; then source /tmp/_rb_shared; else exit 1; fi
