@@ -21,6 +21,7 @@
       plugins = [
         "git"
         "sudo"
+        "nvm"
       ];
     };
 
@@ -53,13 +54,25 @@
     };
 
     # Extra Interactive Shell Initialization
-    initExtra = ''
+    initContent = ''
       # Run fastfetch on interactive shell start
       if [[ $- == *i* ]]; then
         fastfetch
       fi
 
       bindkey -e
+
+      # Autosuggestion keybindings
+      bindkey '^ ' autosuggest-accept  # ctrl+space → accept full suggestion
+
+      # Right arrow clears suggestion instead of accepting it
+      clear-autosuggest-and-move() {
+        zle autosuggest-clear
+        zle forward-char
+      }
+      zle -N clear-autosuggest-and-move
+      bindkey '^[[C' clear-autosuggest-and-move
+      bindkey '^[OC' clear-autosuggest-and-move
     '';
   };
 
@@ -67,5 +80,12 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  # Atuin — shell history sync
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+    flags = [ "--disable-up-arrow" ];
   };
 }

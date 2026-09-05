@@ -4,7 +4,7 @@
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = true;  # flip to false after setting up keys
+      PasswordAuthentication = true;
       PermitRootLogin = "no";
     };
   };

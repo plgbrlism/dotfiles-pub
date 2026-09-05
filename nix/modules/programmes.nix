@@ -60,6 +60,11 @@
     meson
     scdoc
 
+    # Shell Essentials (config lives in home/shell.nix)
+    starship
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+
     # Libraries & Format Parsing Headers
     nlohmann_json
     tomlplusplus
