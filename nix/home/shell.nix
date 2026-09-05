@@ -1,6 +1,13 @@
 { pkgs, ... }:
 
 {
+  home.sessionPath = [
+    "$HOME/.local/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.bun/bin"
+    "$HOME/scripts"
+  ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -8,9 +15,9 @@
     syntaxHighlighting.enable = true;
 
     # Oh-My-Zsh Configuration
-    ohMyZsh = {
+    oh-my-zsh = {
       enable = true;
-      theme = "agnoster";
+      theme = "";
       plugins = [
         "git"
         "sudo"

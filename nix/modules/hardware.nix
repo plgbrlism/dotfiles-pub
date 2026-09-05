@@ -1,13 +1,13 @@
 { pkgs, ... }:
 
 {
-  # --- INTEL CPU MICROCODE ---
+  #  INTEL CPU MICROCODE
   hardware.cpu.intel.updateMicrocode = true;
 
-  # --- FIRMWARE ---
+  #  FIRMWARE
   hardware.enableAllFirmware = true;
 
-  # --- GRAPHICS & HARDWARE ACCELERATION ---
+  #  GRAPHICS & HARDWARE ACCELERATION
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -18,10 +18,10 @@
     ];
   };
 
-  # --- X11 VIDEO DRIVER ---
+  #  X11 VIDEO DRIVER
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  # --- HARDWARE ENVIRONMENT VARIABLES ---
+  #  HARDWARE ENVIRONMENT VARIABLES
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
     VDPAU_DRIVER = "va_gl";

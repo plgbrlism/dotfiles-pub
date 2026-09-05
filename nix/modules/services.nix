@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  # --- BLUETOOTH & SYSTEM DAEMONS ---
+  #  BLUETOOTH & SYSTEM DAEMONS
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false; # Conserve battery on boot for Celeron laptop
@@ -17,7 +17,7 @@
   # Firmware updater service
   services.fwupd.enable = true;
 
-  # --- D-BUS & STORAGE AUTOMOUNTING ---
+  #  D-BUS & STORAGE AUTOMOUNTING
   services.dbus.enable = true;
   services.udisks2.enable = true;
   services.gvfs.enable = true; # Required for Nautilus trash/mount integration

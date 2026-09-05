@@ -51,8 +51,6 @@ in
 
   home.file = {
     ".zshrc".source = link "${dotfilesPriv}/zsh/.zshrc";
-    ".zprofile".source = link "${dotfilesPriv}/env/.zprofile";
-    ".xprofile".source = link "${dotfilesPriv}/env/.xprofile";
     ".xinitrc".source = link "${dotfilesPriv}/env/.xinitrc";
   };
 }

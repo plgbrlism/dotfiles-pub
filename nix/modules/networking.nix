@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  # --- NETWORKING BACKEND ---
+  #  NETWORKING BACKEND
   networking.networkmanager = {
     enable = true;
     wifi.backend = "iwd"; # Fast, lightweight wireless backend
@@ -10,7 +10,7 @@
   # Use the standard wireless daemon
   networking.wireless.iwd.enable = true;
 
-  # --- FIREWALL CONFIGURATION ---
+  #  FIREWALL CONFIGURATION
   networking.firewall = {
     enable = true;
     # Allow KDE Connect / GSConnect local device sync

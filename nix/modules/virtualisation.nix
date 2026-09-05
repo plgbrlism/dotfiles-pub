@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  # --- DOCKER CONTAINER VIRTUALISATION ---
+  #  DOCKER CONTAINER VIRTUALISATION
   virtualisation.docker = {
     enable = true;
     storageDriver = "overlay2";
@@ -11,10 +11,7 @@
     };
   };
 
-  # User permission note: Ensure "docker" is added to extraGroups in configuration.nix
-  # users.users.paul.extraGroups = [ "docker" ];
-
-  # --- VIRTUALISATION PACKAGES ---
+  #  VIRTUALISATION PACKAGES
   environment.systemPackages = with pkgs; [
     docker-compose
   ];
