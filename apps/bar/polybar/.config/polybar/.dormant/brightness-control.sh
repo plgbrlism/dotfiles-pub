@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ~~ config
 LOCKFILE="/tmp/brightness.lock"
@@ -20,13 +20,13 @@ done
 
 {
     flock -n 9 || exit 0
-    
+
     current=$(brightnessctl g)
     max=$(brightnessctl m)
-    
+
     min_value=$((max * MIN_PERCENT / 100))
     step_value=$((max * STEP_PERCENT / 100))
-    
+
     case $MODE in
         up)
             new_value=$((current + step_value))
@@ -42,7 +42,7 @@ done
             [ "$new_value" -gt "$max" ] && new_value="$max"
             ;;
     esac
-    
+
     brightnessctl set "$new_value"
-    
+
 } 9>"$LOCKFILE"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ -f /tmp/_rb_shared ]; then source /tmp/_rb_shared; else exit 1; fi
 
@@ -25,8 +25,8 @@ for dev in "${PAIRED[@]}"; do
     if [[ -n "$dev" ]]; then
         mac=$(echo "$dev" | awk '{print $2}')
         name=$(echo "$dev" | cut -d' ' -f3-)
-        
-        # check if mac exists inside cache 
+
+        # check if mac exists inside cache
         if grep -q "$mac" /tmp/_rb_connected_list; then
             options+=("$mac - $name 󰄬 (Connected)")
         else
