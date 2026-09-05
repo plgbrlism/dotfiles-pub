@@ -20,7 +20,7 @@
 
     # ── Office, Notes & Flashcards ──
     obsidian
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     anki-bin
     bitwarden-desktop
 

@@ -37,11 +37,8 @@ in
       term-fallback
       st
       foot
+      kitty
       alacritty
-      tree-sitter-grammars.tree-sitter-markdown
-      tree-sitter-grammars.tree-sitter-c
-      tree-sitter-grammars.tree-sitter-lua
-      tree-sitter-grammars.tree-sitter-vim
     ];
   };
 
