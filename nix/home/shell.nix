@@ -11,7 +11,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestions.enable = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     # Oh-My-Zsh Configuration
@@ -27,8 +27,8 @@
 
     # History & Keybinds
     history = {
-      size = 10000;
-      save = 10000;
+      size = 100;
+      save = 100;
       path = "$HOME/.zsh_history";
       ignoreDups = true;
       share = true;

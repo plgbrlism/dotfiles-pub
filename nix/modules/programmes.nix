@@ -32,7 +32,6 @@
     btop
     glow
     systemctl-tui
-    systemctl-gui
     peaclock
 
     # Downloaders & Archive Tools

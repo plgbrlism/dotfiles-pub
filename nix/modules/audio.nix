@@ -17,5 +17,6 @@
   # Audio mixer GUI
   environment.systemPackages = with pkgs; [
     pavucontrol
+    pulseaudio
   ];
 }
