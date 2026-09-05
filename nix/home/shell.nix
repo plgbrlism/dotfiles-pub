@@ -3,31 +3,30 @@
 {
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
 
-    oh-my-zsh = {
+    # Oh-My-Zsh Configuration
+    ohMyZsh = {
       enable = true;
       theme = "agnoster";
-      plugins = [ "git" "nvm" "zsh-autosuggestions" ];
+      plugins = [
+        "git"
+        "sudo"
+      ];
     };
 
-    initExtra = ''
-      fastfetch
+    # History & Keybinds
+    history = {
+      size = 10000;
+      save = 10000;
+      path = "$HOME/.zsh_history";
+      ignoreDups = true;
+      share = true;
+    };
 
-      setopt histignorealldups sharehistory
-      HISTSIZE=1000
-      SAVEHIST=1000
-      HISTFILE=~/.zsh_history
-
-      bindkey -e
-
-      alias vault-sync="mega-sync"
-      alias vault-status="mega-transfers"
-      alias vault-close="mega-quit"
-      alias zed="zeditor"
-    '';
-
+    # Shell Aliases (Declaratively mapped)
     shellAliases = {
       ll = "ls -la";
       la = "ls -A";
@@ -39,6 +38,27 @@
       gl = "git log";
       cat = "bat --paging=never";
       grep = "rg";
+
+      # Mega Cloud Storage CLI (from megacmd)
+      vault-sync = "mega-sync";
+      vault-status = "mega-transfers";
+      vault-close = "mega-quit";
     };
+
+    # Extra Interactive Shell Initialization
+    initExtra = ''
+      # Run fastfetch on interactive shell start
+      if [[ $- == *i* ]]; then
+        fastfetch
+      fi
+
+      bindkey -e
+    '';
+  };
+
+  # Modern Starship Prompt
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
   };
 }

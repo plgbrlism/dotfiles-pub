@@ -1,37 +1,46 @@
 { pkgs, ... }:
 
 {
+  # --- X11 & DISPLAY SERVER ---
   services.xserver = {
     enable = true;
     xkb.layout = "us";
-    displayManager.ly = {
-      enable = true;
-    };
   };
 
-  services.displayManager = {
-    ly = {
-      enable = true;
-    };
-  };
+  # Lightweight TUI Display Manager (from your Arch setup)
+  services.displayManager.ly.enable = true;
 
-  services.xdg.portal = {
+  # Touchpad support for HP Laptop
+  services.libinput = {
     enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    touchpad = {
+      naturalScrolling = true;
+      tapping = true;
+    };
   };
 
+  # --- PICOM COMPOSITOR (Tuned for Celeron UHD Graphics) ---
+  services.picom = {
+    enable = true;
+    vSync = true;
+    fade = true;
+    fadeDelta = 4;
+    shadow = false; # Disabled to conserve Celeron iGPU resources
+  };
+
+  # --- XDG PORTAL INTEGRATION ---
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
+
+  # --- DESKTOP UTILITIES & THEME ENGINE ---
   environment.systemPackages = with pkgs; [
     xdg-utils
     xdg-user-dirs
-    mate-polkit
     accountsservice
     lxappearance
     nwg-look
   ];
-
-  services.mate = {
-    atril.enable = false;
-    eom.enable = false;
-  };
 }
