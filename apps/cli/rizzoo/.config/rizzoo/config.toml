@@ -85,6 +85,10 @@ post_hook = "dunstctl reload"
 template = "colors-peaclock.conf"
 output   = "~/.peaclock/config"
 
+[starship]
+template = "colors-starship-powerline.toml"
+output   = "~/.config/starship.toml"
+
 [foot]
 template = "colors-foot.ini"
 output   = "~/.config/foot/color-foot.ini"

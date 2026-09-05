@@ -15,6 +15,7 @@
     ../../modules/programmes.nix
     ../../modules/packages.nix
     ../../modules/services.nix
+    ../../modules/ssh.nix
   ];
 
   # Hostname & State Version

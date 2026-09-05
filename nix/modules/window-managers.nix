@@ -1,13 +1,11 @@
 { pkgs, ... }:
 
 {
-  # ── i3 Window Manager (X11 Session) ──
+  #  i3 Window Manager (X11 Session)
   services.xserver.windowManager.i3 = {
     enable = true;
     extraPackages = with pkgs; [
       dmenu
-      i3status
-      i3blocks
       i3lock-color
       xss-lock
       feh
@@ -16,7 +14,7 @@
     ];
   };
 
-  # ── SwayFX (Wayland Session) ──
+  #  SwayFX (Wayland Session)
   programs.sway = {
     enable = true;
     package = pkgs.swayfx; # Explicitly use SwayFX from nixpkgs
@@ -26,7 +24,6 @@
     };
     extraPackages = with pkgs; [
       waybar
-      wofi
       swaybg
       swaylock
       wbg
@@ -35,10 +32,10 @@
     ];
   };
 
-  # ── Niri Window Manager (Wayland Session) ──
+  #  Niri Window Manager (Wayland Session)
   programs.niri.enable = true;
 
-  # ── Shared Session Utilities ──
+  #  Shared Session Utilities
   environment.systemPackages = with pkgs; [
     rofi
     flameshot

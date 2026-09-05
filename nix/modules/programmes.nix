@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  # --- CORE PROGRAM MODULES ---
+  #  CORE PROGRAM MODULES
   programs.git = {
     enable = true;
     lfs.enable = true;
@@ -10,12 +10,12 @@
   # Enable interactive shell system-wide hooks
   programs.zsh.enable = true;
 
-  # --- CLI & UTILITY PACKAGES ---
+  #  CLI & UTILITY PACKAGES
   environment.systemPackages = with pkgs; [
     # Terminal Multiplexers & Editors
-    tmux
     neovim
     micro
+    tmux
     vim
     nano
 
@@ -31,8 +31,8 @@
     fastfetch
     btop
     glow
-    zenith
     systemctl-tui
+    systemctl-gui
     peaclock
 
     # Downloaders & Archive Tools

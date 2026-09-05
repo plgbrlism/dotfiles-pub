@@ -1,16 +1,16 @@
 { pkgs, ... }:
 
 {
-  # --- BOOTLOADER (UEFI) ---
+  #  BOOTLOADER (UEFI)
   boot.loader = {
     systemd-boot = {
       enable = true;
-      configurationLimit = 10; # Prevents /boot from filling up with old generations
+      configurationLimit = 3; # Prevents /boot from filling up with old generations
     };
     efi.canTouchEfiVariables = true;
   };
 
-  # --- KERNEL PARAMETERS ---
+  #  KERNEL PARAMETERS
   boot.kernelParams = [
     "quiet"
     "loglevel=3"

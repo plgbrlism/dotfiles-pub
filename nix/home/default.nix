@@ -28,11 +28,6 @@ in
       VISUAL = "nvim";
     };
 
-    sessionPath = [
-      "$HOME/.local/bin"
-      "$HOME/.cargo/bin"
-    ];
-
     packages = with pkgs; [
       term-fallback
       st
