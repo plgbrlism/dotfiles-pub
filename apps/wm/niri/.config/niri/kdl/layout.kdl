@@ -9,18 +9,18 @@ layout {
     shadow     { off; }
 
 	insert-hint {
-        color "rgba(205, 151, 115, 0.8)"
+        color "rgba(146, 163, 200, 0.8)"
     }
 
     tab-indicator {
-    	active-color "hsl(24, 47%, 63%)"
-    	inactive-color "hsl(21, 14%, 28%)"
+    	active-color "hsl(221, 33%, 68%)"
+    	inactive-color "hsl(220, 6%, 28%)"
     	urgent-color "#ff7b6e"
     }
 }
 
 overview {
-	backdrop-color "rgba(205, 151, 115, 1.0)"
+	backdrop-color "rgba(146, 163, 200, 1.0)"
 	workspace-shadow { off; }
 }
 
@@ -29,20 +29,20 @@ window-rule {
     border {
         on
         width 2
-        active-color "rgba(205, 151, 115, 1.0)"
-        inactive-color "rgba(81, 68, 61, 1.0)"
+        active-color "rgba(146, 163, 200, 1.0)"
+        inactive-color "rgba(68, 71, 77, 1.0)"
     }
     focus-ring {
         on
         width 2
-        active-color "rgba(205, 151, 115, 1.0)"
-        inactive-color "rgba(81, 68, 61, 1.0)"    	
+        active-color "rgba(146, 163, 200, 1.0)"
+        inactive-color "rgba(68, 71, 77, 1.0)"    	
     }
 }
 
 recent-windows {
     highlight {
-        active-color "hsl(24, 83%, 77%)"
+        active-color "hsl(221, 61%, 82%)"
         urgent-color "hsl(5, 100%, 72%)"        
         padding 20
         corner-radius 8

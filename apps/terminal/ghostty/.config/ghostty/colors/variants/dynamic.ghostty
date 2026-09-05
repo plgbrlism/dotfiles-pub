@@ -2,26 +2,26 @@
 # genrated by rizzoo
 
 # --- Special ---
-foreground   = #eee0d8
-background   = #18120e
-cursor-color = #cd9773
+foreground   = #e2e2e7
+background   = #121317
+cursor-color = #92a3c8
 
 # --- Normal colors ---
-palette =  0=#18120e
+palette =  0=#121317
 palette =  1=#ff7b6e
-palette =  2=#cd9773
-palette =  3=#bc9d8a
-palette =  4=#a5a57b
-palette =  5=#795f4f
-palette =  6=#875a3b
-palette =  7=#eee0d8
+palette =  2=#92a3c8
+palette =  3=#9ca3b5
+palette =  4=#b49bb6
+palette =  5=#5d6474
+palette =  6=#536586
+palette =  7=#e2e2e7
 
 # --- Bright colors ---
-palette =  8=#403733
+palette =  8=#38393d
 palette =  9=#ff7b6e
-palette = 10=#cd9773
-palette = 11=#bc9d8a
-palette = 12=#a5a57b
-palette = 13=#795f4f
-palette = 14=#875a3b
-palette = 15=#eee0d8
+palette = 10=#92a3c8
+palette = 11=#9ca3b5
+palette = 12=#b49bb6
+palette = 13=#5d6474
+palette = 14=#536586
+palette = 15=#e2e2e7

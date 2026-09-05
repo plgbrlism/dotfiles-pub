@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   #  i3 Window Manager (X11 Session)
@@ -13,11 +13,13 @@
       polybar
     ];
   };
-
-  #  SwayFX (Wayland Session)
+    
+  #  SwayFX
   programs.sway = {
     enable = true;
-    package = pkgs.swayfx; # Explicitly use SwayFX from nixpkgs
+	package = pkgs.swayfx.override {
+      swayfx-unwrapped = inputs.swayfx.packages.${pkgs.system}.default;
+    };
     wrapperFeatures = {
       base = true;
       gtk = true;
@@ -44,3 +46,4 @@
     libnotify
   ];
 }
+
