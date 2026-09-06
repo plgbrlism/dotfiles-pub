@@ -38,12 +38,15 @@
   programs.niri.enable = true;
 
   #  Shared Session Utilities
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
+  	# ie-qol for autotiling daemon for i3/sway
+    inputs.i3-qol.packages.${pkgs.system}.default
+  ] ++ (with pkgs; [
     rofi
     flameshot
     brightnessctl
     dunst
     libnotify
-  ];
+  ]);
 }
 
