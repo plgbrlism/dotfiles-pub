@@ -3,7 +3,7 @@
 {
   #  DOCKER CONTAINER VIRTUALISATION
   virtualisation.docker = {
-    enable = true;
+    enable = false;
     storageDriver = "overlay2";
     autoPrune = {
       enable = true;

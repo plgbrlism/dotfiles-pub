@@ -8,6 +8,9 @@ let
 in
 {
   xdg.configFile = {
+	# Shell Desktop
+	"noctalia".source = link "${dotfiles}/noctalia-hp/.config/noctalia";
+	
     #  Window Managers
     "i3".source = link "${dotfiles}/apps/wm/i3/.config/i3";
     "sway".source = link "${dotfiles}/apps/wm/sway/.config/sway";

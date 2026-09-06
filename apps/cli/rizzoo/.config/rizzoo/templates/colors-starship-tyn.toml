@@ -1,0 +1,112 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[]({{ primary }})\
+$username\
+[](bg:{{ secondary }} fg:{{ primary }})\
+$directory\
+[](fg:{{ secondary }} bg:{{ surface_container_highest }})\
+$git_branch\
+$git_status\
+[](fg:{{ surface_container_highest }} bg:{{ surface_container }})\
+$nodejs\
+$bun\
+$rust\
+$golang\
+$php\
+[](fg:{{ surface_container }} bg:{{ surface_container_lowest }})\
+$time\
+[ ](fg:{{ surface_container_lowest }})\
+\n$character"""
+
+[directory]
+style = "fg:{{ on_secondary }} bg:{{ secondary }}"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:{{ surface_container_highest }}"
+format = '[[ $symbol $branch ](fg:{{ primary }} bg:{{ surface_container_highest }})]($style)'
+
+[git_status]
+style = "bg:{{ surface_container_highest }}"
+format = '[[($all_status$ahead_behind )](fg:{{ tertiary }} bg:{{ surface_container_highest }})]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:{{ surface_container }}"
+format = '[[ $symbol ($version) ](fg:{{ primary_fixed_dim }} bg:{{ surface_container }})]($style)'
+
+[bun]
+symbol = ""
+style = "bg:{{ surface_container }}"
+format = '[[ $symbol ($version) ](fg:{{ primary_fixed_dim }} bg:{{ surface_container }})]($style)'
+
+[rust]
+symbol = ""
+style = "bg:{{ surface_container }}"
+format = '[[ $symbol ($version) ](fg:{{ tertiary_fixed_dim }} bg:{{ surface_container }})]($style)'
+
+[golang]
+symbol = ""
+style = "bg:{{ surface_container }}"
+format = '[[ $symbol ($version) ](fg:{{ primary_fixed_dim }} bg:{{ surface_container }})]($style)'
+
+[php]
+symbol = ""
+style = "bg:{{ surface_container }}"
+format = '[[ $symbol ($version) ](fg:{{ secondary_fixed_dim }} bg:{{ surface_container }})]($style)'
+
+[time]
+disabled = true
+time_format = "%R" # Hour:Minute Format
+style = "bg:{{ surface_container_lowest }}"
+format = '[[  $time ](fg:{{ outline }} bg:{{ surface_container_lowest }})]($style)'
+
+[character]
+success_symbol = "[❯](bold {{ primary }})"
+error_symbol = "[❯](bold {{ error }})"
+
+[os]
+style = "bg:{{ primary }} fg:{{ on_primary }}"
+format = "[ $symbol ]($style)"
+disabled = true
+
+[username]
+show_always = true
+style_user = "bg:{{ primary }} fg:{{ on_primary }}"
+style_root = "bg:{{ primary }} fg:{{ on_error }}"
+format = "[ $user ]($style)"
+disabled = false
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+AOSC = ""
+Arch = "󰣇"
+Artix = "󰣇"
+EndeavourOS = ""
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+Pop = ""

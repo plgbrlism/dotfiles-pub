@@ -20,6 +20,11 @@
       url = "github:willpower3309/swayfx";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.scenefx.follows = "scenefx";
+	};
+	
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
