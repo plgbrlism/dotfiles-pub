@@ -7,13 +7,14 @@
     extraPackages = with pkgs; [
       dmenu
       i3lock-color
+      i3lock-fancy-rapid
       xss-lock
       feh
       xwallpaper
       polybar
     ];
   };
-    
+
   #  SwayFX
   programs.sway = {
     enable = true;
@@ -28,6 +29,7 @@
       waybar
       swaybg
       swaylock
+      hyprlock
       wbg
       grim
       wl-clipboard
@@ -49,4 +51,3 @@
     libnotify
   ]);
 }
-
