@@ -26,6 +26,12 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # i3-qol for i3/sway
+    i3-qol = {
+      url = "github:plgbrlism/i3-qol";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, swayfx, scenefx, ... } @ inputs: {
