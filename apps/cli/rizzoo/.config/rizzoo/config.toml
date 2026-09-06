@@ -86,7 +86,7 @@ template = "colors-peaclock.conf"
 output   = "~/.peaclock/config"
 
 [starship]
-template = "colors-starship-powerline.toml"
+template = "colors-starship-tyn.toml"
 output   = "~/.config/starship.toml"
 
 [foot]

@@ -1,7 +1,11 @@
-{ pkgs, ... }:
+
+{ pkgs, inputs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
+  	# Desktop Shell for niri+wayland
+  	inputs.noctalia.packages.${pkgs.system}.default  	
+  ] ++ (with pkgs; [
     # Browsers & Communication
     firefox
     brave
@@ -33,5 +37,5 @@
     tumbler
     ffmpegthumbnailer
     xarchiver
-  ];
+  ]);
 }
