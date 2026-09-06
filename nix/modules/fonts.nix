@@ -16,7 +16,7 @@
       # Monospace & Developer Icon Fonts (Nerd Fonts v3)
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-code
-      departure-mono
+      nerd-fonts.departure-mono
 
       # Bitmap / Glyphs
       unifont
