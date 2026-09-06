@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   #  CORE PROGRAM MODULES
@@ -11,7 +11,10 @@
   programs.zsh.enable = true;
 
   #  CLI & UTILITY PACKAGES
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
+  	# my personal color palette generator
+	inputs.rizzoo.packages.${pkgs.system}.default
+  ] ++ (with pkgs; [
     # Terminal Multiplexers & Editors
     neovim
     micro
@@ -74,5 +77,5 @@
     libical
     libqalculate
     sdbus-cpp
-  ];
+  ]);
 }

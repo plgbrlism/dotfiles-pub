@@ -32,6 +32,12 @@
       url = "github:plgbrlism/i3-qol";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # my own cli-tool color palette generator
+    rizzoo = {
+      url = "git+ssh://git@github.com/plgbrlism/rizzoo-dev?ref=dev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nixos-hardware, swayfx, scenefx, ... } @ inputs: {
