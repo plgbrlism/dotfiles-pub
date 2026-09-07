@@ -16,6 +16,9 @@
     ../../modules/packages.nix
     ../../modules/services.nix
     ../../modules/ssh.nix
+
+    # distributed build
+    ../../modules/build.nix
   ];
 
   # Hostname & State Version
@@ -49,4 +52,6 @@
   # Time Zone & Locale Settings
   time.timeZone = "Asia/Manila";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  
 }

@@ -33,6 +33,7 @@ order = [ "zwam" ]
     contact_shadow = false
     enabled = true
     end = [ "volume", "brightness", "battery", "cpu" ]
+    font_scale = 1.0
     font_weight = 500
     hover_highlight = true
     icon_color = "primary"
@@ -70,6 +71,8 @@ sync_all_monitors = false
 
 [calendar]
 enabled = false
+event_date_format = "%A %e %B"
+event_time_format = "%H:%M"
 refresh_minutes = 15
 
 [control_center]
@@ -81,8 +84,6 @@ sidebar_section = "compact"
 width = 700
 
     [control_center.calendar]
-    event_date_format = "%A %e %B"
-    event_time_format = "%H:%M"
     show_events_card = false
     show_week_numbers = false
 
@@ -198,6 +199,7 @@ pre_action_fade_seconds = 2.0
     action = "lock"
     command = ""
     enabled = false
+    locked_timeout = 0.0
     resume_command = ""
     timeout = 600.0
 
@@ -205,6 +207,7 @@ pre_action_fade_seconds = 2.0
     action = "lock_and_suspend"
     command = ""
     enabled = false
+    locked_timeout = 0.0
     resume_command = ""
     timeout = 900.0
 
@@ -212,6 +215,7 @@ pre_action_fade_seconds = 2.0
     action = "screen_off"
     command = ""
     enabled = false
+    locked_timeout = 0.0
     resume_command = ""
     timeout = 660.0
 
@@ -259,22 +263,23 @@ widget_order = [
     "lockscreen-widget-0000000000000005",
     "lockscreen-widget-0000000000000006",
     "lockscreen-widget-0000000000000007",
-    "lockscreen-widget-0000000000000008",
-    "lockscreen-widget-0000000000000009"
+    "lockscreen-widget-0000000000000008"
 ]
 
     [lockscreen_widgets.grid]
-    cell_size = 8
+    cell_size = 32
     major_interval = 4
     visible = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 70.0
     box_width = 256.0
-    cx = 883.0
-    cy = 623.0
+    cx = 811.0
+    cy = 605.0
     enabled = true
     output = "eDP-1"
+    placement_height = 768.0
+    placement_width = 1366.0
     rotation = 0.0
     type = "login_box"
 
@@ -301,6 +306,8 @@ widget_order = [
     cy = 562.0
     enabled = true
     output = "winit"
+    placement_height = 0.0
+    placement_width = 0.0
     rotation = 0.0
     type = "login_box"
 
@@ -322,11 +329,13 @@ widget_order = [
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
     box_height = 96.0
-    box_width = 384.0
-    cx = 547.0
-    cy = 610.0
+    box_width = 352.0
+    cx = 491.0
+    cy = 592.0
     enabled = true
     output = "eDP-1"
+    placement_height = 768.0
+    placement_width = 1366.0
     rotation = 0.0
     type = "clock"
 
@@ -342,10 +351,12 @@ widget_order = [
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
     box_height = 96.0
     box_width = 256.0
-    cx = 611.0
-    cy = 504.0
+    cx = 555.0
+    cy = 464.0
     enabled = true
     output = "eDP-1"
+    placement_height = 768.0
+    placement_width = 1366.0
     rotation = 0.0
     type = "sysmon"
 
@@ -367,10 +378,12 @@ widget_order = [
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
     box_height = 96.0
     box_width = 256.0
-    cx = 611.0
-    cy = 392.0
+    cx = 555.0
+    cy = 352.0
     enabled = true
     output = "eDP-1"
+    placement_height = 768.0
+    placement_width = 1366.0
     rotation = 0.0
     type = "sysmon"
 
@@ -387,43 +400,49 @@ widget_order = [
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
     box_height = 224.0
     box_width = 256.0
-    cx = 883.0
-    cy = 424.0
+    cx = 811.0
+    cy = 384.0
     enabled = true
     output = "eDP-1"
+    placement_height = 768.0
+    placement_width = 1366.0
     rotation = 0.0
     type = "sticker"
 
         [lockscreen_widgets.widget.lockscreen-widget-0000000000000004.settings]
-        background = true
+        background = false
         background_color = "surface_variant"
         background_radius = 0
         image_path = "/home/paul/Pictures/icons/f2c8c3a951e382b4b4b22b56b582d054.jpg"
         opacity = 1.0
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000005]
-    box_height = 152.0
-    box_width = 112.0
-    cx = 411.0
-    cy = 282.0
+    box_height = 96.0
+    box_width = 384.0
+    cx = 363.0
+    cy = 320.0
     enabled = true
     output = "eDP-1"
-    rotation = -3.1415927410125732
+    placement_height = 768.0
+    placement_width = 1366.0
+    rotation = -1.5707963705062866
     type = "audio_visualizer"
 
         [lockscreen_widgets.widget.lockscreen-widget-0000000000000005.settings]
         background_radius = 0
-        bands = 60
+        bands = 32
         color_2 = "tertiary"
         show_when_idle = true
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000006]
-    box_height = 128.0
-    box_width = 256.0
-    cx = 611.0
-    cy = 270.0
+    box_height = 160.0
+    box_width = 224.0
+    cx = 555.0
+    cy = 214.0
     enabled = true
     output = "eDP-1"
+    placement_height = 768.0
+    placement_width = 1366.0
     rotation = 0.0
     type = "volume"
 
@@ -436,11 +455,13 @@ widget_order = [
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000007]
     box_height = 96.0
-    box_width = 256.0
-    cx = 883.0
-    cy = 254.0
+    box_width = 224.0
+    cx = 816.5
+    cy = 192.0
     enabled = true
     output = "eDP-1"
+    placement_height = 768.0
+    placement_width = 1366.0
     rotation = 0.0
     type = "label"
 
@@ -454,12 +475,14 @@ widget_order = [
 
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000008]
     box_height = 96.0
-    box_width = 656.0
-    cx = 683.0
-    cy = 152.0
+    box_width = 480.0
+    cx = 1003.0
+    cy = 384.0
     enabled = true
     output = "eDP-1"
-    rotation = -0.0
+    placement_height = 768.0
+    placement_width = 1366.0
+    rotation = 1.5707963705062866
     type = "clock"
 
         [lockscreen_widgets.widget.lockscreen-widget-0000000000000008.settings]
@@ -470,22 +493,6 @@ widget_order = [
         color = "primary"
         font_family = "DepartureMono Nerd Font Mono"
         format = "{:%A %B %d}"
-
-    [lockscreen_widgets.widget.lockscreen-widget-0000000000000009]
-    box_height = 112.0
-    box_width = 176.0
-    cx = 411.0
-    cy = 464.0
-    enabled = true
-    output = "eDP-1"
-    rotation = -1.5707963705062866
-    type = "fancy_audio_visualizer"
-
-        [lockscreen_widgets.widget.lockscreen-widget-0000000000000009.settings]
-        background = true
-        background_color = "surface_variant"
-        background_radius = 0
-        visualization_mode = "wave_rings"
 
 [nightlight]
 enabled = true
@@ -499,6 +506,7 @@ border = true
 collapse_on_dismiss = true
 enable_daemon = true
 history_retention_hours = 0
+keep_dismissed_in_history = true
 layer = "top"
 max_visible = 0
 monitors = []
@@ -541,7 +549,7 @@ scale = 1.0
 [plugin_settings]
 
 [plugins]
-auto_update = false
+auto_update = "none"
 enabled = []
 
     [[plugins.source]]
@@ -571,7 +579,7 @@ corner_radius_scale = 0.65000003576278687
 date_format = "%A, %x"
 disable_mipmaps = false
 external_ip_enabled = false
-font_family = "FiraCode Nerd Font Propo"
+font_family = "JetBrainsMono NF"
 input_borders = false
 lang = "en"
 launch_apps_as_systemd_services = false
@@ -606,7 +614,10 @@ time_format = "{:%H:%M}"
     categories = false
     compact = false
     fetch_exchange_rates = true
+    pinned = []
     provider_prefix = "/"
+    show_app_actions = false
+    show_app_origin_indicator = true
     show_icons = true
     sort_by_usage = true
 
@@ -653,6 +664,7 @@ time_format = "{:%H:%M}"
     size = 32
 
     [shell.screenshot]
+    annotate = false
     confirm_region = false
     copy_to_clipboard = true
     directory = "/home/paul/Pictures/Screenshots"
@@ -695,7 +707,7 @@ time_format = "{:%H:%M}"
         action = "lock_and_suspend"
         command = ""
         countdown_seconds = 0.0
-        enabled = false
+        enabled = true
         glyph = ""
         label = ""
         shortcut = "3"
@@ -724,6 +736,9 @@ time_format = "{:%H:%M}"
     [shell.shadow]
     alpha = 0.0
     direction = "center"
+
+    [shell.window_switcher]
+    mru = false
 
 [storage]
 key_file = ""
@@ -772,6 +787,7 @@ community_palette = "Rosey AMOLED"
 custom_palette = "rizzoo"
 mode = "dark"
 pure_black_dark = false
+shell_mode = "follow"
 source = "custom"
 wallpaper_scheme = "m3-tonal-spot"
 
@@ -782,7 +798,7 @@ wallpaper_scheme = "m3-tonal-spot"
     enable_community_templates = false
 
 [wallpaper]
-directory = "/home/paul/.cache/rizzoo/url-images"
+directory = "/home/paul/Pictures/larpapers/vehicles"
 directory_dark = ""
 directory_light = ""
 edge_smoothness = 0.30000001192092896

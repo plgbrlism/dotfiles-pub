@@ -1,4 +1,4 @@
-{
+ {
   description = "NixOS configuration for HP Notebook 14-ck0115tu";
 
   inputs = {
@@ -23,7 +23,7 @@
 	};
 	
     noctalia = {
-      url = "github:noctalia-dev/noctalia";
+      url = "github:noctalia-dev/noctalia/830ce58c9da58853166ffd8a6a1497c5d4b47a6b";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

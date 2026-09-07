@@ -35,6 +35,7 @@
     surface: {{ surface }};
     on-surface: {{ on_surface }};
     on-surface-variant: {{ on_surface_variant }};
+    surface-tint: {{ surface_tint }};
     outline: {{ outline }};
     outline-variant: {{ outline_variant }};
     shadow: {{ shadow }};

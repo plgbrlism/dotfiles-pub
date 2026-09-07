@@ -1,13 +1,13 @@
 
 /*
- ╭─────────────────────────────────────────────────────────────╮
- │ github: @plgbrlism                                          │
- │ tiktok: @fuzzbuzz.tech                                      │
- ╰─────────────────────────────────────────────────────────────╯
+ ╭─────────────────────────╮
+ │ github: @plgbrlism      │
+ │ tiktok: @fuzzbuzz.tech  │
+ ╰─────────────────────────╯
  */
 
 /* swapabble combos via comment & uncomment */
 
-@import "css/combos/floating-pills.css";
+/*import "css/combos/floating-pills.css";*/
 /*@import "css/combos/floating-blocks.css";*/
-/*@import "css/combos/flat-simple.css";*/
+@import "css/combos/flat-plain.css";

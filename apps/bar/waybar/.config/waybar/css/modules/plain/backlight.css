@@ -2,4 +2,10 @@
 	min-height: 0;
 	padding: 0 8;
     color:               @secondary;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#backlight:hover {
+    background-color:    @primary;
+    color:               @on-primary;	
 }

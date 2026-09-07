@@ -19,6 +19,6 @@
 #workspaces button:hover {
 	min-height: 0px;
 	border-radius: 6px;
-    color:               @on-primary;
-    background-color:    @primary;
+    color:               @on-primary-fixed;
+    background-color:    @primary-fixed-dim;
 }
