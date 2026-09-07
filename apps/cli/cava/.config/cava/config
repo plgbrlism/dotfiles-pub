@@ -3,17 +3,17 @@
 
 [color]
 background = 'default'
-foreground = '#a49ec8'
+foreground = '#84ac8d'
 
 gradient = 1
 gradient_count = 3
-gradient_color_1 = '#656086'
-gradient_color_2 = '#656275'
-gradient_color_3 = '#7d5a6a'
+gradient_color_1 = '#476d51'
+gradient_color_2 = '#58695a'
+gradient_color_3 = '#496972'
 
 horizontal_gradient = 5
-horizontal_gradient_color_1 = '#a49ec8'
-horizontal_gradient_color_2 = '#a4a0b5'
-horizontal_gradient_color_3 = '#c098a9'
-horizontal_gradient_color_4 = '#5f5a80'
-horizontal_gradient_color_5 = '#c8c1ee'
+horizontal_gradient_color_1 = '#84ac8d'
+horizontal_gradient_color_2 = '#95a797'
+horizontal_gradient_color_3 = '#87a8b2'
+horizontal_gradient_color_4 = '#41674c'
+horizontal_gradient_color_5 = '#a7d0b0'

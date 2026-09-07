@@ -31,15 +31,15 @@ mouse_middle_click = close_all
 mouse_right_click = context
 
 [urgency_low]
-background = "#201f24"
-foreground = "#928f98"
-frame_color = "#201f24"
+background = "#1d211d"
+foreground = "#8c928b"
+frame_color = "#1d211d"
 timeout = 5
 
 [urgency_normal]
-background = "#201f24"
-foreground = "#e5e1e7"
-frame_color = "#a49ec8"
+background = "#1d211d"
+foreground = "#e0e3dd"
+frame_color = "#84ac8d"
 timeout = 10
 
 [urgency_critical]
