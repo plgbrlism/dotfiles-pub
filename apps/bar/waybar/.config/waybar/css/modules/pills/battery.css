@@ -1,8 +1,8 @@
 #battery {
 	min-height: 0;
 	padding: 0 8;
-    background-color:    @tertiary;
-    color:               @on-tertiary;
+    background-color:    @secondary;
+    color:               @on-secondary;
     border-radius:       0px;
 }
 

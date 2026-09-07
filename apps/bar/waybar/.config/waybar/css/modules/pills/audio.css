@@ -1,8 +1,8 @@
 #pulseaudio {
 	min-height: 0;
 	padding: 0 8;
-    background-color:    @tertiary;
-    color:               @on-tertiary;
+    background-color:    @primary;
+    color:               @on-primary;
     border-radius:       6 0 0 6px;
     transition: background-color 0.25s ease, color 0.25s ease;
 }

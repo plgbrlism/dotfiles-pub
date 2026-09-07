@@ -2,7 +2,7 @@
 @import "../../fonts/fonts.css";
 
 /*  base  */
-@import "../../css/bars/geometry-flat.css";
+@import "../../css/bars/flat.css";
 
 /*  modules  */
 @import "../../css/modules/plain/powermenu.css";

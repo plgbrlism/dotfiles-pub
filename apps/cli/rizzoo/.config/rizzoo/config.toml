@@ -81,6 +81,10 @@ template = "colors-dunstrc"
 output   = "~/.config/dunst/dunstrc"
 post_hook = "dunstctl reload"
 
+[flameshot]
+template = "colors-flameshot.ini"
+output =   "~/.config/flameshot/flameshot.ini"
+
 [peaclock]
 template = "colors-peaclock.conf"
 output   = "~/.peaclock/config"

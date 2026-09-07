@@ -2,7 +2,7 @@
 @import "../../fonts/fonts.css";
 
 /*  base  */
-@import "../../css/bars/geometry-floating.css";
+@import "../../css/bars/floating.css";
 
 /*  modules  */
 @import "../../css/modules/blocks/powermenu.css";
