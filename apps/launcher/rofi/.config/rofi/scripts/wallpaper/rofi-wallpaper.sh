@@ -7,8 +7,16 @@ SCRIPT_DIR="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")" && pwd)"
 CACHE_DIR="$HOME/.cache/wallpaper"
 WALLPAPER_FILE_CACHE="$CACHE_DIR/current-wallpaper"
 WALLPAPER_DIR_CACHE="$CACHE_DIR/current-wallpaper-dir"
+THUMBNAIL_DIR="$CACHE_DIR/thumbnails"
 
 THEME="$HOME/.config/rofi/config.rasi"
+
+# nix session check
+if [ -f "/etc/NIXOS" ] || grep -qi "ID=nixos" /etc/os-release 2>/dev/null; then
+    IS_NIXOS=true
+else
+    IS_NIXOS=false
+fi
 
 # ~~ Wallpaper Setters ~~
 source "${SCRIPT_DIR}/setters/awww.sh"
@@ -21,7 +29,7 @@ DIR_INIT="󱑾  add wallpaper directory"
 CHANGE_DIR="change wallpaper directory"
 
 
-mkdir -p "$CACHE_DIR"
+mkdir -p "$CACHE_DIR" "$THUMBNAIL_DIR"
 
 # ~~ init (no wallpaper directory yet)
 prompt_new_dir() {
@@ -94,9 +102,26 @@ if [ ${#wallpapers[@]} -eq 0 ]; then
 
 else
 	rofi_list="${CHANGE_DIR}\0icon\x1f${SCRIPT_DIR}/asset/change-wallpaper-directory.png\n"
-
+	
 	for wallpaper in "${wallpapers[@]}"; do
-		rofi_list+="${wallpaper}\0icon\x1f${wallpaper}\n"
+		icon_path="$wallpaper"
+
+		# If running on NixOS and image is WebP, generate and use PNG thumbnail
+		if [ "$IS_NIXOS" = true ] && [[ "$wallpaper" =~ \.webp$ ]]; then
+			base_name="${wallpaper##*/}"
+			thumbnail_path="$THUMBNAIL_DIR/${base_name%.*}.png"
+
+			if [ ! -f "$thumbnail_path" ]; then
+				if command -v magick >/dev/null 2>&1; then
+					magick "$wallpaper" -thumbnail 250x250^ -gravity center -extent 250x250 "$thumbnail_path" 2>/dev/null || thumbnail_path="$wallpaper"
+				elif command -v convert >/dev/null 2>&1; then
+					convert "$wallpaper" -thumbnail 250x250^ -gravity center -extent 250x250 "$thumbnail_path" 2>/dev/null || thumbnail_path="$wallpaper"
+				fi
+			fi
+			icon_path="$thumbnail_path"
+		fi
+
+		rofi_list+="${wallpaper}\0icon\x1f${icon_path}\n"
 	done
 
 	rofi_format=$(echo -en "$rofi_list" | rofi -dmenu \
