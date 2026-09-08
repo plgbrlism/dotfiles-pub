@@ -1,9 +1,32 @@
 { pkgs, inputs, ... }:
 
+let 
+  i3=pkgs.i3.overrideAttrs (oldAttrs: rec {
+	version = "4.25.1";
+	src = pkgs.fetchurl {
+	  url = "https://i3wm.org/downloads/i3-${version}.tar.xz";
+	  hash = "sha256-SnQrvoG55e5gV/QqjjxpHYiJTpPxpdgf4jkShRKsBcA=";
+	};
+	postPatch = "patchShebangs .";
+	doCheck = false;
+  });
+
+  gdk-pixbuf-with-loaders = pkgs.gdk-pixbuf.override {
+    loaders = [
+      pkgs.webp-pixbuf-loader
+      pkgs.librsvg
+    ];
+  };
+
+  rofi-wrapped = pkgs.rofi.override {
+    gdk-pixbuf = gdk-pixbuf-with-loaders;
+  };
+in
 {
   #  i3 Window Manager (X11 Session)
   services.xserver.windowManager.i3 = {
     enable = true;
+    package = i3;
     extraPackages = with pkgs; [
       dmenu
       i3lock-color
@@ -43,8 +66,8 @@
   environment.systemPackages = [
   	# ie-qol for autotiling daemon for i3/sway
     inputs.i3-qol.packages.${pkgs.system}.default
+    rofi-wrapped
   ] ++ (with pkgs; [
-    rofi
     flameshot
     brightnessctl
     dunst
