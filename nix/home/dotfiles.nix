@@ -16,6 +16,9 @@ in
     "sway".source = link "${dotfiles}/apps/wm/sway/.config/sway";
     "niri".source = link "${dotfiles}/apps/wm/niri/.config/niri";
 
+    # Screen Locker
+    "hypr".source = link "${dotfiles}/apps/locker/hyprlock/.config/hypr";
+
     #  Terminals
     "kitty".source = link "${dotfiles}/apps/terminal/kitty/.config/kitty";
     "alacritty".source = link "${dotfiles}/apps/terminal/alacritty/.config/alacritty";
@@ -40,6 +43,7 @@ in
     #  Private CLI
     "glow".source = link "${dotfilesPriv}/cli/glow/.config/glow";
     "yazi".source = link "${dotfilesPriv}/cli/yazi/.config/yazi";
+    "micro".source = link "${dotfilesPriv}/editor/micro/.config/micro"; 
 
     #  Screenshots
     "flameshot".source = link "${dotfilesPriv}/capture/flameshot/.config/flameshot";
