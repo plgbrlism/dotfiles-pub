@@ -67,6 +67,11 @@ output   = "~/.config/sway/colors/variants/dynamic.conf"
 template = "colors-niri-layout.kdl"
 output   = "~/.config/niri/kdl/layout.kdl"
 
+[qtile]
+template = "colors-qtile.py"
+output   = "~/.config/qtile/colors/variants/dynamic.py"
+post_hook = "qtile cmd-obj -o cmd -f reload_config"
+
 [waybar]
 template = "colors-waybar.css"
 output   = "~/.config/waybar/colors/variants/dynamic.css"
