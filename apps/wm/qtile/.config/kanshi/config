@@ -1,0 +1,10 @@
+# ~~ kanshi ~ ported from sway conf/resolution.conf ~~
+
+profile eDP-1 {
+    output eDP-1 mode 1366x768@60Hz
+}
+
+profile dual {
+    output eDP-1 mode 1366x768@60Hz position 0,0
+    output HDMI-A-1 mode 1366x768@59.79Hz position 1366,0
+}

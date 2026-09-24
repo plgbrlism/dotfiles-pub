@@ -83,6 +83,7 @@ quit_session() {
     elif pgrep -x i3 > /dev/null; then i3-msg exit
     elif pgrep -x sway > /dev/null; then swaymsg exit
     elif pgrep -x niri > /dev/null; then niri msg action quit --skip-confirmation
+    elif pgrep -x qtile > /dev/null; then qtile cmd-obj -o cmd -f shutdown
     fi
 }
 
