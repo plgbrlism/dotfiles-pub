@@ -6,17 +6,17 @@ bar_spacing = 0
 
 [color]
 background = 'default'
-foreground = '#b09bc4'
+foreground = '#cd93a1'
 
 gradient = 1
 gradient_count = 3
-gradient_color_1 = '#6f5d83'
-gradient_color_2 = '#6b6173'
-gradient_color_3 = '#815a5f'
+gradient_color_1 = '#885663'
+gradient_color_2 = '#785d63'
+gradient_color_3 = '#7e5e40'
 
 horizontal_gradient = 5
-horizontal_gradient_color_1 = '#b09bc4'
-horizontal_gradient_color_2 = '#aa9fb3'
-horizontal_gradient_color_3 = '#c5979d'
-horizontal_gradient_color_4 = '#69577c'
-horizontal_gradient_color_5 = '#d4bee9'
+horizontal_gradient_color_1 = '#cd93a1'
+horizontal_gradient_color_2 = '#bb9ba1'
+horizontal_gradient_color_3 = '#c19c7a'
+horizontal_gradient_color_4 = '#81505d'
+horizontal_gradient_color_5 = '#f4b6c4'

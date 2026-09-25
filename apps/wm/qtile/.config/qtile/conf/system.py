@@ -1,4 +1,4 @@
-# ~~ system ~ sway touchpad/resolution inputs for wayland ~~
+# ~~ system ~
 
 from libqtile.backend.wayland import InputConfig
 

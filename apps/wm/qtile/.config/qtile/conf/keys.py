@@ -1,4 +1,4 @@
-# ~~ keys ~ ported 1:1 from sway conf/keybindings.conf (hjkl, not WASD) ~~
+# ~~ keys ~
 
 from libqtile.config import Click, Drag, Key
 from libqtile.lazy import lazy
@@ -19,6 +19,8 @@ from conf.apps import (
 mod = "mod4"
 alt = "mod1"
 
+
+
 keys = [
     # Core Actions
     Key([mod], "Return", lazy.spawn(TERMINAL), desc="terminal"),
@@ -33,8 +35,6 @@ keys = [
     Key([mod], "m", lazy.shutdown(), desc="exit qtile"),
     Key([mod, "shift"], "e", lazy.reload_config(), desc="reload"),
     Key([mod, "shift"], "r", lazy.restart(), desc="restart"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="reload"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="shutdown"),
     # Browser
     Key([mod], "b", lazy.spawn(BROWSER), desc="browser"),
     # Focus (hjkl)
@@ -58,23 +58,12 @@ keys = [
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="shrink width"),
     Key([mod], "n", lazy.layout.normalize(), desc="normalize"),
     Key([mod], "Tab", lazy.next_layout(), desc="next layout"),
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="toggle split"),
-    # Screen / group cycling
+    # Screen / group cyclings
     Key([alt], "Tab", lazy.screen.next_group(), desc="next group"),
     Key([alt, "shift"], "Tab", lazy.screen.prev_group(), desc="prev group"),
-    # Scratchpad (sway: shift+minus move, minus show)
+    # Scratchpad
     Key([mod, "shift"], "minus", lazy.window.togroup("scratchpad"), desc="move to scratchpad"),
     Key([mod], "minus", lazy.group["scratchpad"].dropdown_toggle("term"), desc="scratchpad show"),
-    # Audio (pactl — no pulsectl)
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
-    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
-    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
-    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
-    # Brightness
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")),
     # Bar widget click targets reusable via spawn
     Key([mod, "control"], "a", lazy.spawn(AUDIO_MENU)),
     Key([mod, "control"], "b", lazy.spawn(BRIGHTNESS_MENU)),

@@ -1,4 +1,5 @@
-# ~~ kanshi ~ ported from sway conf/resolution.conf ~~
+# ~~ kanshi ~
+# automated screen resolution profiling daemon for wayland
 
 profile eDP-1 {
     output eDP-1 mode 1366x768@60Hz

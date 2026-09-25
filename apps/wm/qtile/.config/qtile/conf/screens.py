@@ -1,27 +1,27 @@
 # ~~ screens + bar ~ Cozytile curves + waybar pills colors, Nerd Fonts only ~~
 
-from colors.colors import colors
 from libqtile import bar
 from libqtile.config import Screen
 from libqtile.lazy import lazy
 from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration, RectDecoration
 
+from colors.colors import colors
 from conf import apps
 
 # bar window itself transparent; end widgets carve the 4/12/4/12 silhouette
 TRANSPARENT = "#00000000"
 
-# ponytail: S-curve is a polyline approx of Cozytile 5.png/6.png; add points if janky
+# some weird shapes
 S_LEFT = [(0, 0), (0.6, 0.2), (0.3, 0.5), (0.6, 0.8), (0, 1)]
-S_RIGHT = [(1, 0), (0.4, 0.2), (0.7, 0.5), (0.4, 0.8), (1, 1)]
+# S_RIGHT = [(1, 0), (0.4, 0.2), (0.7, 0.5), (0.4, 0.8), (1, 1)]
 
 
 def seg(bg, path=None, end=None):
     """Full-bleed Cozytile segment. Ends split the bar's 4/12/4/12 radius."""
     radius = 0
     if end == "left":
-        radius = [6, 0, 0, 12]
+        radius = [4, 0, 0, 12]
     elif end == "right":
         radius = [0, 12, 4, 0]
     decos = [
@@ -47,7 +47,7 @@ def slash(bg, path):
 def bar_widgets():
     return [
         widget.TextBox(
-            text=" \U000f0d72 ",
+            text=" ",
             fontsize=18,
             name="powermenu",
             foreground=colors["on_primary"],
@@ -57,11 +57,11 @@ def bar_widgets():
         widget.TextBox(
             text=" ",
             foreground=colors["on_primary"],
-            **slash(colors["primary"], path="forward_slash"),
+            **seg(colors["primary"], path=S_LEFT),
         ),
         widget.GroupBox(
             font="JetBrainsMono Nerd Font SemiBold",
-            fontsize=18,
+            fontsize=13,
             highlight_method="block",
             rounded=True,
             active=colors["primary"],
@@ -69,8 +69,8 @@ def bar_widgets():
             block_highlight_text_color=colors["primary"],
             highlight_color=colors["primary"],
             this_current_screen_border=colors["surface_container_low"],
-            this_screen_border=colors["secondary"],
-            other_current_screen_border=colors["secondary"],
+            this_screen_border=colors["tertiary"],
+            other_current_screen_border=colors["tertiary"],
             other_screen_border=colors["surface_container_high"],
             urgent_border=colors["error"],
             urgent_text=colors["on_error"],
@@ -84,18 +84,18 @@ def bar_widgets():
             **seg(colors["surface_container_low"], path="rounded_right"),
         ),
         widget.WindowName(
-            max_chars=130,
-            empty_group_string="Desktop",
+            format=" {name}",
+            max_chars=30,
+            empty_group_string=" desktop",
             font="JetBrainsMono Nerd Font SemiBold",
             fontsize=13,
-            foreground=colors["on_secondary"],
-            **seg(colors["secondary"], path="rounded_right"),
+            foreground=colors["on_tertiary"],
+            **seg(colors["tertiary"], path="back_slash"),
         ),
-        widget.Spacer(length=bar.STRETCH, background=colors["background"]),
         widget.StatusNotifier(
             icon_size=15,
-            foreground=colors["on_secondary"],
-            **seg(colors["secondary"], path=S_LEFT),
+            foreground=colors["on_tertiary"],
+            **seg(colors["tertiary"], path=S_LEFT),
         ),
         widget.Volume(
             unmute_format="\U000f057e {volume}%",
@@ -116,11 +116,11 @@ def bar_widgets():
             format="\U000f00e0 {percent:2.0%}",
             backlight_name="intel_backlight",
             change_command="brightnessctl set {0}%",
-            foreground=colors["on_secondary"],
+            foreground=colors["on_tertiary"],
             mouse_callbacks={
                 "Button1": lazy.spawn(apps.BRIGHTNESS_MENU),
             },
-            **seg(colors["secondary"], path="rounded_right"),
+            **seg(colors["tertiary"], path="rounded_right"),
         ),
         widget.WlanIw(
             interface="wlan0",
@@ -129,7 +129,7 @@ def bar_widgets():
             foreground=colors["on_primary"],
             mouse_callbacks={"Button1": lazy.spawn(apps.WIFI_MENU)},
             update_interval=5,
-            **seg(colors["primary"], path="forward_slash"),
+            **seg(colors["primary"], path="back_slash"),
         ),
         widget.Battery(
             battery="BAT0",
@@ -140,13 +140,13 @@ def bar_widgets():
             unknown_char="\U000f0091",
             empty_char="\U000f008e",
             not_charging_char="\U000f0079",
-            foreground=colors["on_secondary"],
+            foreground=colors["on_tertiary"],
             low_percentage=0.30,
             low_foreground=colors["error"],
             charging_foreground=colors["tertiary"],
             show_short_text=False,
             update_interval=5,
-            **seg(colors["secondary"], path=S_RIGHT),
+            **seg(colors["tertiary"], path=S_LEFT),
         ),
         widget.CPU(
             format="\U000f07af CPU {load_percent}%",
@@ -162,7 +162,7 @@ def make_bar():
         bar_widgets(),
         25,
         background=TRANSPARENT,
-        margin=[4,80,4,80],
+        margin=[4,150,4,150],
         border_width=0,
     )
 
@@ -172,5 +172,5 @@ def make_screen():
 
 
 def generate_screens(outputs):
-    """Same bar on every connected output (waybar parity)."""
+    """Same bar on every connected output"""
     return [make_screen() for _ in outputs]
