@@ -69,7 +69,7 @@ class Notifier(configurable.Configurable):
         - hints: progress value e.g. int:value:42 with drawing
 
     """
-    defaults = [
+    defaults = [ # noqa: RUF012
         ('x', 32, 'x position on screen to start drawing notifications.'),
         ('y', 64, 'y position on screen to start drawing notifications.'),
         ('width', 192, 'Width of notifications.'),
@@ -118,7 +118,7 @@ class Notifier(configurable.Configurable):
         ('screen', 'focus', 'How to select a screen: focus, mouse, or an int.'),
         ('actions', True, 'Whether to enable the actions capability.'),
     ]
-    capabilities = {'body', 'body-markup', 'actions'}
+    capabilities = {'body', 'body-markup', 'actions'} # noqa: RUF012
     # specification: https://developer.gnome.org/notification-spec/
 
     def __init__(self, **config) -> None:
@@ -217,13 +217,18 @@ class Notifier(configurable.Configurable):
             self._queue.append(notif)
             return
 
-        if qtile.current_window and qtile.current_window.fullscreen:
-            if self.fullscreen != 'show':
-                if self.fullscreen == 'queue':
-                    if self._unfullscreen not in hook.subscriptions:
-                        hook.subscribe.float_change(self._unfullscreen)
-                    self._queue.append(notif)
-                return
+        if (
+            qtile.current_window
+            and qtile.current_window.fullscreen
+            and self.fullscreen != 'show'
+        ):
+            if (
+                self.fullscreen == 'queue'
+                and self._unfullscreen not in hook.subscriptions
+            ):
+                hook.subscribe.float_change(self._unfullscreen)
+                self._queue.append(notif)
+            return
 
         if notif.replaces_id:
             for popup in self._shown:

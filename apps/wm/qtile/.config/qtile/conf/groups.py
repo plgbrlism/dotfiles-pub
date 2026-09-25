@@ -1,11 +1,11 @@
-# ~~ groups ~ ported from sway workspaces 1-10 + scratchpad ~~
+# ~~ groups ~
 
 from libqtile import hook, qtile
 from libqtile.config import DropDown, Group, ScratchPad
 
 # waybar parity: snowflake everywhere, fire on focused (configs/1.jsonc format-icons)
 DEFAULT_ICON = ""
-FOCUSED_ICON = "󰈸"
+FOCUSED_ICON = ""
 
 groups = [Group(str(i), label=DEFAULT_ICON) for i in range(1, 11)]
 

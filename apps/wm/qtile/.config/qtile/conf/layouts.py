@@ -1,12 +1,13 @@
-# ~~ layouts ~ sway appearance.conf + colors + qtile-extras RoundedCorners ~~
+# ~~ layouts ~
 
-from colors.colors import colors
 from libqtile import layout
 from libqtile.config import Match
 from qtile_extras.layout.decorations import RoundedCorners
 
+from colors.colors import colors
+
 MARGIN = 3
-BORDER_WIDTH = 4  # ponytail: radius = bw/2 → 2px round; raise for swayfx-like
+BORDER_WIDTH = 4  # ponytail: corners = half this; raise for rounder
 
 layouts = [
     layout.Columns(
@@ -35,9 +36,9 @@ floating_layout = layout.Floating(
     border_width=BORDER_WIDTH,
 )
 
-widget_defaults = dict(
-    font="JetBrainsMono Nerd Font SemiBold",
-    fontsize=13,
-    padding=0,
-)
+widget_defaults = {
+    "font": "JetBrainsMono Nerd Font SemiBold",
+    "fontsize": 13,
+    "padding":0,
+}
 extension_defaults = widget_defaults.copy()

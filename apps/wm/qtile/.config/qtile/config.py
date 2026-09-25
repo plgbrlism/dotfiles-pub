@@ -1,5 +1,16 @@
-#     qtile config — wayland, modular like sway
-#     apps/wm/qtile/.config/qtile/
+#
+#               ░██    ░██░██            
+#               ░██       ░██            
+#  ░████████ ░████████ ░██░██  ░███████  
+# ░██    ░██    ░██    ░██░██ ░██    ░██ 
+# ░██    ░██    ░██    ░██░██ ░█████████ 
+# ░██   ░███    ░██    ░██░██ ░██        
+#  ░█████░██     ░████ ░██░██  ░███████  
+#        ░██                             
+#        ░██                             
+# 
+# github: @plgbrlism
+# tiktok: @fuzzbuzz.tech
 
 from colors.colors import colors
 from conf import system
@@ -17,8 +28,8 @@ from graphical_notifications import Notifier
 
 # built-in notification daemon (replaces dunst)
 notifier = Notifier(
-    x=32,
-    y=48,
+    x=980,
+    y=50,
     width=360,
     height=80,
     format="<b>{summary}</b>\n{body}",

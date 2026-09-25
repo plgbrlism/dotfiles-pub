@@ -1,4 +1,4 @@
-# ~~ applications ~ ported from sway conf/apps.conf ~~
+# ~~ applications ~
 
 import os
 

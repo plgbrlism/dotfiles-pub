@@ -1,9 +1,10 @@
-# ~~ autostart ~ ported from sway autostart.conf + system.conf (no dunst, no waybar) ~~
+# ~~ autostart ~
 
 import os
 import subprocess
 
 from libqtile import hook
+from libqtile.log_utils import logger
 
 from conf.apps import POLKIT_AGENT, WALLPAPER_RESTORE
 
@@ -21,8 +22,8 @@ for _d in (
 def _run(cmd):
     try:
         subprocess.Popen(cmd, shell=isinstance(cmd, str))
-    except Exception:
-        pass
+    except OSError:
+        logger.exception("Failed to start: %s", cmd)
 
 
 @hook.subscribe.startup_once
@@ -35,5 +36,5 @@ def autostart():
     _run(POLKIT_AGENT)
     _run(f"{WALLPAPER_RESTORE} --restore")
     _run("kanshi")
-    # ponytail: powertop needs sudo tty — run manually if wanted:
-    # _run("sudo /usr/sbin/powertop --auto-tune")
+    # powertop needs sudo, or configure to run passwordless:
+    _run("sudo /usr/sbin/powertop --auto-tune")
