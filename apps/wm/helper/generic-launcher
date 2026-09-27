@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+# my generic launcher script for window managers
+# created in order to call a single one-shot script
+# instead of hardcoding applications
+# use-case: multiple machine setups with dynamic preference
+
+run_first() {
+    for cmd in "$@"; do
+        bin="${cmd%% *}"
+        if command -v "$bin" >/dev/null 2>&1; then
+            exec $cmd
+        fi
+    done
+
+    notify-send "generic launcher" "does not exist: $*" 2>/dev/null
+    exit 1
+}
+
+get_terminal() {
+    for t in kitty foot ghostty alacritty xterm; do
+        if command -v "$t" >/dev/null 2>&1; then
+            echo "$t"
+            return 0
+        fi
+    done
+    return 1
+}
+
+case "$1" in
+    # ~~ Terminals ~~
+    terminal)
+        run_first kitty alacritty foot ghostty xterm
+        ;;
+
+    # ~~ Terminal File Managers (TUI) ~~
+    terminal-fm)
+        MAIN_TERMINAL="$(get_terminal)"
+        if [ -n "$MAIN_TERMINAL" ]; then
+            run_first \
+                "$MAIN_TERMINAL -e yazi" \
+                "$MAIN_TERMINAL -e ranger" \
+                "$MAIN_TERMINAL -e lf"
+        fi
+        ;;
+
+    # ~~ GUI File Managers ~~
+    file-manager)
+        run_first nautilus thunar pcmanfm dolphin
+        ;;
+
+    # ~~ Browsers ~~
+    browser)
+        run_first zen-browser brave-origin firefox brave google-chrome
+        ;;
+
+    # ~~ App Launchers ~~
+    launcher)
+        run_first \
+            "$HOME/.config/rofi/scripts/app_launcher/app_launcher.sh" \
+            rofi \
+            wofi \
+            dmenu
+        ;;
+
+    # ~~ Compositor (X11 only) ~~
+    compositor)
+        if [ -n "\(DISPLAY" ] && [ -z "\)WAYLAND_DISPLAY" ]; then
+            run_first picom
+        else
+            exit 0 >/dev/null 2>&1
+        fi
+        ;;
+
+    *)
+        notify-send "generic-launcher" "Unknown category requested: $1" 2>/dev/null
+        exit 1
+        ;;
+esac

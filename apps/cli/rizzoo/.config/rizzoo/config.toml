@@ -24,6 +24,10 @@ output   = "~/.config/btop/themes/dynamic.theme"
 template = "antigravity.json"
 output   = "~/.config/Antigravity/User/settings.json"
 
+[zed]
+template = "colors-zed.conf"
+output   = "~/.config/zed/themes/dynamic.json"
+
 [alacritty]
 template = "colors-alacritty.toml"
 output   = "~/.config/alacritty/colors/variants/dynamic.toml"
@@ -128,7 +132,7 @@ template = "mcq-anki.css"
 output   = "~/projects/anki-mcq-builder/static/_theme.css"
 
 # GTK3 / GTK4(libadwaita) Themes
-# note: only one gtk theme must have an active post_hook
+# note: only a single gtk theme must have an active post_hook
 
 #[colloid]
 #template = "colloid-colors.scss"
@@ -146,12 +150,31 @@ template = "mac-colors.scss"
 output   = "~/dotfiles-pub/gtk/mac-tahoe/MacTahoe-gtk-theme/src/sass/_colors.scss"
 post_hook = "~/dotfiles-pub/gtk/mac-tahoe/reload.sh"
 
+# QT Themes
+# Qt5 + Qt6 palette via qt5ct/qt6ct
+
+[qt5ct]
+template = "colors-qtct.conf"
+output   = "~/.config/qt5ct/colors/dynamic.conf"
+
+[qt6ct]
+template = "colors-qtct.conf"
+output   = "~/.config/qt6ct/colors/dynamic.conf"
+
+[kvantum]
+template = "colors-kvantum.svg"
+output   = "~/.config/Kvantum/KvMaterial/KvMaterial.svg"
+
+[kvantum-kvconfig]
+template = "colors-kvantum.kvconfig"
+output   = "~/.config/Kvantum/KvMaterial/KvMaterial.kvconfig"
+
 
 # Test Templates
-[material-css]
-template = "material-theme.css"
-output = "~/projects/tmp/rizzoo-material-theme.css"
-
-[material-kotlin]
-template = "MaterialColors.kt"
-output = "~/projects/tmp/MaterialColors.kt"
+# [material-css]
+# template = "material-theme.css"
+# output = "~/projects/tmp/rizzoo-material-theme.css"
+# 
+# [material-kotlin]
+# template = "MaterialColors.kt"
+# output = "~/projects/tmp/MaterialColors.kt"

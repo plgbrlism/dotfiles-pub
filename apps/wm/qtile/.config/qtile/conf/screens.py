@@ -47,7 +47,7 @@ def slash(bg, path):
 def bar_widgets():
     return [
         widget.TextBox(
-            text=" ",
+            text=" ",
             fontsize=18,
             name="powermenu",
             foreground=colors["on_primary"],
@@ -90,11 +90,21 @@ def bar_widgets():
             font="JetBrainsMono Nerd Font SemiBold",
             fontsize=13,
             foreground=colors["on_tertiary"],
-            **seg(colors["tertiary"], path="back_slash"),
+            **seg(colors["tertiary"], path=S_LEFT),
         ),
         widget.StatusNotifier(
             icon_size=15,
             foreground=colors["on_tertiary"],
+            icon_theme="YAMIS",
+            menu_font="JetBrainsMono Nerd Font SemiBold",
+            menu_fontsize=13,
+            menu_foreground=colors["on_surface"],
+            menu_foreground_disabled=colors["outline"],
+            menu_foreground_highlighted=colors["on_primary"],
+            menu_background=colors["surface_container"],
+            menu_border=colors["outline"],
+            separator_colour=colors["outline"],
+            highlight_colour=colors["primary"],
             **seg(colors["tertiary"], path=S_LEFT),
         ),
         widget.Volume(
@@ -168,7 +178,7 @@ def make_bar():
 
 
 def make_screen():
-    return Screen(top=make_bar(), background=colors["background"])
+    return Screen(bottom=make_bar(), background=colors["background"])
 
 
 def generate_screens(outputs):
