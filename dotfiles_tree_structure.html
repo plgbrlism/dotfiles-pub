@@ -1,264 +1,1344 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>dotfiles-pub tree</title>
 <style>
-  :root { --indent: 22px; }
-  body { font-family: var(--font-mono); font-size: 16px; line-height: 1.7; color: var(--color-text-primary); padding: 1rem 0.5rem; }
-  .tree { margin: 0; padding: 0; }
-  details { margin: 0; padding: 0; }
-  summary { list-style: none; cursor: pointer; user-select: none; }
-  summary::-webkit-details-marker { display: none; }
-  .row { display: flex; align-items: baseline; gap: 6px; padding: 1px 0; }
-  .row:hover .label { color: var(--color-text-info); }
-  .icon { font-size: 16px; width: 14px; text-align: center; }
-  .label { color: var(--color-text-primary); }
-  .label.dir { font-weight: 500; }
-  .label.file { color: var(--color-text-secondary); }
-  .label.comment { color: var(--color-text-tertiary); font-size: 11px; font-style: italic; }
-  .badge { font-size: 14px; padding: 1px 5px; border-radius: 4px; font-family: var(--font-sans); font-style: normal; font-weight: 500; }
-  .badge.x11   { background: var(--color-background-info);    color: var(--color-text-info); }
-  .badge.wl    { background: var(--color-background-success);  color: var(--color-text-success); }
-  .badge.both  { background: var(--color-background-warning);  color: var(--color-text-warning); }
-  .badge.shell { background: var(--color-background-danger);   color: var(--color-text-danger); }
-  .branch { color: var(--color-text-tertiary); }
-  ul { list-style: none; margin: 0; padding-left: var(--indent); border-left: 1px solid var(--color-border-tertiary); }
-  li { margin: 0; }
-  .section-header { font-family: var(--font-sans); font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin: 14px 0 4px; }
-  .tip { font-family: var(--font-sans); font-size: 12px; color: var(--color-text-secondary); background: var(--color-background-secondary); border-left: 3px solid var(--color-border-secondary); padding: 6px 10px; border-radius: 0 6px 6px 0; margin: 10px 0 4px; line-height: 1.5; }
-  .legend { display: flex; gap: 10px; flex-wrap: wrap; font-family: var(--font-sans); font-size: 11px; margin-bottom: 14px; }
+:root {
+  --indent: 22px;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --bg: #1a1b26;
+  --bg-elev: #24283b;
+  --fg: #c0caf5;
+  --fg-dim: #787c99;
+  --fg-muted: #565f89;
+  --accent: #7aa2f7;
+  --accent-bg: #1a1b26;
+  --border: #292e42;
+  --badge-x11-bg: #1a1b26; --badge-x11-fg: #7aa2f7;
+  --badge-wl-bg: #1a1b26; --badge-wl-fg: #9ece6a;
+  --badge-both-bg: #1a1b26; --badge-both-fg: #e0af68;
+  --badge-shell-bg: #1a1b26; --badge-shell-fg: #f7768e;
+  --search-bg: #24283b;
+  --search-border: #292e42;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f8f8f2;
+    --bg-elev: #ffffff;
+    --fg: #383a42;
+    --fg-dim: #6d6e71;
+    --fg-muted: #a0a1a7;
+    --accent: #4078f2;
+    --accent-bg: #f0f0f0;
+    --border: #d0d0d0;
+    --badge-x11-bg: #f0f0f0; --badge-x11-fg: #4078f2;
+    --badge-wl-bg: #f0f0f0; --badge-wl-fg: #50a14f;
+    --badge-both-bg: #f0f0f0; --badge-both-fg: #c18401;
+    --badge-shell-bg: #f0f0f0; --badge-shell-fg: #e45649;
+    --search-bg: #ffffff;
+    --search-border: #d0d0d0;
+  }
+}
+html.light {
+  --bg: #f8f8f2;
+  --bg-elev: #ffffff;
+  --fg: #383a42;
+  --fg-dim: #6d6e71;
+  --fg-muted: #a0a1a7;
+  --accent: #4078f2;
+  --accent-bg: #f0f0f0;
+  --border: #d0d0d0;
+  --badge-x11-bg: #f0f0f0; --badge-x11-fg: #4078f2;
+  --badge-wl-bg: #f0f0f0; --badge-wl-fg: #50a14f;
+  --badge-both-bg: #f0f0f0; --badge-both-fg: #c18401;
+  --badge-shell-bg: #f0f0f0; --badge-shell-fg: #e45649;
+  --search-bg: #ffffff;
+  --search-border: #d0d0d0;
+}
+html.dark {
+  --bg: #1a1b26;
+  --bg-elev: #24283b;
+  --fg: #c0caf5;
+  --fg-dim: #787c99;
+  --fg-muted: #565f89;
+  --accent: #7aa2f7;
+  --accent-bg: #1a1b26;
+  --border: #292e42;
+  --badge-x11-bg: #1a1b26; --badge-x11-fg: #7aa2f7;
+  --badge-wl-bg: #1a1b26; --badge-wl-fg: #9ece6a;
+  --badge-both-bg: #1a1b26; --badge-both-fg: #e0af68;
+  --badge-shell-bg: #1a1b26; --badge-shell-fg: #f7768e;
+  --search-bg: #24283b;
+  --search-border: #292e42;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+  padding: 1rem;
+  margin: 0;
+  transition: background 0.2s, color 0.2s;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+h1 { font-family: var(--font-sans); font-size: 1.25rem; font-weight: 600; margin: 0; }
+#theme-toggle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-elev);
+  color: var(--fg);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+#theme-toggle:hover { background: var(--accent-bg); border-color: var(--accent); }
+#search {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--search-border);
+  border-radius: 4px;
+  background: var(--search-bg);
+  color: var(--fg);
+  width: 100%;
+  max-width: 360px;
+  transition: border-color 0.15s;
+}
+#search:focus { outline: none; border-color: var(--accent); }
+#search::placeholder { color: var(--fg-muted); }
+#match-count { font-family: var(--font-sans); font-size: 12px; color: var(--fg-dim); margin-left: 0.5rem; }
+.legend {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  margin-bottom: 14px;
+}
+.badge {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+.badge.x11 { background: var(--badge-x11-bg); color: var(--badge-x11-fg); border: 1px solid var(--badge-x11-fg); }
+.badge.wl { background: var(--badge-wl-bg); color: var(--badge-wl-fg); border: 1px solid var(--badge-wl-fg); }
+.badge.both { background: var(--badge-both-bg); color: var(--badge-both-fg); border: 1px solid var(--badge-both-fg); }
+.badge.shell { background: var(--badge-shell-bg); color: var(--badge-shell-fg); border: 1px solid var(--badge-shell-fg); }
+.tree { margin: 0; padding: 0; }
+details { margin: 0; padding: 0; }
+summary { list-style: none; cursor: pointer; user-select: none; }
+summary::-webkit-details-marker { display: none; }
+summary::marker { display: none; }
+.row { display: flex; align-items: baseline; gap: 6px; padding: 1px 0; }
+.row:hover .label { color: var(--accent); }
+.icon { font-size: 14px; width: 14px; text-align: center; color: var(--fg-dim); }
+.label { color: var(--fg); }
+.label.dir { font-weight: 500; }
+.label.file { color: var(--fg-dim); }
+.label.comment { color: var(--fg-muted); font-size: 12px; font-style: italic; margin-left: 4px; }
+ul { list-style: none; margin: 0; padding-left: var(--indent); border-left: 1px solid var(--border); }
+li { margin: 0; }
+.section-header {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 18px 0 6px;
+}
+.tip {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--fg-dim);
+  background: var(--bg-elev);
+  border-left: 3px solid var(--accent);
+  padding: 8px 12px;
+  border-radius: 0 6px 6px 0;
+  margin: 16px 0 4px;
+  line-height: 1.5;
+}
+.hidden { display: none !important; }
+.highlight { background: var(--accent-bg); border-radius: 2px; }
 </style>
+</head>
+<body class="dark">
+<div class="header">
+  <h1>dotfiles-pub</h1>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <input type="search" id="search" placeholder="Filter tree..." aria-label="Filter tree">
+    <span id="match-count"></span>
+    <button id="theme-toggle" aria-label="Toggle theme">☀ Light</button>
+  </div>
+</div>
 
 <div class="legend">
-  <span class="badge x11">X11</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--color-text-secondary)">X11 only</span>
-  <span class="badge wl">WL</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--color-text-secondary)">Wayland only</span>
-  <span class="badge both">BOTH</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--color-text-secondary)">X11 + Wayland</span>
-  <span class="badge shell">SHELL</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--color-text-secondary)">WM-agnostic</span>
+  <span class="badge x11">X11</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--fg-dim)">X11 only</span>
+  <span class="badge wl">WL</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--fg-dim)">Wayland only</span>
+  <span class="badge both">BOTH</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--fg-dim)">X11 + Wayland</span>
+  <span class="badge shell">SHELL</span><span style="font-family:var(--font-sans);font-size:11px;color:var(--fg-dim)">WM-agnostic / CLI</span>
 </div>
 
 <div class="section-header">Window Managers</div>
 <ul class="tree">
-
-  <li>
-    <details open>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">i3/</span><span class="badge x11">X11</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">├</span><span class="label dir">.config/i3/</span></div></li>
-        <li><ul>
-          <li><div class="row"><span class="icon">└</span><span class="label file">config</span></div></li>
-        </ul></li>
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">sway/</span><span class="badge wl">WL</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">├</span><span class="label dir">.config/sway/</span></div></li>
-        <li><ul>
-          <li><div class="row"><span class="icon">└</span><span class="label file">config</span></div></li>
-        </ul></li>
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">dwm/</span><span class="badge x11">X11</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">src/dwm/</span><span class="label comment">— source lives here, not ~/.config</span></div></li>
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">dwl/</span><span class="badge wl">WL</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">src/dwl/</span></div></li>
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">bspwm/</span><span class="badge x11">X11</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">├</span><span class="label dir">.config/bspwm/</span></div></li>
-        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">bspwmrc</span></div></li></ul></li>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/sxhkd/</span></div></li>
-        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">sxhkdrc</span></div></li></ul></li>
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">xmonad/</span><span class="badge x11">X11</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/xmonad/</span></div></li>
-        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">xmonad.hs</span></div></li></ul></li>
-      </ul>
-    </details>
-  </li>
-
+<!-- gen-start -->
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">helper/</span><span class="badge shell">SHELL</span><span class="label comment">symlinked to ~/.local/bin, not stowed</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">generic-launcher</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">i3/</span><span class="badge x11">X11</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">i3/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.conf</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.conf</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">conf/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">appearance.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">apps.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">autostart.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">autotiling.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">font.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">keybindings.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">resolution.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">startup.conf</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">system.conf</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">config</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">helper/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">polybar/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">on-launch.sh</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">niri/</span><span class="badge wl">WL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">niri/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">config.kdl</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">kdl/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">autostart.kdl</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">input.kdl</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">keybinds.kdl</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">layout.kdl</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">outputs.kdl</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">system.kdl</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">window-rules.kdl</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">qtile/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">qtile/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.py</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.py</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">conf/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">apps.py</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">autostart.py</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">groups.py</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">__init__.py</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">keys.py</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">layouts.py</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">screens.py</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">system.py</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">config.py</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">graphical_notifications.py</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">sway/</span><span class="badge wl">WL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">sway/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.conf</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.conf</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">conf/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">appearance.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">apps.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">autostart.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">autotiling.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">font.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">keybindings.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">resolution.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">startup.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">swayfx.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">system.conf</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">touchpad.conf</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">config</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">helper/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">autotiling/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">on-launch.sh</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">waybar/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">on-launch.sh</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<!-- gen-end -->
 </ul>
 
 <div class="section-header">Bars</div>
 <ul class="tree">
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">polybar/</span><span class="badge x11">X11</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/polybar/</span></div></li>
-        <li><ul>
-          <li><div class="row"><span class="icon">├</span><span class="label file">config.ini</span></div></li>
-          <li><div class="row"><span class="icon">└</span><span class="label file">launch.sh</span></div></li>
-        </ul></li>
-      </ul>
-    </details>
-  </li>
-
+<!-- gen-start-bar -->
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">polybar/</span><span class="badge x11">X11</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">polybar/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">bar/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">flat.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">floating.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">minimal.ini</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">notch.ini</span></div>
 </ul>
-
-<div class="section-header">Launcher</div>
-<ul class="tree">
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">rofi/</span><span class="badge both">BOTH</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/rofi/</span></div></li>
-        <li><ul>
-          <li><div class="row"><span class="icon">├</span><span class="label file">config.rasi</span></div></li>
-          <li><div class="row"><span class="icon">└</span><span class="label dir">themes/</span></div></li>
-        </ul></li>
-      </ul>
-    </details>
-  </li>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.ini</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.ini</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">config.ini</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">fonts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">fonts.ini</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">modules/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">icons/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">backlight.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">battery-icons.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">cpu.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">memory.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">network-base.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">powermenu.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">pulseaudio-icons.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">sep.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">systray.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">wlan-icons.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">xwindow-icons.ini</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">xworkspaces-icons.ini</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">no-icons/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">backlight.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">battery-icons.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">cpu.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">memory.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">network-base.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">powermenu.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">pulseaudio-icons.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">sep.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">systray.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">wlan-icons.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">xwindow-icons.ini</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">xworkspaces-icons.ini</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">styles/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">flat.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">floating.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">minimal.ini</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">no-icon.ini</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">waybar/</span><span class="badge wl">WL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">waybar/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.css</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.css</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">config.jsonc</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">configs/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">1.jsonc</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">2.jsonc</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">css/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">bars/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">flat.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">floating.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">floating-transparent.css</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">minimal.css</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">combos/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">flat-plain.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">floating-blocks.css</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">floating-pills.css</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">modules/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">blocks/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">audio.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">backlight.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">battery.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">cpu.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">network.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">powermenu.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">sep.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">tray.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">window.css</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">workspaces.css</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">pills/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">audio.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">backlight.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">battery.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">cpu.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">network.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">powermenu.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">sep.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">tray.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">window.css</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">workspaces.css</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">plain/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">audio.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">backlight.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">battery.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">cpu.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">network.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">powermenu.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">sep.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">tray.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">window.css</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">workspaces.css</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">fonts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">fonts.css</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">└</span><span class="label file">style.css</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<!-- gen-end-bar -->
 </ul>
 
 <div class="section-header">Terminals</div>
 <ul class="tree">
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">alacritty/</span><span class="badge both">BOTH</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/alacritty/</span></div></li>
-        <li><ul>
-          <li><div class="row"><span class="icon">├</span><span class="label file">alacritty.toml</span></div></li>
-          <li><div class="row"><span class="icon">└</span><span class="label dir">themes/</span></div></li>
-        </ul></li>
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">kitty/</span><span class="badge both">BOTH</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/kitty/</span></div></li>
-        <li><ul>
-          <li><div class="row"><span class="icon">├</span><span class="label file">kitty.conf</span></div></li>
-          <li><div class="row"><span class="icon">└</span><span class="label dir">themes/</span></div></li>
-        </ul></li>
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">rxvt/</span><span class="badge x11">X11</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label file">.Xresources</span><span class="label comment">— sits at ~/ via stow</span></div></li>
-      </ul>
-    </details>
-  </li>
-
+<!-- gen-start-term -->
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">alacritty/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">alacritty/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">alacritty.toml</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.toml</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">dracula.toml</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.toml</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">fonts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">fonts.toml</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">keybinds.toml</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">window.toml</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">foot/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">foot/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">color-foot.ini</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">foot.ini</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">ghostty/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">ghostty/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.ghostty</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">dracula.ghostty</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.ghostty</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">config.ghostty</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">cursor.ghostty</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">fonts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">fonts.ghostty</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">preference.ghostty</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">transparency.ghostty</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">window.ghostty</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">kitty/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">kitty/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.conf</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">dracula.conf</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.conf</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">fonts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">fonts.conf</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">keybind.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">kitty.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">transparency.conf</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">window.conf</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<!-- gen-end-term -->
 </ul>
 
-<div class="section-header">Compositor & Display</div>
+<div class="section-header">CLI Tools</div>
 <ul class="tree">
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">picom/</span><span class="badge x11">X11</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/picom/</span></div></li>
-        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">picom.conf</span></div></li></ul></li>
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">x11/</span><span class="badge x11">X11</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">├</span><span class="label file">.xinitrc</span></div></li>
-        <li><div class="row"><span class="icon">└</span><span class="label file">.Xresources</span><span class="label comment">— base Xresources (colors, dpi)</span></div></li>
-      </ul>
-    </details>
-  </li>
-
+<!-- gen-start-cli -->
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">btop/</span><span class="badge shell">SHELL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">btop/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">btop.conf</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">themes/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.theme</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">cava/</span><span class="badge shell">SHELL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">cava/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">config</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">fastfetch/</span><span class="badge shell">SHELL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">fastfetch/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">arts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">1</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">2</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">3</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">4</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">config.jsonc</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">custom/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">dawg</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">debian</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">paradox</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">paul</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">plgbrlism</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">prdx</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">style/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">detailed</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">minimal</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">simple</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">lavat/</span><span class="badge shell">SHELL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">lavat/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">peaclock/</span><span class="badge shell">SHELL</span><span class="label comment">history ignored on stow</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.peaclock/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">config</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">history/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">command</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">rizzoo/</span><span class="badge shell">SHELL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">rizzoo/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">config.toml</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">templates/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">antigravity.json</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">btop.theme</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colloid-colors.scss</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-alacritty.toml</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-cava.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-dunstrc</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-firefox.json</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-flameshot.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-foot.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-ghostty.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-hyprlock.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-i3</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-kitty.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-kvantum.kvconfig</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-kvantum.svg</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-micro.micro</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-niri-layout.kdl</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-noctalia.json</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-nvim.lua</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-peaclock.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-polybar.ini</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-qtct.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-qtile.py</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-rofi.rasi</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-starship-powerline.toml</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-starship-tyn.toml</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-sway</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-tty.sh</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-waybar.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-waybar.css.bak</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors.Xresources</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">colors-zed.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">graphite-colors.scss</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">graphite-colors.scss.bak</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">hyprlock-bg-wallpaper.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">mac-colors.scss</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">MaterialColors.kt</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">material-theme.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">mcq-anki.css</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">rizzoo-gtk-3.css</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">rizzoo-gtk-4.css</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">starship/</span><span class="badge shell">SHELL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">starship.toml</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<!-- gen-end-cli -->
 </ul>
 
-<div class="section-header">Notifications</div>
+<div class="section-header">Editor</div>
 <ul class="tree">
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">dunst/</span><span class="badge x11">X11</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">.config/dunst/</span></div></li>
-        <li><ul><li><div class="row"><span class="icon">└</span><span class="label file">dunstrc</span></div></li></ul></li>
-      </ul>
-    </details>
-  </li>
+<!-- gen-start-editor -->
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">micro/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">micro/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colorschemes/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.micro</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">nvim/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">nvim/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">rizzoo.lua</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">init.lua</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">LICENSE</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">lua/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">autocmds.lua</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">keymaps.lua</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">lazy.lua</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">options.lua</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">plugins/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colorscheme.lua</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">example.lua</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">rizzoo/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">groups/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">editor.lua</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">lsp.lua</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">plugins.lua</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">syntax.lua</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">init.lua</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">palette.lua</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">util.lua</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">.neoconf.json</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">README.md</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">stylua.toml</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">zed/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">zed/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">themes/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.json</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<!-- gen-end-editor -->
+</ul>
+
+<div class="section-header">Launcher / Locker / Notifier / Compositor / Utils</div>
+<ul class="tree">
+<!-- gen-start-misc -->
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">rofi/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">rofi/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.rasi</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.rasi</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">config.rasi</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">fonts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">fonts.rasi</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">scripts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">app_launcher/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">app_launcher.sh</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">audio/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">rofi-audio.sh</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">bluetooth/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">rofi-bluetooth-paired.sh</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">rofi-bluetooth-scan.sh</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">rofi-bluetooth.sh</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">brightness/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">brightness-control.sh</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">rofi-brightness.sh</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">powermenu/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">powermenu.sh</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">session_manager/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">i3lock-custom/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">i3lock.sh</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">session_manager.sh</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">veila-lock-custom/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">veila.sh</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">wallpaper/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">asset/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">change-wallpaper-directory.png</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">cache-wallpaper.sh</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">rofi-wallpaper.sh</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">setters/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">awww.sh</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">feh.sh</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">hrax.sh</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">swaybg.sh</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">wifi/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">rofi-wifi-available.sh</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">rofi-wifi-saved.sh</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">rofi-wifi.sh</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">sections/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">base.rasi</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">configuration.rasi</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">entry.rasi</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">listview.rasi</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">mainbox.rasi</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">mode-switcher.rasi</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">window.rasi</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">└</span><span class="label file">templating.md</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">hyprlock/</span><span class="badge wl">WL</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">hypr/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colors/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">colors.conf</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.conf</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">conf/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">animations.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">battery.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">general.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">password.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">time-date.conf</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">user.conf</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">fonts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">fonts.conf</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">├</span><span class="label file">hyprlock.conf</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">styles/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">style-1.conf</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">style-2.conf</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">wallpaper/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">variants/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dynamic.conf</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">└</span><span class="label file">wallpaper.conf</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">dunst/</span><span class="badge x11">X11</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">dunst/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">dunstrc</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">picom/</span><span class="badge x11">X11</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">picom/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">conf/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">animations.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">blur.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">corners.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">fading.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">general.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">opacity.conf</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">rules.conf</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">shadows.conf</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">└</span><span class="label file">picom.conf</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">kanshi/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">kanshi/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">config</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<!-- gen-end-misc -->
 </ul>
 
 <div class="section-header">Theming</div>
 <ul class="tree">
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">gtk/</span><span class="badge both">BOTH</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">├</span><span class="label file">.config/gtk-3.0/settings.ini</span></div></li>
-        <li><div class="row"><span class="icon">└</span><span class="label file">.gtkrc-2.0</span></div></li>
-      </ul>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">qt/</span><span class="badge both">BOTH</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label file">.config/qt5ct/qt5ct.conf</span></div></li>
-      </ul>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">fonts/</span><span class="badge both">BOTH</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">└</span><span class="label dir">.local/share/fonts/</span></div></li>
-        <li><ul><li><div class="row"><span class="icon">└</span><span class="label comment">your font files here</span></div></li></ul></li>
-      </ul>
-    </details>
-  </li>
+<!-- gen-start-theme -->
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">colloid/</span><span class="badge both">BOTH</span><span class="label comment">cloned on demand, SSH→HTTPS fallback</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">reload.sh</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">graphite/</span><span class="badge both">BOTH</span><span class="label comment">cloned on demand, SSH→HTTPS fallback</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">reload.sh</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">mac-tahoe/</span><span class="badge both">BOTH</span><span class="label comment">cloned on demand, SSH→HTTPS fallback</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">reload.sh</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">└</span><span class="label file">setup-gtk.sh</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">Kvantum/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">kvantum.kvconfig</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">KvMaterial/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">KvMaterial.kvconfig</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">KvMaterial.svg</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<!-- gen-end-theme -->
 </ul>
 
-<div class="section-header">Shell</div>
+<div class="section-header">Machine Overlays</div>
 <ul class="tree">
-  <li>
-    <details>
-      <summary><div class="row"><span class="icon">📂</span><span class="label dir">shell/</span><span class="badge shell">SHELL</span></div></summary>
-      <ul>
-        <li><div class="row"><span class="icon">├</span><span class="label file">.zshrc</span></div></li>
-        <li><div class="row"><span class="icon">├</span><span class="label file">.bashrc</span></div></li>
-        <li><div class="row"><span class="icon">├</span><span class="label file">.bash_profile</span></div></li>
-        <li><div class="row"><span class="icon">└</span><span class="label file">.profile</span></div></li>
-      </ul>
-    </details>
-  </li>
+<!-- gen-start-overlay -->
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">noctalia/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">noctalia-config-full.toml</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">palettes/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">rizzoo.json</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">.config/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">noctalia/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">noctalia-config-full.toml</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">palettes/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">└</span><span class="label file">rizzoo.json</span></div>
+</ul>
+</details>
+</ul>
+</details>
+</ul>
+</details>
+<!-- gen-end-overlay -->
+</ul>
+
+<div class="section-header">NixOS / Home Manager</div>
+<ul class="tree">
+<!-- gen-start-nix -->
+<div class="row"><span class="icon">├</span><span class="label file">flake.lock</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">flake.nix</span></div>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">home/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">default.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">dotfiles.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">git.nix</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">shell.nix</span></div>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">hosts/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">hp/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">configuration.nix</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">hardware-configuration.nix</span></div>
+</ul>
+</details>
+</ul>
+</details>
+<details><summary><div class="row"><span class="icon">&#x1f4c2;</span><span class="label dir">modules/</span><span class="badge both">BOTH</span></div></summary>
+<ul>
+<div class="row"><span class="icon">├</span><span class="label file">audio.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">boot.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">build.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">desktop.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">fonts.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">hardware.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">networking.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">packages.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">power.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">programmes.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">services.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">ssh.nix</span></div>
+<div class="row"><span class="icon">├</span><span class="label file">virtualisation.nix</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">window-managers.nix</span></div>
+</ul>
+</details>
+<div class="row"><span class="icon">└</span><span class="label file">paul-nix.md</span></div>
+<!-- gen-end-nix -->
+</ul>
+
+<div class="section-header">Root</div>
+<ul class="tree">
+<!-- gen-start-root -->
+<div class="row"><span class="icon">└</span><span class="label file">install.sh</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">README.md</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">gen-tree.sh</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">regen-tree.sh</span></div>
+<div class="row"><span class="icon">└</span><span class="label file">dotfiles_tree_structure.html</span></div>
+<!-- gen-end-root -->
 </ul>
 
 <div class="tip">
-  💡 <strong>One rule to remember:</strong> each folder under <code>~/dotfiles/</code> is a <em>stow package</em>. Its internal structure mirrors your home directory exactly. <code>stow i3</code> symlinks everything inside <code>i3/</code> into <code>~/</code>.
+  💡 <strong>One rule to remember:</strong> each folder under <code>apps/<cat>/<app></code> is a <em>stow package</em>. Its internal structure mirrors your home directory exactly. <code>stow -d apps/wm -t ~ i3</code> symlinks everything inside <code>apps/wm/i3/</code> into <code>~/</code>. Run <code>./install.sh</code> at repo root for the interactive gum installer.
 </div>
+
+<script>
+(function() {
+  const search = document.getElementById('search');
+  const countEl = document.getElementById('match-count');
+  const rows = document.querySelectorAll('.tree .row, .tree summary .row');
+  const details = document.querySelectorAll('details');
+  const themeBtn = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+
+  let originalText = new Map();
+  rows.forEach(r => originalText.set(r, r.innerHTML));
+
+  function escapeHtml(s) { return s.replace(/[&<>]/g, c => ({'&':'&','<':'<','>':'>'}[c])); }
+  function highlight(text, q) {
+    if (!q) return escapeHtml(text);
+    const parts = text.split(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'));
+    return parts.map((p, i) => i % 2 === 0 ? escapeHtml(p) : '<mark class="highlight">' + escapeHtml(p) + '</mark>').join('');
+  }
+
+  search.addEventListener('input', function() {
+    const q = this.value.trim().toLowerCase();
+    let matches = 0;
+    rows.forEach(r => {
+      const text = r.textContent.toLowerCase();
+      const hit = q === '' || text.includes(q);
+      r.style.display = hit ? '' : 'none';
+      if (hit && q) {
+        matches++;
+        const label = r.querySelector('.label');
+        if (label) label.innerHTML = highlight(label.textContent, q);
+      } else {
+        const label = r.querySelector('.label');
+        if (label) label.innerHTML = originalText.get(r);
+      }
+    });
+    details.forEach(d => {
+      const visible = d.querySelector('.row:not([style*="display: none"])');
+      d.open = !!visible;
+    });
+    countEl.textContent = q ? matches + ' match' + (matches !== 1 ? 'es' : '') : '';
+  });
+
+  themeBtn.addEventListener('click', function() {
+    const isDark = html.classList.contains('dark');
+    html.classList.toggle('dark', !isDark);
+    html.classList.toggle('light', isDark);
+    themeBtn.textContent = isDark ? '☾ Dark' : '☀ Light';
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  });
+
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light' || (saved === null && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+    html.classList.remove('dark');
+    html.classList.add('light');
+    themeBtn.textContent = '☀ Light';
+  }
+})();
+</script>
+</body>
+</html>
