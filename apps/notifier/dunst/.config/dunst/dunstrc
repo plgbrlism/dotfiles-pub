@@ -38,8 +38,8 @@ timeout = 5
 
 [urgency_normal]
 background = "#251e1f"
-foreground = "#eddfe1"
-frame_color = "#cd93a1"
+foreground = "#eedfe0"
+frame_color = "#ce939d"
 timeout = 10
 
 [urgency_critical]

@@ -36,7 +36,7 @@
     "sway/workspaces": {
         "format":              "{icon} {name}",
         "format-icons": {
-			"focused":         "󰈸",
+			"focused":         "",
 			"default":         ""
         }
     },
@@ -140,7 +140,7 @@
 // ╰───────────╯
 
     "custom/powermenu": {
-        "format":              " 󰵲 ",
+        "format":              "  ",
         "on-click":            "~/.config/rofi/scripts/powermenu/powermenu.sh",
         "tooltip":             false
     }
