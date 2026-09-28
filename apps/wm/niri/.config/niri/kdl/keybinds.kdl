@@ -4,9 +4,9 @@ recent-windows { on; }
 
 binds {
     // Launcher & Apps
-    Super+Return  { spawn "kitty"; }
-    Super+E 	  { spawn "nautilus"; }
-    Super+Y 	  { spawn "kitty" "-e"  "yazi"; }
+    Super+Return  { spawn "~/.local/bin/dispatch" "terminal"; }
+    Super+E 	  { spawn "~/.local/bin/dispatch" "file-manager"; }
+    Super+Y 	  { spawn "~/.local/bin/dispatch" "terminal-fm"; }
     Super+R 	  { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Super+W 	  { spawn "noctalia" "msg" "panel-toggle" "wallpaper";}
     Super+Escape  { spawn "noctalia" "msg" "panel-toggle" "session"; }

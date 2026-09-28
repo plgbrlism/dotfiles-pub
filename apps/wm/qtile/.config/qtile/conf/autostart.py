@@ -37,7 +37,6 @@ def get_active_theme():
         return "Adwaita"
 
 active_theme = get_active_theme()
-# qt6ct, Qt5 apps use qt5ct via ~/.local/bin wrappers
 os.environ["QT_QPA_PLATFORMTHEME"] = "qt6ct"
 os.environ.pop("QT_STYLE_OVERRIDE", None)
 
@@ -52,8 +51,8 @@ def autostart():
         "QT_QPA_PLATFORMTHEME"
     )
     _run("systemctl --user restart xdg-desktop-portal-gtk")
-    _run(POLKIT_AGENT)
     _run(f"{WALLPAPER_RESTORE} --restore")
     _run("kanshi")
     # powertop needs sudo, or configure to run passwordless:
     _run("sudo /usr/sbin/powertop --auto-tune")
+    # _run(POLKIT_AGENT)

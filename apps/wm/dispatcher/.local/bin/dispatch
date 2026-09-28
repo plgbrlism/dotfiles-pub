@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# my generic launcher script for window managers
+# my dispatcher script for window managers
 # created in order to call a single one-shot script
 # instead of hardcoding applications
 # use-case: multiple machine setups with dynamic preference
@@ -13,12 +13,29 @@ run_first() {
         fi
     done
 
-    notify-send "generic launcher" "does not exist: $*" 2>/dev/null
+    notify-send "dispatcher" "does not exist: $*" 2>/dev/null
     exit 1
 }
 
+get_terminal_candidates() {
+    local candidates=()
+
+    if [ -n "$WAYLAND_DISPLAY" ]; then
+        # Wayland terminal precedence preference
+        candidates=(kitty foot ghostty alacritty)
+    elif [ -n "$DISPLAY" ]; then
+        # X11 terminal precedence preference
+        candidates=(kitty ghostty alacritty xterm)
+    else
+        # Fallback / TTY / headless
+        candidates=(kitty alacritty xterm)
+    fi
+
+	echo "${candidates[@]}"
+}
+
 get_terminal() {
-    for t in kitty foot ghostty alacritty xterm; do
+    for t in $(get_terminal_candidates); do
         if command -v "$t" >/dev/null 2>&1; then
             echo "$t"
             return 0
@@ -30,7 +47,7 @@ get_terminal() {
 case "$1" in
     # ~~ Terminals ~~
     terminal)
-        run_first kitty alacritty foot ghostty xterm
+        run_first $(get_terminal_candidates)
         ;;
 
     # ~~ Terminal File Managers (TUI) ~~
@@ -41,26 +58,20 @@ case "$1" in
                 "$MAIN_TERMINAL -e yazi" \
                 "$MAIN_TERMINAL -e ranger" \
                 "$MAIN_TERMINAL -e lf"
+        else
+            notify-send "dispatcher" "No compatible terminal found" 2>/dev/null
+            exit 1
         fi
         ;;
 
     # ~~ GUI File Managers ~~
     file-manager)
-        run_first nautilus thunar pcmanfm dolphin
+        run_first nautilus dolphin nemo thunar pcmanfm
         ;;
 
     # ~~ Browsers ~~
     browser)
         run_first zen-browser brave-origin firefox brave google-chrome
-        ;;
-
-    # ~~ App Launchers ~~
-    launcher)
-        run_first \
-            "$HOME/.config/rofi/scripts/app_launcher/app_launcher.sh" \
-            rofi \
-            wofi \
-            dmenu
         ;;
 
     # ~~ Compositor (X11 only) ~~
@@ -73,7 +84,7 @@ case "$1" in
         ;;
 
     *)
-        notify-send "generic-launcher" "Unknown category requested: $1" 2>/dev/null
+        notify-send "dispatcher" "Unknown category requested: $1" 2>/dev/null
         exit 1
         ;;
 esac

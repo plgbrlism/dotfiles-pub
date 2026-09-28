@@ -34,6 +34,34 @@ def seg(bg, path=None, end=None):
     return {"decorations": decos, "padding": 8, "background": bg}
 
 
+def hover(w, **over):
+    """Repaint widget with swapped colours while the cursor is on it."""
+    rest = {k: getattr(w, k) for k in over}
+
+    def swap(state):
+        for k, v in state.items():
+            setattr(w, k, v)
+        # _TextBox bakes foreground into its TextLayout at configure time
+        # (base.py:548) and TextLayout.draw never re-reads it (drawer.py:447),
+        # so the attribute alone leaves the text invisible on a swapped bg
+        if getattr(w, "layout", None):
+            w.layout.colour = w.foreground
+        # Volume._update_drawer re-asserts the pre-configure colour on every
+        # volume change, which would drop the hover state mid-hover (volume.py:62)
+        if hasattr(w, "unmute_foreground"):
+            w.unmute_foreground = w.foreground
+        w.bar.draw()
+
+    w.mouse_enter = lambda x, y: swap(over)
+    w.mouse_leave = lambda x, y: swap(rest)
+    return w
+
+
+def invert(w):
+    """Reverse a segment's colours on hover (primary:on_primary -> on_primary:primary)."""
+    return hover(w, background=w.foreground, foreground=w.background)
+
+
 def slash(bg, path):
     # transition shape between segments; Rect+PowerLine can't share a widget:
     # PowerLine repaints a square bg that would erase rounded corners
@@ -45,7 +73,7 @@ def slash(bg, path):
 
 
 def bar_widgets():
-    return [
+    ws = [
         widget.TextBox(
             text=" ",
             fontsize=18,
@@ -56,6 +84,7 @@ def bar_widgets():
         ),
         widget.TextBox(
             text=" ",
+            name="spacer",
             foreground=colors["on_primary"],
             **seg(colors["primary"], path=S_LEFT),
         ),
@@ -139,7 +168,7 @@ def bar_widgets():
             foreground=colors["on_primary"],
             mouse_callbacks={"Button1": lazy.spawn(apps.WIFI_MENU)},
             update_interval=5,
-            **seg(colors["primary"], path="back_slash"),
+            **seg(colors["primary"], path=S_LEFT),
         ),
         widget.Battery(
             battery="BAT0",
@@ -156,7 +185,7 @@ def bar_widgets():
             charging_foreground=colors["tertiary"],
             show_short_text=False,
             update_interval=5,
-            **seg(colors["tertiary"], path=S_LEFT),
+            **seg(colors["tertiary"], path="back_slash"),
         ),
         widget.CPU(
             format="\U000f07af CPU {load_percent}%",
@@ -165,6 +194,7 @@ def bar_widgets():
             **seg(colors["primary"], end="right"),
         ),
     ]
+    return [w if w.name == "spacer" else invert(w) for w in ws]
 
 
 def make_bar():
