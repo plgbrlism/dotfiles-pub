@@ -56,4 +56,10 @@
     lxappearance
     nwg-look
   ];
+
+  #  GDK PIXBUF SYSTEM LOADERS (Enables WebP/SVG/Thumbnails across apps)
+  programs.gdk-pixbuf.modulePackages = with pkgs; [
+	webp-pixbuf-loader
+    librsvg
+  ];
 }

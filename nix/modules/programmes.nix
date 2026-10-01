@@ -29,6 +29,8 @@
     ripgrep
     yazi
     dust
+    psmisc
+    xclip
     tree
     stow
     fastfetch
