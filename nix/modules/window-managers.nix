@@ -10,17 +10,6 @@ let
 	postPatch = "patchShebangs .";
 	doCheck = false;
   });
-
-  gdk-pixbuf-with-loaders = pkgs.gdk-pixbuf.override {
-    loaders = [
-      pkgs.webp-pixbuf-loader
-      pkgs.librsvg
-    ];
-  };
-
-  rofi-wrapped = pkgs.rofi.override {
-    gdk-pixbuf = gdk-pixbuf-with-loaders;
-  };
 in
 {
   #  i3 Window Manager (X11 Session)
@@ -35,6 +24,7 @@ in
       feh
       xwallpaper
       polybar
+      xclip
     ];
   };
 
@@ -66,8 +56,8 @@ in
   environment.systemPackages = [
   	# ie-qol for autotiling daemon for i3/sway
     inputs.i3-qol.packages.${pkgs.system}.default
-    rofi-wrapped
   ] ++ (with pkgs; [
+  	rofi
     flameshot
     brightnessctl
     dunst
