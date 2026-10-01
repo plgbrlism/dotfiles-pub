@@ -21,6 +21,9 @@
     gpu-screen-recorder
     gpu-screen-recorder-gtk
     peek
+    
+    # Image utilities
+    imagemagick
 
     #  Office, Notes & Flashcards
     obsidian
