@@ -16,26 +16,34 @@ command -v sudo >/dev/null 2>&1 || { echo "Error: sudo not found." >&2; exit 1; 
 # cat|dir|pacman pkgs|aur pkgs|bin|stow-ignore
 APPS="bar|polybar|polybar||polybar|
 bar|waybar|waybar||waybar|
+capture|flameshot|flameshot||flameshot|
 cli|btop|btop||btop|
 cli|cava|cava||cava|
 cli|fastfetch|fastfetch||fastfetch|
+cli|glow|glow||glow|
 cli|lavat||lavat-git|lavat|
 cli|peaclock||peaclock|peaclock|history
 cli|rizzoo|||rizzoo|
 cli|starship|starship||starship|
+cli|yazi|yazi||yazi|
 compositor|picom|picom||picom|
 editor|micro|micro||micro|
 editor|nvim|neovim||nvim|
 editor|zed|zed||zed|
+file|xarchiver|xarchiver||xarchiver|
 launcher|rofi|rofi||rofi|
 locker|hyprlock|hyprlock||hyprlock|
+note|obsidian|obsidian||obsidian|
 notifier|dunst|dunst||dunst|
+service|xdg-desktop-portal|xdg-desktop-portal-wlr xdg-desktop-portal-gtk|||
+shell|zsh|zsh||zsh|
 terminal|alacritty|alacritty||alacritty|
 terminal|foot|foot||foot|
 terminal|ghostty|ghostty||ghostty|
 terminal|kitty|kitty||kitty|
 utils|kanshi|kanshi||kanshi|
 wm|helper||||
+wm|dispatcher||||dispatch|
 wm|i3|i3-wm||i3|
 wm|niri||niri-git|niri|
 wm|qtile|qtile|qtile-extras-git|qtile|__pycache__
@@ -86,14 +94,14 @@ link_helper() {
 
 MODE=$(gum choose --header "Mode?" "Install + stow" "Stow only") || exit 1
 
-CATS=$(printf 'bar\ncli\ncompositor\neditor\nlauncher\nlocker\nnotifier\nterminal\nutils\nwm\ngtk\nqt' \
+CATS=$(printf 'bar\ncapture\ncli\ncompositor\neditor\nenv\nfile\nlauncher\nlocker\nnote\nnotifier\nservice\nshell\nterminal\nutils\nwm\ngtk\nqt' \
   | gum choose --no-limit --header "Categories? ('x' to pick/toggle)") || exit 1
 [ -n "$CATS" ] || { echo "Nothing selected."; exit 0; }
 
 SELECTED=""
 for cat in $CATS; do
   case "$cat" in
-    gtk|qt) SELECTED="$SELECTED
+    gtk|qt|env) SELECTED="$SELECTED
 $cat|.|.|.|.|" ;;
     *)
       opts=""
@@ -154,7 +162,11 @@ while IFS= read -r e; do
   case "$cat" in
     gtk) echo "NOTE: gtk marked .no-share - see gtk/SHARE-WARNING.md (vendored themes)."; bash "$ROOT/gtk/setup-gtk.sh"; echo "gtk: done."; continue;;
     qt) echo "NOTE: qt marked .no-share - see qt/SHARE-WARNING.md (Arch-only)."; bash "$ROOT/qt/setup-qt.sh"; echo "qt: done."; continue;;
+    env) stow -d "$ROOT/apps" -t "$HOME" env && echo "env: stowed (.xinitrc/.xprofile/.zprofile)."; continue;;
   esac
+  if [ "$cat" = "shell" ] && [ "$d" = "zsh" ]; then
+    echo "NOTE: zsh config needs oh-my-zsh for full setup (see https://oh-my-zsh.sh)."
+  fi
   if [ "$cat" = "wm" ] && [ "$d" = "helper" ]; then
     link_helper; continue
   fi
