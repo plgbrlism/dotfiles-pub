@@ -59,6 +59,10 @@ ensure_yay() {
 stow_app() {
   local cat="$1" dir="$2" ignore="$3" pkg top target
   pkg="$ROOT/apps/$cat/$dir"
+  if [ -f "$pkg/.no-share" ]; then
+    echo "NOTE: $cat/$dir marked .no-share - see $pkg/SHARE-WARNING.md."
+    gum confirm "Stow $dir anyway?" || { echo "$dir: skipped (no-share)."; return 0; }
+  fi
   for top_path in "$pkg"/.[!.]* "$pkg"/*; do
     [ -e "$top_path" ] || continue
     top=$(basename "$top_path")
@@ -148,8 +152,8 @@ while IFS= read -r e; do
   [ -n "$e" ] || continue
   cat=$(field "$e" 1); d=$(field "$e" 2)
   case "$cat" in
-    gtk) bash "$ROOT/gtk/setup-gtk.sh"; echo "gtk: done."; continue;;
-    qt) bash "$ROOT/qt/setup-qt.sh"; echo "qt: done."; continue;;
+    gtk) echo "NOTE: gtk marked .no-share - see gtk/SHARE-WARNING.md (vendored themes)."; bash "$ROOT/gtk/setup-gtk.sh"; echo "gtk: done."; continue;;
+    qt) echo "NOTE: qt marked .no-share - see qt/SHARE-WARNING.md (Arch-only)."; bash "$ROOT/qt/setup-qt.sh"; echo "qt: done."; continue;;
   esac
   if [ "$cat" = "wm" ] && [ "$d" = "helper" ]; then
     link_helper; continue
