@@ -24,3 +24,10 @@ __pycache__/
 
 # personal vault state
 **/workspace.json
+
+# editor / tool backups - never track
+*.bak
+*~
+*.orig
+*.swp
+*.swo
