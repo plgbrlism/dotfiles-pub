@@ -20,7 +20,7 @@ fetch it for you if it's missing.
 ## The one command
 
 ```sh
-git clone git@github.com:paul/dotfiles-pub ~/dotfiles-pub   # or the HTTPS URL
+git clone https://github.com/plgbrlism/dotfiles-pub ~/dotfiles-pub   # or git@github.com:plgbrlism/dotfiles-pub.git
 cd ~/dotfiles-pub
 ./install.sh
 ```
