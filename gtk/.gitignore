@@ -1,0 +1,6 @@
+# nested upstream theme checkouts - do not track inner git
+*/Colloid-gtk-theme/.git/
+*/Graphite-gtk-theme/.git/
+*/MacTahoe-gtk-theme/.git/
+*.pack
+*.mp4
