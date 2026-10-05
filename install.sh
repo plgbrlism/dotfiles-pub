@@ -120,14 +120,14 @@ link_helper() {
 
 MODE=$(gum choose --header "Mode?" "Install + stow" "Stow only") || exit 1
 
-CATS=$(printf 'bar\ncapture\ncli\ncompositor\neditor\nenv\nfile\nlauncher\nlocker\nnote\nnotifier\nservice\nshell\nterminal\nutils\nwm\nnoctalia\ngtk\nqt' \
+CATS=$(printf 'bar\ncapture\ncli\ncompositor\neditor\nenv\nfile\nlauncher\nlocker\nnote\nnotifier\nservice\nshell\nterminal\ntty\nutils\nwm\nnoctalia\ngtk\nqt' \
   | gum choose --no-limit --header "Categories? ('x' to pick/toggle)") || exit 1
 [ -n "$CATS" ] || { echo "Nothing selected."; exit 0; }
 
 SELECTED=""
 for cat in $CATS; do
   case "$cat" in
-    gtk|qt|env|noctalia) SELECTED="$SELECTED
+    gtk|qt|env|tty|noctalia) SELECTED="$SELECTED
 $cat|.|.|.|.|" ;;
     *)
       opts=""
@@ -189,6 +189,7 @@ while IFS= read -r e; do
     gtk) echo "NOTE: gtk marked .no-share - see gtk/.do-not-stow.md (vendored themes)."; bash "$ROOT/gtk/setup-gtk.sh"; echo "gtk: done."; continue;;
     qt) echo "NOTE: qt marked .no-share - see qt/.do-not-stow.md (Arch-only)."; bash "$ROOT/qt/setup-qt.sh"; echo "qt: done."; continue;;
     env) stow -d "$ROOT/apps" -t "$HOME" env && echo "env: stowed (.xinitrc/.xprofile/.zprofile)."; continue;;
+    tty) stow -d "$ROOT/apps" -t "$HOME" tty && echo "tty: stowed (.Xresources)."; continue;;
     noctalia)
       pick=$(gum choose --header "Machine? (dell/hp configs differ - pick yours)" "dell" "hp") || continue
       stow_top "noctalia-$pick" "noctalia-$pick" && echo "noctalia-$pick: done."
