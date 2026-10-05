@@ -46,8 +46,13 @@ __pycache__/
 **/dynamic.py
 apps/editor/nvim/.config/nvim/lua/rizzoo/palette.lua
 apps/wm/niri/.config/niri/kdl/layout.kdl
+apps/env/.Xresources
+apps/notifier/dunst/.config/dunst/dunstrc
+apps/capture/flameshot/.config/flameshot/flameshot.ini
 apps/cli/cava/.config/cava/config
 apps/terminal/foot/.config/foot/color-foot.ini
+apps/cli/peaclock/.peaclock/config
+**/.peaclock/config
 noctalia-dell/.config/noctalia/palettes/rizzoo.json
 noctalia-hp/.config/noctalia/palettes/rizzoo.json
 qt/kvantum/.config/Kvantum/KvMaterial/KvMaterial.svg
