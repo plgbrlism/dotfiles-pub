@@ -22,7 +22,7 @@ fi
 source "${SCRIPT_DIR}/setters/awww.sh"
 source "${SCRIPT_DIR}/setters/swaybg.sh"
 source "${SCRIPT_DIR}/setters/feh.sh"
-source "$HOME/.config/rofi/scripts/wallpaper/setters/hrax.sh"
+source "${SCRIPT_DIR}/setters/hrax.sh"
 
 # ~~ helpers ~~
 DIR_INIT="󱑾  add wallpaper directory"
@@ -162,10 +162,8 @@ fi
 case "$DISPLAY_SERVER" in
     "wayland")
         if command -v awww >/dev/null 2>&1; then
-        	rizzoo -i "$selected" -ro &
             set_awww "$selected"
         elif command -v swaybg >/dev/null 2>&1; then
-        	rizzoo -i "$selected" -ro &
             set_swaybg "$selected"
         else
             rofi -e "Error: No Wayland wallpaper setter found!" -theme "$THEME"
@@ -174,10 +172,8 @@ case "$DISPLAY_SERVER" in
         ;;
     "x11")
     	if command -v hrax >/dev/null 2>&1; then
-    		rizzoo -i "$selected" -ro &
-    		set_feh "$selected"
+    		set_hrax "$selected"
     	elif command -v feh >/dev/null 2>&1; then
-    		rizzoo -i "$selected" -ro &
         	set_feh "$selected"
         else
         	rofi -e "Error: No X11 supported wallpaper setter found" -theme "$THEME"
@@ -193,4 +189,6 @@ esac
 
 # ~~ save cache ~~
 echo "$selected" > "$WALLPAPER_FILE_CACHE"
+# stable symlink so lockers (hyprlock) can follow without a recolor daemon
+ln -sfn "$selected" "$CACHE_DIR/current-wallpaper-image"
 exit 0

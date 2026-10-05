@@ -4,21 +4,21 @@ function M.load()
   if vim.g.colors_name then
     vim.cmd("hi clear")
   end
-  vim.g.colors_name = "rizzoo"
+  vim.g.colors_name = "calamus"
   vim.o.termguicolors = true
 
-  local ok, palette = pcall(require, "rizzoo.palette")
+  local ok, palette = pcall(require, "calamus.palette")
   if not ok then
-    vim.notify("rizzoo: Could not load palette.lua", vim.log.levels.WARN)
+    vim.notify("calamus: Could not load palette.lua", vim.log.levels.WARN)
     return
   end
 
-  local util = require("rizzoo.util")
+  local util = require("calamus.util")
   local group_modules = {
-    require("rizzoo.groups.editor"),
-    require("rizzoo.groups.syntax"),
-    require("rizzoo.groups.lsp"),
-    require("rizzoo.groups.plugins"),
+    require("calamus.groups.editor"),
+    require("calamus.groups.syntax"),
+    require("calamus.groups.lsp"),
+    require("calamus.groups.plugins"),
   }
 
   for _, mod in ipairs(group_modules) do

@@ -34,7 +34,7 @@
   "buffer_font_size": 15,
   "theme": {
     "mode": "dark",
-    "light": "Tokyo Night Light",
-    "dark": "RizzooDM Dark Transparent",
+    "light": "Calamus Light",
+    "dark": "Calamus Dark Transparent",
   },
 }
