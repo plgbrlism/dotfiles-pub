@@ -1,6 +1,6 @@
 [%General]
 author=Tsu Jan
-comment=A dark flat theme inspired by Breeze
+comment=A dark flat theme inspired by Breeze 
 x11drag=all
 alt_mnemonic=true
 left_tabs=false
@@ -37,7 +37,7 @@ mid.light.color=#36352d
 dark.color=#000000
 mid.color=#939183
 highlight.color=#a8a56c
-inactive.highlight.color=#6d6b41
+inactive.highlight.color=#62602f
 text.color=#e6e2d7
 window.text.color=#e6e2d7
 button.text.color=#e6e2d7
@@ -62,7 +62,7 @@ interior=true
 interior.element=button
 indicator.size=9
 text.normal.color=white
-text.focus.color=#c4c29c
+text.focus.color=#e9e5a7
 text.press.color=white
 text.toggle.color=white
 text.shadow=0
