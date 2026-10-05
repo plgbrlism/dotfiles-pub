@@ -167,7 +167,7 @@ session_unlocked = []
 shutting_down = []
 started = []
 theme_mode_changed = []
-wallpaper_changed = [ "rizzoo -i $NOCTALIA_WALLPAPER_PATH -ro && noctalia msg config-reload" ]
+wallpaper_changed = [ "noctalia msg config-reload" ]
 wifi_disabled = []
 wifi_enabled = []
 
@@ -784,7 +784,7 @@ swap_pct_critical_threshold = 80.0
 [theme]
 builtin = "Ayu"
 community_palette = "Rosey AMOLED"
-custom_palette = "rizzoo"
+custom_palette = "calamus"
 mode = "dark"
 pure_black_dark = false
 shell_mode = "follow"

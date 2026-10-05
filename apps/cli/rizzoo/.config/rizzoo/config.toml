@@ -20,53 +20,65 @@ success    = { color = "#386B35", blend = true }
 template = "btop.theme"
 output   = "~/.config/btop/themes/dynamic.theme"
 
+enabled = false
 [antigravity]
 template = "antigravity.json"
 output   = "~/.config/Antigravity/User/settings.json"
 
+enabled = false
 [zed]
 template = "colors-zed.conf"
 output   = "~/.config/zed/themes/dynamic.json"
 
+enabled = false
 [alacritty]
 template = "colors-alacritty.toml"
 output   = "~/.config/alacritty/colors/variants/dynamic.toml"
 #enabled  = false
 
+enabled = false
 [ghostty]
 template = "colors-ghostty.conf"
 output   = "~/.config/ghostty/colors/variants/dynamic.ghostty" 
 
+enabled = false
 [i3]
 template = "colors-i3"
 output   = "~/.config/i3/colors/variants/dynamic.conf" 
 
+enabled = false
 [kitty]
 template = "colors-kitty.conf"
 output   = "~/.config/kitty/colors/variants/dynamic.conf" 
 
+enabled = false
 [micro]
 template = "colors-micro.micro"
 output   = "~/.config/micro/colorschemes/dynamic.micro"
 
+enabled = false
 [nvim]
 template = "colors-nvim.lua"
 output   = "~/.config/nvim/lua/rizzoo/palette.lua"
 post_hook = "pkill -USR1 nvim || true"
 
+enabled = false
 [polybar]
 template = "colors-polybar.ini"
 output   = "~/.config/polybar/colors/variants/dynamic.ini"
 post_hook = "polybar-msg cmd restart" 
 
+enabled = false
 [rofi]
 template = "colors-rofi.rasi"
 output   = "~/.config/rofi/colors/variants/dynamic.rasi"
 
+enabled = false
 [sway]
 template = "colors-sway"
 output   = "~/.config/sway/colors/variants/dynamic.conf" 
 
+enabled = false
 [niri]
 template = "colors-niri-layout.kdl"
 output   = "~/.config/niri/kdl/layout.kdl"
@@ -77,15 +89,18 @@ template = "colors-qtile.py"
 output   = "~/.config/qtile/colors/variants/dynamic.py"
 post_hook = "qtile cmd-obj -o cmd -f reload_config"
 
+enabled = false
 [waybar]
 template = "colors-waybar.css"
 output   = "~/.config/waybar/colors/variants/dynamic.css"
 post_hook = "killall -SIGUSR2 waybar"
 
+enabled = false
 [Xresources]
 template = "colors.Xresources"
 output   = "~/.Xresources"
 
+enabled = false
 [dunst]
 template = "colors-dunstrc"
 output   = "~/.config/dunst/dunstrc"
@@ -121,19 +136,23 @@ enabled = false
 template = "colors-hyprlock.conf"
 output   = "~/.config/hypr/colors/variants/dynamic.conf"
 
+enabled = false
 [hyprlock-bg]
 template = "hyprlock-bg-wallpaper.conf"
 output   = "~/.config/hypr/wallpaper/variants/dynamic.conf"
 
+enabled = false
 [pywalfox]
 template = "colors-firefox.json"
 output   = "~/.cache/wal/colors.json"
 post_hook = "pywalfox update"
 
+enabled = false
 [noctalia]
 template = "colors-noctalia.json"
 output   = "~/.config/noctalia/palettes/rizzoo.json"
 
+enabled = false
 [anki-cards]
 template = "mcq-anki.css"
 output   = "~/projects/anki-mcq-builder/static/_theme.css"
@@ -152,6 +171,7 @@ output   = "~/projects/anki-mcq-builder/static/_theme.css"
 #output   = "~/dotfiles-pub/gtk/graphite/Graphite-gtk-theme/src/sass/_colors.scss"
 #post_hook = "~/dotfiles-pub/gtk/graphite/reload.sh"
 
+enabled = false
 [mac-colors]
 template = "mac-colors.scss"
 output   = "~/dotfiles-pub/gtk/mac-tahoe/MacTahoe-gtk-theme/src/sass/_colors.scss"

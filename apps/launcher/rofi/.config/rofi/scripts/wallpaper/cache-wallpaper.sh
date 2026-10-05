@@ -10,7 +10,8 @@ source "${SCRIPT_DIR}/setters/feh.sh"
 
 sync_wallpaper_cached() {
 	echo "$1" > "$CACHE_FILE"
-	rizzoo -i "$1" -ro
+	# stable symlink so lockers (hyprlock) can follow without a recolor daemon
+	ln -sfn "$1" "$(dirname "$CACHE_FILE")/current-wallpaper-image"
 
 	if pgrep -f "noctalia" >/dev/null 2>&1; then
 		noctalia msg config-reload >/dev/null 2>&1 || true
