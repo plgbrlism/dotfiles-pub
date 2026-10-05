@@ -100,7 +100,7 @@ output   = "~/.peaclock/config"
 
 [starship]
 template = "colors-starship-tyn.toml"
-output   = "~/.config/starship.toml"
+output   = "~/.config/starship/variants/dynamic.toml"
 
 [foot]
 template = "colors-foot.ini"
