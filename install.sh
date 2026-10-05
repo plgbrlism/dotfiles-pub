@@ -23,7 +23,6 @@ cli|fastfetch|fastfetch||fastfetch|
 cli|glow|glow||glow|
 cli|lavat||lavat-git|lavat|
 cli|peaclock||peaclock|peaclock|history
-cli|rizzoo|||rizzoo|
 cli|starship|starship||starship|
 cli|yazi|yazi||yazi|
 compositor|picom|picom||picom|
@@ -64,26 +63,53 @@ ensure_yay() {
 }
 
 # move clashing top-level entries aside, then stow.
+# skips .no-share / .do-not-stow.md themselves so they never land in $HOME.
 stow_app() {
-  local cat="$1" dir="$2" ignore="$3" pkg top target
+  local cat="$1" dir="$2" ignore="$3" pkg top target scope warn eff_ignore
   pkg="$ROOT/apps/$cat/$dir"
-  if [ -f "$pkg/.no-share" ]; then
-    echo "NOTE: $cat/$dir marked .no-share - see $pkg/SHARE-WARNING.md."
-    gum confirm "Stow $dir anyway?" || { echo "$dir: skipped (no-share)."; return 0; }
-  fi
+  for scope in "$ROOT/apps/$cat" "$pkg"; do
+    if [ -f "$scope/.no-share" ]; then
+      warn="$scope/.do-not-stow.md"
+      [ -f "$warn" ] && cat "$warn"
+      gum confirm "Stow $dir anyway (not recommended - configure on own)?" \
+        || { echo "$dir: skipped (.no-share - configure on own)."; return 0; }
+      break
+    fi
+  done
   for top_path in "$pkg"/.[!.]* "$pkg"/*; do
     [ -e "$top_path" ] || continue
     top=$(basename "$top_path")
+    case "$top" in .no-share|.do-not-stow.md) continue;; esac
     target="$HOME/$top"
     if [ -e "$target" ] && [ ! -L "$target" ]; then
       mv "$target" "$target.bak" && echo "Backed up $target to $target.bak."
     fi
   done
-  if [ -n "$ignore" ]; then
-    stow -d "$ROOT/apps/$cat" -t "$HOME" --ignore="$ignore" "$dir"
-  else
-    stow -d "$ROOT/apps/$cat" -t "$HOME" "$dir"
+  eff_ignore="\\.do-not-stow\\.md"
+  [ -n "$ignore" ] && eff_ignore="($ignore|$eff_ignore)"
+  stow -d "$ROOT/apps/$cat" -t "$HOME" --ignore="$eff_ignore" "$dir"
+}
+
+# stow a top-level package (noctalia-dell) straight from ROOT.
+stow_top() {
+  local pkg="$1" label="$2" src top target warn
+  src="$ROOT/$pkg"
+  if [ -f "$src/.no-share" ]; then
+    warn="$src/.do-not-stow.md"
+    [ -f "$warn" ] && cat "$warn"
+    gum confirm "Stow $label anyway (not recommended - configure on own)?" \
+      || { echo "$label: skipped (.no-share - configure on own)."; return 0; }
   fi
+  for top_path in "$src"/.[!.]* "$src"/*; do
+    [ -e "$top_path" ] || continue
+    top=$(basename "$top_path")
+    case "$top" in .no-share|.do-not-stow.md|.git*) continue;; esac
+    target="$HOME/$top"
+    if [ -e "$target" ] && [ ! -L "$target" ]; then
+      mv "$target" "$target.bak" && echo "Backed up $target to $target.bak."
+    fi
+  done
+  stow -d "$ROOT" -t "$HOME" --ignore="\\.do-not-stow\\.md" "$pkg" && echo "$label: stowed."
 }
 
 link_helper() {
@@ -94,14 +120,14 @@ link_helper() {
 
 MODE=$(gum choose --header "Mode?" "Install + stow" "Stow only") || exit 1
 
-CATS=$(printf 'bar\ncapture\ncli\ncompositor\neditor\nenv\nfile\nlauncher\nlocker\nnote\nnotifier\nservice\nshell\nterminal\nutils\nwm\ngtk\nqt' \
+CATS=$(printf 'bar\ncapture\ncli\ncompositor\neditor\nenv\nfile\nlauncher\nlocker\nnote\nnotifier\nservice\nshell\nterminal\nutils\nwm\nnoctalia\ngtk\nqt' \
   | gum choose --no-limit --header "Categories? ('x' to pick/toggle)") || exit 1
 [ -n "$CATS" ] || { echo "Nothing selected."; exit 0; }
 
 SELECTED=""
 for cat in $CATS; do
   case "$cat" in
-    gtk|qt|env) SELECTED="$SELECTED
+    gtk|qt|env|noctalia) SELECTED="$SELECTED
 $cat|.|.|.|.|" ;;
     *)
       opts=""
@@ -140,7 +166,7 @@ if [ "$MODE" = "Install + stow" ]; then
   PAC_MISSING=""; AUR_MISSING=""
   while IFS= read -r e; do
     [ -n "$e" ] || continue
-    case "$e" in gtk\||qt\|) continue;; esac
+    case "$e" in gtk\||qt\||noctalia\|) continue;; esac
     d=$(field "$e" 2)
     case " $STOW_ONLY " in *" $d "*) continue;; esac
     for p in $(field "$e" 3); do pkg_done "$p" || PAC_MISSING="$PAC_MISSING$p "; done
@@ -160,9 +186,13 @@ while IFS= read -r e; do
   [ -n "$e" ] || continue
   cat=$(field "$e" 1); d=$(field "$e" 2)
   case "$cat" in
-    gtk) echo "NOTE: gtk marked .no-share - see gtk/SHARE-WARNING.md (vendored themes)."; bash "$ROOT/gtk/setup-gtk.sh"; echo "gtk: done."; continue;;
-    qt) echo "NOTE: qt marked .no-share - see qt/SHARE-WARNING.md (Arch-only)."; bash "$ROOT/qt/setup-qt.sh"; echo "qt: done."; continue;;
+    gtk) echo "NOTE: gtk marked .no-share - see gtk/.do-not-stow.md (vendored themes)."; bash "$ROOT/gtk/setup-gtk.sh"; echo "gtk: done."; continue;;
+    qt) echo "NOTE: qt marked .no-share - see qt/.do-not-stow.md (Arch-only)."; bash "$ROOT/qt/setup-qt.sh"; echo "qt: done."; continue;;
     env) stow -d "$ROOT/apps" -t "$HOME" env && echo "env: stowed (.xinitrc/.xprofile/.zprofile)."; continue;;
+    noctalia)
+      pick=$(gum choose --header "Machine? (dell/hp configs differ - pick yours)" "dell" "hp") || continue
+      stow_top "noctalia-$pick" "noctalia-$pick" && echo "noctalia-$pick: done."
+      continue;;
   esac
   if [ "$cat" = "shell" ] && [ "$d" = "zsh" ]; then
     echo "NOTE: zsh config needs oh-my-zsh for full setup (see https://oh-my-zsh.sh)."
