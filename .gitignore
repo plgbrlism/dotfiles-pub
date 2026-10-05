@@ -32,25 +32,7 @@ __pycache__/
 *.swp
 *.swo
 
-# ~~ dynamic branch: rizzoo-generated, machine-specific ~~
-# baseline default lives in history (c5e9367); tip keeps files locally only.
-# rofi-wallpaper.sh + `rizzoo -i <img> -ro` regenerates these per machine.
-**/dynamic.ini
-**/dynamic.css
-**/dynamic.theme
-**/dynamic.toml
-**/dynamic.json
-**/dynamic.rasi
-**/dynamic.conf
-**/dynamic.ghostty
-**/dynamic.py
-apps/editor/nvim/.config/nvim/lua/rizzoo/palette.lua
-apps/wm/niri/.config/niri/kdl/layout.kdl
-apps/tty/xresources/variants/dynamic
-apps/notifier/dunst/.config/dunst/variants/dynamicrc
-apps/cli/cava/.config/cava/config
-apps/terminal/foot/.config/foot/color-foot.ini
-noctalia-dell/.config/noctalia/palettes/rizzoo.json
-noctalia-hp/.config/noctalia/palettes/rizzoo.json
-qt/kvantum/.config/Kvantum/KvMaterial/KvMaterial.svg
-qt/kvantum/.config/Kvantum/KvMaterial/KvMaterial.kvconfig
+# ~~ dynamic branch: rizzoo-generated outputs are TRACKED as default baselines ~~
+# so fresh clones render immediately. Local regenerations via
+# rofi-wallpaper.sh + `rizzoo -i <img> -ro` are hidden with
+# `git update-index --skip-worktree` (see scripts/mark-theme-local.sh).
