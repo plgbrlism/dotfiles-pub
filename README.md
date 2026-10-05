@@ -92,3 +92,15 @@ cd ~/dotfiles-pub/qt
 Installs `qt5ct`, `qt6ct`, and `kvantum`, then links the Kvantum config here.
 Qt apps need `QT_QPA_PLATFORMTHEME=qt6ct` in your window manager's startup —
 sway and qtile already have it.
+
+## Noctalia (machine-specific, optional)
+
+Pick your machine — dell and hp configs differ. Also offered inside
+`./install.sh` under the `noctalia` category:
+
+```sh
+stow -d ~/dotfiles-pub -t ~ noctalia-dell   # or noctalia-hp
+```
+
+Both carry `.no-share` (hardcoded `/home/paul` paths — see `.do-not-stow.md`);
+replace with `~` before copying elsewhere.
