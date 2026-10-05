@@ -10,4 +10,4 @@ set date on
 mode clock
 view digital
 
-style active-fg #a8a56c
+style active-fg #8fa4c7
