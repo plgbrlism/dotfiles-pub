@@ -29,6 +29,20 @@ fi
 mkdir -p "$HOME/.config"
 ln -sfn "$SRC" "$DST"
 
+# link qt5ct/qt6ct conf + palettes too, else reruns never update them.
+for v in "qt5:qt5ct" "qt6:qt6ct"; do
+  src_base="$QT_ROOT/${v%%:*}/.config/${v##*:}"
+  dst_base="$HOME/.config/${v##*:}"
+  mkdir -p "$dst_base"
+  for sub in "${v##*:}.conf" "colors"; do
+    [ -e "$src_base/$sub" ] || continue
+    if [ -e "$dst_base/$sub" ] && [ ! -L "$dst_base/$sub" ]; then
+      mv "$dst_base/$sub" "$dst_base/$sub.bak" && echo "Backed up $dst_base/$sub."
+    fi
+    ln -sfn "$src_base/$sub" "$dst_base/$sub"
+  done
+done
+
 [ "${QT_QPA_PLATFORMTHEME:-}" = "qt6ct" ] \
   || echo "Note: set QT_QPA_PLATFORMTHEME=qt6ct in WM autostart (sway/qtile already do)."
 
