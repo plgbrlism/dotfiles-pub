@@ -1,0 +1,59 @@
+/*
+   Rofi launcher colors — Calamus Light
+   Deep mineral ink on laid parchment
+*/
+
+* {
+    primary:                    #636122;
+    primary-fixed:              #eae698;
+    primary-fixed-dim:          #cdca7f;
+    on-primary:                 #ffffff;
+    on-primary-fixed:           #1e1d00;
+    on-primary-fixed-variant:   #4b490a;
+    primary-container:          #797735;
+    on-primary-container:       #fffbff;
+
+    secondary:                  #626043;
+    secondary-fixed:            #e8e4bf;
+    secondary-fixed-dim:        #cbc8a4;
+    on-secondary:               #ffffff;
+    on-secondary-fixed:         #1d1c06;
+    on-secondary-fixed-variant: #49482c;
+    secondary-container:        #787657;
+    on-secondary-container:     #fffbff;
+
+    tertiary:                   #3f6756;
+    tertiary-fixed:             #c0ecd7;
+    tertiary-fixed-dim:         #a5d0bb;
+    on-tertiary:                #ffffff;
+    on-tertiary-fixed:          #002116;
+    on-tertiary-fixed-variant:  #264e3e;
+    tertiary-container:         #547d6b;
+    on-tertiary-container:      #f5fff8;
+
+    error:                      #bb1b1b;
+    on-error:                   #ffffff;
+    error-container:            #da342e;
+    on-error-container:         #fffbff;
+
+    surface:                    #fdf9ec;
+    on-surface:                 #1c1c14;
+    on-surface-variant:         #48473a;
+    surface-tint:               #636121;
+    outline:                    #797769;
+    outline-variant:            #cac7b6;
+    shadow:                     #000000;
+    scrim:                      #000000;
+
+    inverse-surface:            #323128;
+    inverse-on-surface:         #f5f1e3;
+    inverse-primary:            #cdca7f;
+
+    surface-dim:                #dedacd;
+    surface-bright:             #fdf9ec;
+    surface-container-lowest:   #ffffff;
+    surface-container-low:      #f8f4e6;
+    surface-container:          #f2eee0;
+    surface-container-high:     #ece8db;
+    surface-container-highest:  #e6e2d5;
+}

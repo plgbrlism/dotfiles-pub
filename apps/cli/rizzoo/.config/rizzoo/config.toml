@@ -70,6 +70,7 @@ output   = "~/.config/sway/colors/variants/dynamic.conf"
 [niri]
 template = "colors-niri-layout.kdl"
 output   = "~/.config/niri/kdl/layout.kdl"
+enabled = false
 
 [qtile]
 template = "colors-qtile.py"
@@ -89,26 +90,32 @@ output   = "~/.Xresources"
 template = "colors-dunstrc"
 output   = "~/.config/dunst/dunstrc"
 post_hook = "dunstctl reload"
+enabled = false
 
 [flameshot]
 template = "colors-flameshot.ini"
 output =   "~/.config/flameshot/flameshot.ini"
+enabled = false
 
 [peaclock]
 template = "colors-peaclock.conf"
 output   = "~/.peaclock/config"
+enabled = false
 
 [starship]
 template = "colors-starship-tyn.toml"
 output   = "~/.config/starship.toml"
+enabled = false
 
 [foot]
 template = "colors-foot.ini"
 output   = "~/.config/foot/color-foot.ini"
+enabled = false
 
 [cava]
 template = "colors-cava.ini"
 output   = "~/.config/cava/config"
+enabled = false
 
 [hyprlock]
 template = "colors-hyprlock.conf"
@@ -149,6 +156,7 @@ output   = "~/projects/anki-mcq-builder/static/_theme.css"
 template = "mac-colors.scss"
 output   = "~/dotfiles-pub/gtk/mac-tahoe/MacTahoe-gtk-theme/src/sass/_colors.scss"
 post_hook = "~/dotfiles-pub/gtk/mac-tahoe/reload.sh"
+enabled = false
 
 # QT Themes
 # Qt5 + Qt6 palette via qt5ct/qt6ct
@@ -156,18 +164,22 @@ post_hook = "~/dotfiles-pub/gtk/mac-tahoe/reload.sh"
 [qt5ct]
 template = "colors-qtct.conf"
 output   = "~/.config/qt5ct/colors/dynamic.conf"
+enabled = false
 
 [qt6ct]
 template = "colors-qtct.conf"
 output   = "~/.config/qt6ct/colors/dynamic.conf"
+enabled = false
 
 [kvantum]
 template = "colors-kvantum.svg"
 output   = "~/.config/Kvantum/KvMaterial/KvMaterial.svg"
+enabled = false
 
 [kvantum-kvconfig]
 template = "colors-kvantum.kvconfig"
 output   = "~/.config/Kvantum/KvMaterial/KvMaterial.kvconfig"
+enabled = false
 
 
 # Test Templates
