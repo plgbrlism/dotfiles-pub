@@ -1,0 +1,13 @@
+# peaclock colors
+# genrated by rizzoo
+# note: peaclock config is not modular
+
+set hour-24 off
+
+set seconds off
+set date on
+
+mode clock
+view digital
+
+style active-fg #8fa4c7
