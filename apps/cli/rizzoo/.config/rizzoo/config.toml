@@ -83,20 +83,20 @@ post_hook = "killall -SIGUSR2 waybar"
 
 [Xresources]
 template = "colors.Xresources"
-output   = "~/.Xresources"
+output   = "~/xresources/variants/dynamic"
 
 [dunst]
 template = "colors-dunstrc"
-output   = "~/.config/dunst/dunstrc"
+output   = "~/.config/dunst/variants/dynamicrc" 
 post_hook = "dunstctl reload"
 
 [flameshot]
 template = "colors-flameshot.ini"
-output =   "~/.config/flameshot/flameshot.ini"
+output =   "~/.config/flameshot/variants/dynamic.ini"
 
 [peaclock]
 template = "colors-peaclock.conf"
-output   = "~/.peaclock/config"
+output   = "~/.peaclock/variants/dynamic.conf"
 
 [starship]
 template = "colors-starship-tyn.toml"
