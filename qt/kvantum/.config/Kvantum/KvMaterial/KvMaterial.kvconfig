@@ -1,6 +1,6 @@
 [%General]
 author=Tsu Jan
-comment=A dark flat theme inspired by Breeze 
+comment=A dark flat theme inspired by Breeze
 x11drag=all
 alt_mnemonic=true
 left_tabs=false
@@ -28,24 +28,24 @@ transient_groove=false
 transient_scrollbar=true
 
 [GeneralColors]
-window.color=#14140d
-base.color=#2b2a23
-alt.base.color=#36352d
-button.color=#36352d
-light.color=#36352d
-mid.light.color=#36352d
+window.color=#141317
+base.color=#2b292e
+alt.base.color=#363439
+button.color=#363439
+light.color=#363439
+mid.light.color=#363439
 dark.color=#000000
-mid.color=#939183
-highlight.color=#a8a56c
-inactive.highlight.color=#62602f
-text.color=#e6e2d7
-window.text.color=#e6e2d7
-button.text.color=#e6e2d7
-disabled.text.color=#939183
-tooltip.text.color=#e6e2d7
-highlight.text.color=#191800
-link.color=#a8a56c
-link.visited.color=#a7a487
+mid.color=#938f98
+highlight.color=#a79dc8
+inactive.highlight.color=#6c5ca3
+text.color=#e6e1e7
+window.text.color=#e6e1e7
+button.text.color=#e6e1e7
+disabled.text.color=#938f98
+tooltip.text.color=#e6e1e7
+highlight.text.color=#191234
+link.color=#a79dc8
+link.visited.color=#a6a0b4
 
 [Hacks]
 respect_darkness=true
@@ -62,7 +62,7 @@ interior=true
 interior.element=button
 indicator.size=9
 text.normal.color=white
-text.focus.color=#e9e5a7
+text.focus.color=#d3cee4
 text.press.color=white
 text.toggle.color=white
 text.shadow=0

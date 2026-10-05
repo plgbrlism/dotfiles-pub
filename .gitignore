@@ -31,9 +31,3 @@ __pycache__/
 *.orig
 *.swp
 *.swo
-
-# ignore dynamic-branch machine-specific leftovers (same-machine branch switches)
-apps/tty/xresources/variants/dynamic
-apps/notifier/dunst/.config/dunst/variants/dynamicrc
-apps/capture/flameshot/.config/flameshot/variants/dynamic.ini
-apps/cli/peaclock/.peaclock/variants/dynamic.conf
