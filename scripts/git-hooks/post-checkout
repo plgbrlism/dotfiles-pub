@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# post-checkout: re-apply skip-worktree to rizzoo outputs when landing on dynamic.
+# $1=prev $2=new $3=flag (1=branch checkout, 0=file checkout)
+[ "${3:-0}" = "1" ] || exit 0
+[ "$(git branch --show-current)" = "dynamic" ] || exit 0
+ROOT="$(git rev-parse --show-toplevel)"
+[ -x "$ROOT/scripts/mark-theme-local.sh" ] && "$ROOT/scripts/mark-theme-local.sh"

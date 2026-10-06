@@ -13,6 +13,14 @@ need stow
 need pacman
 command -v sudo >/dev/null 2>&1 || { echo "Error: sudo not found." >&2; exit 1; }
 
+if [ -d "$ROOT/.git" ]; then
+  git -C "$ROOT" config core.hooksPath scripts/git-hooks
+  if [ "$(git -C "$ROOT" branch --show-current 2>/dev/null)" = "dynamic" ]; then
+    bash "$ROOT/scripts/mark-theme-local.sh" >/dev/null || true
+  fi
+  echo "git: hooksPath -> scripts/git-hooks"
+fi
+
 # cat|dir|pacman pkgs|aur pkgs|bin|stow-ignore
 APPS="bar|polybar|polybar||polybar|
 bar|waybar|waybar||waybar|
