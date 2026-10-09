@@ -216,7 +216,12 @@ def cli(argv: list[str]) -> int:
         ui.console.print(ui.table([("", {}), ("action", {"style": "bold"}), ("", {})], rows))
         ui.say()
         # no prefilled value, it would swallow the first keypress
-        choice = ui.ask("number").strip() or "1"
+        answer = ui.ask("number")
+        if answer is None:
+            ui.say()
+            ui.ok("cancelled")
+            return 0
+        choice = answer.strip() or "1"
         ui.say()
         if choice.isdigit() and 1 <= int(choice) <= len(menu):
             key = menu[int(choice) - 1][0]
@@ -228,10 +233,18 @@ def cli(argv: list[str]) -> int:
         if key == "quit":
             ui.ok("bye")
             return 0
-        steps[key]()
-        ui.say()
-        ui.pause()
-        ui.console.clear()
+        try:
+            steps[key]()
+            ui.say()
+            if not ui.pause():
+                ui.say()
+                ui.ok("cancelled")
+                return 0
+            ui.console.clear()
+        except KeyboardInterrupt:
+            ui.say()
+            ui.ok("cancelled")
+            return 0
 
 
 def _tty() -> bool:

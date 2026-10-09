@@ -1,6 +1,5 @@
 """menu rendering and prompts"""
 import subprocess
-import sys
 
 import questionary
 from rich.console import Console
@@ -86,17 +85,14 @@ def confirm(msg: str, default: bool = False) -> bool:
     return bool(questionary.confirm(msg, default=default, qmark="").ask())
 
 
-def ask(msg: str, default: str = "") -> str:
-    return questionary.text(msg, default=default, qmark="").ask() or default
+def ask(msg: str, default: str = "") -> str | None:
+    """None means the user hit ctrl-c, empty means they submitted the default"""
+    return questionary.text(msg, default=default, qmark="").ask()
 
 
-def pause() -> None:
-    """wait for enter, no prompt widget needed"""
-    sys.stdin.readline()
-
-
-def ask(msg: str, default: str = "") -> str:
-    return questionary.text(msg, default=default, qmark="").ask() or default
+def pause() -> bool:
+    """False when the user hit ctrl-c, questionary swallows it as None"""
+    return questionary.press_any_key_to_continue().ask() is not None
 
 
 def stream(cmd: list[str], cwd=None, env=None) -> int:
