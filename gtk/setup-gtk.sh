@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-GTK_ROOT="$HOME/dotfiles-pub/gtk"
+GTK_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 THEMES_DIR="$HOME/.themes"
 
 need() {
@@ -9,7 +9,15 @@ need() {
 }
 
 need git
-need gum
+
+choose() {
+  local prompt="$1"; shift
+  local i opt
+  echo "$prompt" >&2
+  select opt in "$@"; do
+    [ -n "$opt" ] && { echo "$opt"; return 0; }
+  done
+}
 
 # name|subdir|repo-path|reload-script|flatpak-prefix
 THEMES="colloid|colloid/Colloid-gtk-theme|vinceliuice/Colloid-gtk-theme.git|colloid/reload.sh|Colloid
@@ -55,7 +63,7 @@ install_one() {
   flatpak_setup "$(echo "$entry" | cut -d'|' -f5)"
 }
 
-CHOICE=$(printf '%s\nall' "$(echo "$THEMES" | cut -d'|' -f1)" | gum choose --header "GTK theme?") || exit 1
+CHOICE=$(choose "GTK theme?" $(echo "$THEMES" | cut -d'|' -f1) all) || exit 1
 
 # remove only the three gtk variants, not the whole ~/.themes.
 rm -rf "$THEMES_DIR"/Colloid* "$THEMES_DIR"/Graphite* "$THEMES_DIR"/Mac*
@@ -70,4 +78,4 @@ else
   install_one "$(echo "$THEMES" | grep "^$CHOICE|")"
 fi
 
-gum style --foreground 212 "Done: $CHOICE installed."
+echo "Done: $CHOICE installed."
