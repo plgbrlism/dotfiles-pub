@@ -1,6 +1,0 @@
-entry {
-    hide-cursor-on-empty: true;
-    cursor-color:       @primary;
-    placeholder-color:  @on-surface-variant;
-    text-color:         @on-surface-variant;
-}

@@ -1,4 +1,3 @@
-// ~~ autostart ~~ 
+// ~~ autostart ~~
 
 spawn-at-startup "noctalia"
-spawn-at-startup "~/.config/rofi/scripts/wallpaper/cache-wallpaper.sh" "--restore"

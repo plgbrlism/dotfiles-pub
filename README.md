@@ -73,24 +73,15 @@ regenerations stay machine-specific and `git status` stays clean.
 ```
 dotfiles-pub/
 ├── apps/          one folder per app, each holding its real config
-│   ├── bar/       polybar, waybar
-│   ├── capture/   flameshot
-│   ├── cli/       btop, cava, fastfetch, glow, lavat, peaclock, rizzoo,
+│   ├── cli/       btop, cava, fastfetch, glow, peaclock, rizzoo,
 │   │              starship, yazi
-│   ├── compositor/picom
 │   ├── editor/    micro, nvim, zed
-│   ├── file/      xarchiver
-│   ├── launcher/  rofi
-│   ├── locker/    hyprlock
-│   ├── note/      obsidian
-│   ├── notifier/  dunst
 │   ├── service/   xdg-desktop-portal
-│   ├── shell/     zsh
-│   ├── terminal/  alacritty, foot, ghostty, kitty
+│   ├── terminal/  foot, kitty
 │   ├── tty/       xresources
 │   ├── utils/     kanshi
-│   └── wm/        dispatcher, i3, niri, qtile, sway
-├── gtk/           Colloid, Graphite, MacTahoe picker
+│   └── wm/        dispatcher, niri, sway
+├── gtk/           MacTahoe
 ├── qt/            qt5ct plus qt6ct plus Kvantum
 ├── noctalia-dell/ machine-specific Noctalia config (do not stow elsewhere)
 ├── noctalia-hp/   machine-specific Noctalia config (do not stow elsewhere)
@@ -110,24 +101,23 @@ If a config exists in home and is not a link, the installer moves it aside
 ## GTK themes
 
 ```sh
-cd ~/dotfiles-pub/gtk
-./setup-gtk.sh
+cd ~/dotfiles-pub/gtk/mac-tahoe
+./reload.sh
 ```
 
-Picks Colloid, Graphite, MacTahoe, or all. Clones missing theme repos
-(HTTPS fallback when SSH is absent), updates the rest, and runs each
+Picks MacTahoe. Clones the missing theme repo
+(HTTPS fallback when SSH is absent), updates the rest, and runs the
 theme's own installer. Files only. Your active theme stays put.
 
 ## Qt themes
 
 ```sh
-cd ~/dotfiles-pub/qt
-./setup-qt.sh
+stow -d ~/dotfiles-pub -t ~ qt
 ```
 
 Installs `qt5ct`, `qt6ct`, `kvantum`, links the Kvantum config here.
-Qt apps need `QT_QPA_PLATFORMTHEME=qt6ct` at WM startup. Sway and qtile
-already set it.
+Qt apps need `QT_QPA_PLATFORMTHEME=qt6ct` at WM startup. Sway
+already sets it.
 
 ## Noctalia (machine-specific, optional)
 

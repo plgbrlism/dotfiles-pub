@@ -32,15 +32,6 @@
     };
   };
 
-  #  PICOM COMPOSITOR (tuned for Celeron)
-  services.picom = {
-    enable = true;
-    vSync = true;
-    fade = true;
-    fadeDelta = 4;
-    shadow = false; # Disabled to conserve Celeron resources
-  };
-
   #  XDG PORTAL INTEGRATION
   xdg.portal = {
     enable = true;

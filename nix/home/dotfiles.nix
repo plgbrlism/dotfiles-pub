@@ -12,27 +12,14 @@ in
 	"noctalia".source = link "${dotfiles}/noctalia-hp/.config/noctalia";
 	
     #  Window Managers
-    "i3".source = link "${dotfiles}/apps/wm/i3/.config/i3";
     "sway".source = link "${dotfiles}/apps/wm/sway/.config/sway";
     "niri".source = link "${dotfiles}/apps/wm/niri/.config/niri";
-
-    # Screen Locker
-    "hypr".source = link "${dotfiles}/apps/locker/hyprlock/.config/hypr";
 
     #  Terminals
     "kitty".source = link "${dotfiles}/apps/terminal/kitty/.config/kitty";
     "alacritty".source = link "${dotfiles}/apps/terminal/alacritty/.config/alacritty";
     "foot".source = link "${dotfiles}/apps/terminal/foot/.config/foot";
     "ghostty".source = link "${dotfiles}/apps/terminal/ghostty/.config/ghostty";
-
-    #  Bar / Launcher / Notification
-    "waybar".source = link "${dotfiles}/apps/bar/waybar/.config/waybar";
-    "polybar".source = link "${dotfiles}/apps/bar/polybar/.config/polybar";
-    "rofi".source = link "${dotfiles}/apps/launcher/rofi/.config/rofi";
-    "dunst".source = link "${dotfiles}/apps/notifier/dunst/.config/dunst";
-
-    #  Compositor
-    "picom".source = link "${dotfiles}/apps/compositor/picom/.config/picom";
 
     #  CLI Tools
     "btop".source = link "${dotfiles}/apps/cli/btop/.config/btop";

@@ -167,7 +167,7 @@ session_unlocked = []
 shutting_down = []
 started = []
 theme_mode_changed = []
-wallpaper_changed = [ "~/.config/rofi/scripts/wallpaper/cache-wallpaper.sh" ]
+wallpaper_changed = []
 wifi_disabled = []
 wifi_enabled = []
 

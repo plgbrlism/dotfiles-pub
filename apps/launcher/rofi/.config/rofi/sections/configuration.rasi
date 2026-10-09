@@ -1,9 +1,0 @@
-configuration {
-    modi:                       "drun,run,window";
-	display-drun:               " ";
-    display-run:                " ";
-    display-filebrowser:        " ";
-    display-window:             " ";
-    drun-display-format:        "{name}";
-    window-format:              "{w} · {c} · {t}";
-}

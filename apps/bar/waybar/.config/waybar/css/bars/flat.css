@@ -1,9 +1,0 @@
-.module {
-	min-height: 0;
-}
-
-#waybar > box {
-    background-color:    @background;
-    padding-left: 12px; 
-    padding-right: 12px;
-}
