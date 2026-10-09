@@ -31,9 +31,6 @@ def _row(line: str) -> App:
 
 
 _ROWS = """\
-bar|polybar|polybar||polybar|
-bar|waybar|waybar||waybar|
-capture|flameshot|flameshot||flameshot|
 cli|btop|btop||btop|
 cli|cava|cava||cava|
 cli|fastfetch|fastfetch||fastfetch|
@@ -43,29 +40,20 @@ cli|peaclock||peaclock|peaclock|history
 cli|rizzoo|||rizzoo|
 cli|starship|starship||starship|
 cli|yazi|yazi||yazi|
-compositor|picom|picom||picom|
 editor|micro|micro||micro|
 editor|nvim|neovim||nvim|
 editor|zed|zed||zed|
-file|xarchiver|xarchiver||xarchiver|
-launcher|rofi|rofi||rofi|
-locker|hyprlock|hyprlock||hyprlock|
-note|obsidian|obsidian||obsidian|
-notifier|dunst|dunst||dunst|
  service|xdg-desktop-portal|xdg-desktop-portal-wlr xdg-desktop-portal-gtk|||
  qt|qt5ct|qt5ct||qt5ct|
  qt|qt6ct|qt6ct||qt6ct|
  qt|kvantum|kvantum kvantum-qt5||kvantum|
-shell|zsh|zsh||zsh|
 terminal|alacritty|alacritty||alacritty|
 terminal|foot|foot||foot|
 terminal|ghostty|ghostty||ghostty|
 terminal|kitty|kitty||kitty|
 utils|kanshi|kanshi||kanshi|
 wm|dispatcher||||dispatch|
-wm|i3|i3-wm||i3|
 wm|niri||niri-git|niri|
-wm|qtile|qtile|qtile-extras-git|qtile|__pycache__
 wm|sway|swaybg swaylock|swayfx|sway|
 tty|xresources||||
 """
@@ -73,14 +61,13 @@ tty|xresources||||
 APPS: list[App] = [_row(l) for l in _ROWS.splitlines() if l.strip()]
 
 CATEGORIES = [
-    "bar", "capture", "cli", "compositor", "editor", "env", "file",
-    "launcher", "locker", "note", "notifier", "service", "shell",
+    "cli", "editor", "service",
     "terminal", "tty", "utils", "wm", "noctalia", "gtk", "qt",
     "base", "fonts", "audio", "browsers", "media", "desktop", "tools",
 ]
 
 # categories handled specially, not via stow_app
-SPECIAL_CATS = {"env", "noctalia", "gtk", "qt", "tty"}
+SPECIAL_CATS = {"noctalia", "gtk", "qt", "tty"}
 
 # install-only categories: package groups with no configs to stow
 # (subset of pacman/aur_pkgs.txt; expand when someone misses a pkg).

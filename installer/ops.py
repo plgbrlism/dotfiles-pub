@@ -348,25 +348,24 @@ def stow_top(pkg_name: str, log=print, force: bool = False) -> int:
 
 
 def stow_category_pkg(cat: str, log=print) -> int:
-    """Stow a whole category dir from apps/ (env, tty)."""
+    """Stow a whole category dir from apps/ (tty)."""
     return run(["stow", "-d", str(ROOT / "apps"), "-t", str(HOME), cat], log)
 
 
 def apply_cat(cat: str, log=print, noctalia: str | None = None, force: bool = False) -> None:
-    """Apply a whole-category selection (env, tty, gtk, qt, noctalia, install-only cats)."""
+    """Apply a whole-category selection (tty, gtk, qt, noctalia, install-only cats)."""
     from .apps import INSTALL_CATS
     if cat in INSTALL_CATS:
         log(f"{cat}: packages only, handled in package step.")
         return
-    if cat in ("env", "tty"):
+    if cat == "tty":
         log(f"stow {cat}")
         stow_category_pkg(cat, log)
     elif cat == "gtk":
-        log("NOTE: gtk is .no-share; running setup-gtk.sh")
-        run_script("gtk/setup-gtk.sh", log)
+        log("NOTE: gtk is .no-share; running mac-tahoe reload.sh")
+        run_script("gtk/mac-tahoe/reload.sh", log)
     elif cat == "qt":
-        log("NOTE: qt is .no-share; running setup-qt.sh")
-        run_script("qt/setup-qt.sh", log)
+        stow_top("qt", log, force=force)
     elif cat == "noctalia":
         if noctalia:
             stow_top(f"noctalia-{noctalia}", log, force=force)
