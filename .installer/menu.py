@@ -236,10 +236,7 @@ def cli(argv: list[str]) -> int:
         try:
             steps[key]()
             ui.say()
-            if not ui.pause():
-                ui.say()
-                ui.ok("cancelled")
-                return 0
+            ui.pause()
             ui.console.clear()
         except KeyboardInterrupt:
             ui.say()

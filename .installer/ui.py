@@ -2,6 +2,10 @@
 import subprocess
 
 import questionary
+from prompt_toolkit import PromptSession
+from prompt_toolkit.formatted_text import FormattedText
+from prompt_toolkit.key_binding import KeyBindings
+from prompt_toolkit.keys import Keys
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -90,9 +94,22 @@ def ask(msg: str, default: str = "") -> str | None:
     return questionary.text(msg, default=default, qmark="").ask()
 
 
-def pause() -> bool:
-    """False when the user hit ctrl-c, questionary swallows it as None"""
-    return questionary.press_any_key_to_continue().ask() is not None
+def pause() -> None:
+    """any key continues, ctrl-c raises for the caller to catch.
+
+    questionary.press_any_key_to_continue cannot do this, it binds Keys.Any to
+    an exit that yields None for every keypress including ctrl-c.
+    """
+    bindings = KeyBindings()
+
+    @bindings.add(Keys.Any)
+    def _go(event):
+        event.app.exit(result=True)
+
+    session = PromptSession(
+        lambda: FormattedText([("class:question", " Press any key to continue... ")]),
+        key_bindings=bindings)
+    session.app.run()
 
 
 def stream(cmd: list[str], cwd=None, env=None) -> int:
