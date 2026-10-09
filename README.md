@@ -7,11 +7,12 @@ config, do not stow it.
 ## Prereqs
 
 Arch with `pacman`, or NixOS with `nixos-rebuild`. Nix configs live in `nix/`.
-You also need `git`, `stow`, `sudo`, and `fzf` (Arch only).
+You also need `git`, `stow`, `sudo`, and `gum` (Arch only, bootstrapped
+automatically if missing).
 
 ```sh
 # Arch
-sudo pacman -S --needed git stow fzf
+sudo pacman -S --needed git stow gum
 ```
 
 `yay` is optional. The installer offers to fetch it when an AUR package
@@ -25,12 +26,12 @@ cd ~/dotfiles-pub
 ./install.sh
 ```
 
-`install.sh` starts a guided CLI built on `fzf`. One key model on every
-screen: arrows move, typing filters, ENTER chooses, ESC or ctrl-c backs
-out. There is no space key and no number keys. Multi-pick screens are
-baskets: ENTER toggles a line, the Done line confirms. Nothing installs
-until the review screen, where the cursor starts on Back, so ENTER never
-installs blind.
+`install.sh` is a self-contained bash + gum installer (Arch only).
+One model on every screen: arrows move, space toggles, ENTER confirms,
+ESC backs out. Multi-pick screens select any number of entries, then a
+review screen lists missing packages (descriptions included) with a
+second chance to unpick. Nothing installs until the Decide screen, where
+the cursor starts on Back, so ENTER never installs blind.
 
 ## Arch menu
 
@@ -55,13 +56,6 @@ scope here.
 Apps present on your machine show `(installed)`. Entries flagged `.no-share`
 are machine-specific and ask before stowing.
 
-## NixOS menu
-
-Packages and symlinks are declarative here, so the menu holds branch,
-rebuild, update, and validate only. `nix/home/dotfiles.nix` symlinks the
-same `~/.config` paths through home-manager. The CLI hides stow and package
-entries so the two never fight over links.
-
 ## Branches
 
 `master` pins the calamus colorscheme. `dynamic` tracks rizzoo-generated
@@ -85,8 +79,7 @@ dotfiles-pub/
 ├── qt/            qt5ct plus qt6ct plus Kvantum
 ├── noctalia-dell/ machine-specific Noctalia config (do not stow elsewhere)
 ├── noctalia-hp/   machine-specific Noctalia config (do not stow elsewhere)
-├── installer/     the Python/fzf installer package
-├── install.sh     entry point, launches installer/
+├── install.sh     self-contained bash+gum installer (Arch only)
 ├── scripts/       git hooks plus theme helpers
 └── nix/           NixOS/Home Manager, see nix/paul-nix.md
 ```
