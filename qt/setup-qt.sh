@@ -2,20 +2,23 @@
 set -euo pipefail
 
 # arch-only. installs qt5ct qt6ct kvantum, links repo Kvantum config.
-QT_ROOT="$HOME/dotfiles-pub/qt"
+QT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PKGS="qt5ct qt6ct kvantum"
 
-command -v gum >/dev/null 2>&1 || { echo "Error: 'gum' not found. Install it first." >&2; exit 1; }
 command -v pacman >/dev/null 2>&1 || { echo "Error: pacman not found. Arch assumed." >&2; exit 1; }
 
 INSTALLER="sudo pacman -S --needed --noconfirm"
 
 USE_YAY=false
 if command -v yay >/dev/null 2>&1; then
-  if [ "$(gum choose --header "Installer? (pacman recommended)" "pacman" "yay")" = "yay" ]; then
-    gum confirm "AUR might not be stable as you expect; just choose pacman. Use yay anyway?" \
-      && USE_YAY=true || echo "Falling back to pacman."
-  fi
+  echo "Installer? (pacman recommended)"
+  select _inst in pacman yay; do
+    if [ "$_inst" = "yay" ]; then
+      read -r -p "AUR might not be stable as you expect. Use yay anyway? [y/N] " _ans
+      [ "$_ans" = "y" ] || [ "$_ans" = "Y" ] && USE_YAY=true || echo "Falling back to pacman."
+    fi
+    break
+  done
 fi
 [ "$USE_YAY" = true ] && INSTALLER="yay -S --needed --noconfirm"
 
@@ -32,4 +35,4 @@ ln -sfn "$SRC" "$DST"
 [ "${QT_QPA_PLATFORMTHEME:-}" = "qt6ct" ] \
   || echo "Note: set QT_QPA_PLATFORMTHEME=qt6ct in WM autostart (sway/qtile already do)."
 
-gum style --foreground 212 "Done: qt5ct qt6ct kvantum installed, Kvantum linked."
+echo "Done: qt5ct qt6ct kvantum installed, Kvantum linked."
