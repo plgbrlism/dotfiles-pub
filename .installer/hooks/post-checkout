@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# reinstall theme skip-worktree bits after a branch checkout.
+# $1=prev $2=new $3=flag, flag 1 is a branch checkout.
+[ "${3:-0}" = "1" ] || exit 0
+ROOT="$(git rev-parse --show-toplevel)"
+# quiet, never blocks a checkout
+"$ROOT/install.sh" theme-bits >/dev/null 2>&1 || true

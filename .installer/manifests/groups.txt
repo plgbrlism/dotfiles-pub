@@ -1,0 +1,9 @@
+# install-only package groups. no configs to stow.
+# group|pacman packages|aur packages
+base|git stow base-devel fzf fd bat tldr zoxide tmux zsh-autosuggestions zsh-syntax-highlighting|yay-bin
+fonts|noto-fonts noto-fonts-emoji ttf-firacode-nerd ttf-jetbrains-mono-nerd ttf-liberation ttf-dejavu|otf-departure-mono-nerd ttf-ms-fonts ttf-unifont siji-ttf
+audio|pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber pavucontrol|
+browsers|firefox|brave-origin-bin google-chrome zen-browser-bin
+media|mpv vlc imv feh inkscape krita obs-studio peek gpu-screen-recorder grim wl-clipboard gst-plugin-pipewire ffmpegthumbnailer poppler tumbler xwallpaper imagemagick|gpu-screen-recorder-gtk
+desktop|bitwarden anki nautilus lxappearance nwg-look xss-lock|vesktop-bin onlyoffice-bin unityhub cursor-appimage megacmd clyp-bin universal-android-debloater-bin aura-git veila-git wbg i3lock-color i3lock-fancy-rapid-git
+tools|lazygit atuin just jq tree rsync wget dust pastel xclip autorandr brightnessctl bluetui bluez bluez-utils tlp powertop fwupd pacman-contrib systemctl-tui smartmontools lsof vhs awww cowsay figlet cmatrix 7zip unzip|

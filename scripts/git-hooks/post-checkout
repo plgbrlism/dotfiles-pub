@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# post-checkout: re-apply skip-worktree to rizzoo outputs when landing on dynamic,
+# clear them when leaving it (stale bits hide master's tracked content as sparse).
+# $1=prev $2=new $3=flag (1=branch checkout, 0=file checkout)
+[ "${3:-0}" = "1" ] || exit 0
+ROOT="$(git rev-parse --show-toplevel)"
+if [ "$(git branch --show-current)" = "dynamic" ]; then
+  [ -x "$ROOT/scripts/mark-theme-local.sh" ] && "$ROOT/scripts/mark-theme-local.sh"
+else
+  paths=$(sed -n 's/^[[:space:]]*"\(.*\)"[[:space:]]*\\\{0,1\}$/\1/p' "$ROOT/scripts/mark-theme-local.sh" 2>/dev/null)
+  # paths contain no spaces; word-splitting intended
+  # shellcheck disable=SC2086
+  [ -n "$paths" ] && git update-index --no-skip-worktree -- $paths 2>/dev/null || true
+fi

@@ -1,0 +1,45 @@
+# stow package table
+#
+# cat|name|pacman packages|aur packages|binary to verify|stow ignore regex
+# empty pacman or aur field means none. leave trailing fields off when unused.
+#
+# a name of @<dir> stows the whole apps/<cat> directory in one unit, for
+# categories whose subdirs are not separate stow packages.
+bar|polybar|polybar||polybar|
+bar|waybar|waybar||waybar|
+capture|flameshot|flameshot||flameshot|
+cli|btop|btop||btop|
+cli|cava|cava||cava|
+cli|fastfetch|fastfetch||fastfetch|
+cli|glow|glow||glow|
+cli|lavat||lavat-git|lavat|
+cli|peaclock||peaclock|peaclock|history
+cli|rizzoo|||rizzoo|
+cli|starship|starship||starship|
+cli|yazi|yazi||yazi|
+compositor|picom|picom||picom|
+editor|micro|micro||micro|
+editor|nvim|neovim||nvim|
+editor|zed|zed||zed|
+file|xarchiver|xarchiver||xarchiver|
+launcher|rofi|rofi||rofi|
+locker|hyprlock|hyprlock||hyprlock|
+note|obsidian|obsidian||obsidian|
+notifier|dunst|dunst||dunst|
+service|xdg-desktop-portal|xdg-desktop-portal-wlr xdg-desktop-portal-gtk|||
+qt|qt5ct|qt5ct||qt5ct|
+qt|qt6ct|qt6ct||qt6ct|
+qt|kvantum|kvantum kvantum-qt5||kvantum|
+shell|zsh|zsh||zsh|
+terminal|alacritty|alacritty||alacritty|
+terminal|foot|foot||foot|
+terminal|ghostty|ghostty||ghostty|
+terminal|kitty|kitty||kitty|
+utils|kanshi|kanshi||kanshi|
+wm|dispatcher||||dispatch|
+wm|i3|i3-wm||i3|
+wm|niri||niri-git|niri|
+wm|qtile|qtile|qtile-extras-git|qtile|__pycache__
+wm|sway|swaybg swaylock|swayfx|sway|
+env|@env
+tty|@tty
